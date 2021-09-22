@@ -1,5 +1,6 @@
 class Employee:
 
+    num_of_emps = 0 # class variable
     raise_amount = 1.04 # class variable
 
     def __init__(self, first, last, pay):
@@ -9,15 +10,21 @@ class Employee:
         self.pay = pay
         self.email = first + "." + last + "@company.com"
 
+        Employee.num_of_emps += 1
+
     def fullName(self):
         return '{} {}'.format(self.first, self.last)
 
     def apply_raise(self):
-        self.pay = int(self.pay * self.raise_amount)
+        self.pay = int(self.pay * self.raise_amount) # we can access raise_amount using Employee.raise_amount also
 
+
+print(Employee.num_of_emps)
 
 emp_1 = Employee("Ayush", "Garg", 50000) # instance of class. 
 emp_2 = Employee("Arnim", "Garg", 60000)
+
+print(Employee.num_of_emps)
 
 # ========================================== classes and instances ==============================
 
