@@ -39,8 +39,9 @@ print(emp_1.__dict__)
 emp_1.raise_amount = 1.05
 print(emp_1.__dict__)
 print(Employee.__dict__)
-print(emp_2.__dict__)
-
+print(emp_2.__dict__) 
+print(emp_2.raise_amount) # raise amount fall back to class variable, since no raise_amount instance var is present.
+ 
 print(emp_1.pay)
 emp_1.apply_raise()
 print(emp_1.pay)
