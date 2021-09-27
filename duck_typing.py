@@ -5,7 +5,16 @@ less important than the method it defines. Using Duck Typing, we do not check ty
 Instead, we check for the presence of a given method or attribute.
 
 In duck typing as long as class has implementation of a function, the type of it, does not matter.
+
+Duck typing extends the concept of dynamic typing in Python.
+Dynamic typing means that we can change the type of an object later in the code.
 """
+
+x = 5  # type of x is an integer
+print(type(x))
+
+x = "Educative"  # type of x is now string
+print(type(x))
 
 class PyCharm:
 
