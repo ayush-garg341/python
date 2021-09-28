@@ -62,3 +62,7 @@ class InventoryItem:
 
     def total_cost(self) -> float:
         return self.unit_price * self.quantity_on_hand
+
+"""
+    With data class, we need not to have initializer method ( __init__ ) in the class.
+"""
