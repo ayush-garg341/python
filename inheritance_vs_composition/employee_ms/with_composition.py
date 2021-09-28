@@ -41,6 +41,8 @@ class ContractCommission(Commission):
 class Employee:
     """Basic representation of an employee at the company."""
 
+    # Can be refactored further, since employeee class has many responsibility like basic info and salary detail.
+
     name: str
     id: int
     contract: Contract
