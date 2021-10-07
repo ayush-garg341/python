@@ -14,32 +14,31 @@
 """
 
 import unittest
-import ls
+from ls import LsContent
 from unittest import mock, TestCase
 
 class TestExamples(TestCase):
-    def test_print_contents_of_cwd_one(self):
-        actual_result = ls.print_contents_of_cwd()
-        expected_dir = b'design_patterns'
+    # def test_print_contents_of_cwd_one(self):
+    #     actual_result = LsContent().calc()
+    #     expected_res = 10
 
-        self.assertIn(expected_dir, actual_result)
+    #     self.assertEqual(expected_res, actual_result)
 
 
-    @mock.patch('ls.check_output', return_value=b"foo\nbar\n")
+    @mock.patch('ls.LsContent.add', return_value=15)
     def test_print_contents_of_cwd_two(self, mock_check_output):
-        actual_result = ls.print_contents_of_cwd()
-        expected_dir = b'foo'
+        actual_result = LsContent().calc()
+        expected_dir = 15
 
-        self.assertIn(expected_dir, actual_result)
+        self.assertEqual(expected_dir, actual_result)
 
 
     def test_print_contents_of_cwd_three(self):
-        with mock.patch('ls.check_output', return_value=b"foo\nbar\n"):
-            actual_result = ls.print_contents_of_cwd()
+        with mock.patch('ls.LsContent.add', return_value=20):
+            actual_result = LsContent().calc()
         
-        expected_dir = b'foo'
-        # expected_dir = b'design_patterns' # will fail
-        self.assertIn(expected_dir, actual_result)
+        expected_dir = 20
+        self.assertEqual(expected_dir, actual_result)
 
 
 
