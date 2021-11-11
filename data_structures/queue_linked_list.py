@@ -35,6 +35,7 @@ class Queue:
                 raise QueueEmptyException
             temp_node = self.head.next
             self.head = temp_node   
+            self.len -= 1
         except QueueEmptyException:
             print("Queue is already empty")
 
