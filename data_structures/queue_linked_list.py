@@ -44,7 +44,7 @@ class Queue:
         try:
             if self.head == None:
                 raise QueueEmptyException
-            return self.head.data
+            return self.head
         except QueueEmptyException:
             print("Queue is already empty")
 
