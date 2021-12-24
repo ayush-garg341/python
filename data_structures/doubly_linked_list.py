@@ -53,6 +53,7 @@ class DoublyLinkedList:
                 self.head = None
             else:
                 self.head = self.head.next
+            self.__len -= 1
             del temp
         except LinkedListEmptyException as emptyerr:
             print(emptyerr)
@@ -62,13 +63,15 @@ class DoublyLinkedList:
         try:
             if self.tail == None:
                 raise LinkedListEmptyException("Linked List is empty")
-            
+
             temp = self.tail
             if self.tail == self.head:
                 self.tail = None
                 self.head = None
-            else:              
+            else:
                 self.tail = self.tail.prev
+                self.tail.next = None
+            self.__len -= 1
             del temp
         except LinkedListEmptyException as emptyerr:
             print(emptyerr)
