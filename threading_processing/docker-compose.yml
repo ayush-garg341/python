@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  multi_threading:
+    image: multi_threading
+    volumes: 
+        - ./:/usr/src/app
+    command: tail -F anything
