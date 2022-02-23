@@ -135,3 +135,33 @@ print(min_coin_change_dp_bottom_up_tabular([1, 2, 3], 5))
 print(min_coin_change_dp_bottom_up_tabular([1, 2, 3], 11))
 print(min_coin_change_dp_bottom_up_tabular([1, 2, 3], 7))
 print(min_coin_change_dp_bottom_up_tabular([3, 5], 7))
+
+
+def min_coin_change_dp_bottom_up_tabular_refactored(denominations: list, total: int):
+    n = len(denominations)
+
+    if n == 0:
+        return -1
+
+    dp = [[math.inf for i in range(total + 1)] for j in range(len(denominations))]
+
+    for i in range(len(denominations)):
+        dp[i][0] = 0
+
+    for i in range(len(denominations)):
+        for denom in range(1, total + 1):
+            if denom >= denominations[i]:
+                if dp[i][denom - denominations[i]] != math.inf:
+                    dp[i][denom] = 1 + dp[i][denom - denominations[i]]
+
+            if i > 0:
+                dp[i][denom] = min(dp[i][denom], dp[i - 1][denom])
+
+    return -1 if dp[n - 1][total] == math.inf else dp[n - 1][total]
+
+
+print("============= dp bottom up tabular refactored/optimised ==========")
+print(min_coin_change_dp_bottom_up_tabular_refactored([1, 2, 3], 5))
+print(min_coin_change_dp_bottom_up_tabular_refactored([1, 2, 3], 11))
+print(min_coin_change_dp_bottom_up_tabular_refactored([1, 2, 3], 7))
+print(min_coin_change_dp_bottom_up_tabular_refactored([3, 5], 7))
