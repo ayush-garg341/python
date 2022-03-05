@@ -10,7 +10,7 @@ If the “minimum deletion count” is not more than ‘K’, the string will be
 def check_k_palin(string: str, k: int) -> bool:
     n = len(string)
     if n == 0:
-        return -1
+        return False
 
     dp = [[0 for i in range(n)] for j in range(n)]
 
