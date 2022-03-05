@@ -42,3 +42,10 @@ print(min_deletion_to_make_palin_dp_bottoms_up_tabular("abdbca"))
 print(min_deletion_to_make_palin_dp_bottoms_up_tabular("cddpd"))
 print(min_deletion_to_make_palin_dp_bottoms_up_tabular("pqr"))
 print(min_deletion_to_make_palin_dp_bottoms_up_tabular("abcdcba"))
+
+
+def min_insertion_to_make_palin_dp_bottom_up_tabular(string):
+    """
+    It'e just another way of saying min deletions to make string palindrome.
+    Implementation will be same as above.
+    """
