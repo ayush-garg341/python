@@ -14,6 +14,11 @@ example2:
 
 Approach -> We can calculate LC subseq. ex. c
 shortest common superseq = n1-c + n2-c + c
+
+Approach2 -> we can process both of the sequences one character at a time, so at any step, we must choose between:
+
+    1. If the sequences have a matching character, we can skip one character from both the sequences and make a recursive call for the remaining lengths to get SCS.
+    2. If the strings don’t match, we start two new recursive calls by skipping one character separately from each string. The minimum of these two recursive calls will have our answer.
 """
 
 
