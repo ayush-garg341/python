@@ -46,7 +46,7 @@ def find_substring(string: str, pattern: str):
     return substr
 
 
-print(find_substring("aaaaabcdecccc", "abc"))
-# print(find_substring("abdbca", "abc"))
-# print(find_substring("aabdec", "abac"))
-# print(find_substring("adcad", "abc"))
+print(find_substring("aaaaabdeccccba", "abc"))
+print(find_substring("abdbca", "abc"))
+print(find_substring("aabdec", "abac"))
+print(find_substring("adcad", "abc"))
