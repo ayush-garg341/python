@@ -35,6 +35,7 @@ def find_substring(string: str, pattern: str):
         while matched_count == len(char_freq):
             len_substr = window_end - window_start + 1
             if len_substr < substr_len:
+                substr_len = len_substr
                 substr = string[window_start : window_end + 1]
 
             left_char = string[window_start]
@@ -50,3 +51,4 @@ print(find_substring("aaaaabdeccccba", "abc"))
 print(find_substring("abdbca", "abc"))
 print(find_substring("aabdec", "abac"))
 print(find_substring("adcad", "abc"))
+print(find_substring("absdfaabab", "adb"))
