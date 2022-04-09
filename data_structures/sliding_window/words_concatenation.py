@@ -18,7 +18,8 @@ def find_word_concatenation(str1, words):
     result_indices = []
     window_start = 0
     matched = 0
-    pattern_len = len(words[0]) * len(words)
+    word_len = len(words[0])
+    pattern_len = word_len * len(words)
     char_freq = {}
     for word in words:
         for char in word:
@@ -36,8 +37,16 @@ def find_word_concatenation(str1, words):
         if matched == len(char_freq):
             substr = str1[window_start : window_end + 1]
             flag = True
+            words_dict = {}
+            for i in range(0, pattern_len, word_len):
+                substr_word = substr[i : i + word_len]
+                if substr_word not in words_dict:
+                    words_dict[substr_word] = 0
+                words_dict[substr_word] += 1
+
             for word in words:
-                if word in substr:
+                if word in words_dict and words_dict[word] != 0:
+                    words_dict[word] -= 1
                     continue
                 else:
                     flag = False
@@ -60,3 +69,4 @@ print(find_word_concatenation("catfoxcat", ["cat", "fox"]))
 print(find_word_concatenation("catcatfoxfox", ["cat", "fox"]))
 print(find_word_concatenation("barfoofoobarthefoobarman", ["bar", "foo", "the"]))
 print(find_word_concatenation("barfoothefoobarman", ["foo", "bar"]))
+print(find_word_concatenation("abababab", ["ab", "ab", "ab"]))
