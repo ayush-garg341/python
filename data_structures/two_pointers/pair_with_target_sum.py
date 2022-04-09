@@ -33,6 +33,7 @@ def pair_with_target_sum(arr, target_sum):
 
 print(pair_with_target_sum([1, 2, 3, 4, 6], 6))
 print(pair_with_target_sum([2, 5, 9, 11], 11))
+print(pair_with_target_sum([2, 4, 6, 8], 11))
 
 
 """
@@ -54,3 +55,4 @@ def pair_with_target_sum_hash_table(arr, target_sum):
 
 print(pair_with_target_sum_hash_table([1, 2, 3, 4, 6], 6))
 print(pair_with_target_sum_hash_table([2, 5, 9, 11], 11))
+print(pair_with_target_sum_hash_table([2, 4, 6, 8], 11))
