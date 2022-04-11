@@ -47,8 +47,6 @@ def pair_with_target_sum(arr, target_sum, triplets_arr):
         else:
             start += 1
 
-    return (None, None)
-
 
 print(find_triplets_adding_to_zero([-3, 0, 1, 2, -1, 1, -2]))
 print(find_triplets_adding_to_zero([-5, 2, -1, -2, 3]))
