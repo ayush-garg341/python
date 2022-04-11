@@ -17,22 +17,29 @@ def find_triplets_adding_to_zero(nums: list) -> list:
     triplets_arr = []
 
     nums.sort()
-    for num in nums:
-        a, b = pair_with_target_sum(nums, -num)
-        if a is not None and b is not None:
-            triplets_arr.append([num, a, b])
+    for i in range(len(nums)):
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+        num = nums[i]
+        pair_with_target_sum(nums[i + 1 :], -num, triplets_arr)
 
     return triplets_arr
 
 
-def pair_with_target_sum(arr, target_sum):
+def pair_with_target_sum(arr, target_sum, triplets_arr):
     start = 0
     end = len(arr) - 1
 
     while start < end:
         s = arr[start] + arr[end]
         if s == target_sum:
-            return (arr[start], arr[end])
+            triplets_arr.append([-target_sum, arr[start], arr[end]])
+            start += 1
+            end -= 1
+            while start < end and arr[start] == arr[start - 1]:
+                start += 1
+            while start < end and arr[end] == arr[end + 1]:
+                end -= 1
 
         elif s > target_sum:
             end -= 1
