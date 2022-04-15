@@ -17,14 +17,16 @@ example2:
     It does not matter what you leave beyond the returned k (hence they are underscores).
 """
 
+# This program can be generalized to at most k duplicates allowed
 
-def remove_duplicates(nums) -> int:
+
+def remove_duplicates(nums, k) -> int:
     start = 0
     count = 1
     n = len(nums)
     for i in range(1, n):
         if nums[i] == nums[start]:
-            if count < 2:
+            if count < k:
                 count += 1
                 start += 1
                 nums[start] = nums[i]
@@ -38,5 +40,5 @@ def remove_duplicates(nums) -> int:
     return start + 1
 
 
-print(remove_duplicates([1, 1, 1, 2, 2, 3]))
-print(remove_duplicates([0, 0, 1, 1, 1, 1, 2, 3, 3]))
+print(remove_duplicates([1, 1, 1, 2, 2, 3], 3))
+print(remove_duplicates([0, 0, 1, 1, 1, 1, 2, 3, 3], 3))
