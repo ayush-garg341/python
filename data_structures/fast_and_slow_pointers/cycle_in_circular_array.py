@@ -20,7 +20,7 @@ example3:
 
 
 def circular_array_loop_exist(arr):
-    for i in arr:
+    for i in range(len(arr)):
         is_forward = arr[i] >= 0
         slow, fast = i, i
 
