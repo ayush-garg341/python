@@ -50,7 +50,48 @@ def insert_interval(intervals, interval):
     return merged
 
 
-# print(insert_interval([[1, 3], [5, 7], [8, 12]], [4, 6]))
-# print(insert_interval([[1, 3], [5, 7], [8, 12]], [4, 10]))
-# print(insert_interval([[2, 3], [5, 7]], [1, 4]))
+print(insert_interval([[1, 3], [5, 7], [8, 12]], [4, 6]))
+print(insert_interval([[1, 3], [5, 7], [8, 12]], [4, 10]))
+print(insert_interval([[2, 3], [5, 7]], [1, 4]))
 print(insert_interval([[1, 5]], [5, 7]))
+
+
+def insert_interval_without_extra_space(intervals, interval):
+    merged_interval = []
+
+    # finding the position to insert new interval
+    merged = False
+    for i in range(len(intervals)):
+        if intervals[i][0] < interval[0] and not merged:
+            merged_interval.append(intervals[i])
+        elif merged is True:
+            merged_interval.append(intervals[i])
+        else:
+            merged_interval.append(interval)
+            merged_interval.append(intervals[i])
+            merged = True
+
+    if merged is False:
+        merged_interval.append(interval)
+
+    # now merging the intervals in place to make them mutually exclusive
+    start = 0
+    first = merged_interval[0]
+    for i in range(1, len(merged_interval)):
+        if merged_interval[i][0] <= first[1]:
+            if merged_interval[i][1] > first[1]:
+                first[1] = merged_interval[i][1]
+        else:
+            merged_interval[start] = first
+            start += 1
+            first = merged_interval[i]
+    merged_interval[start] = first
+
+    return merged_interval[: start + 1]
+
+
+print(" ================ ")
+print(insert_interval_without_extra_space([[1, 3], [5, 7], [8, 12]], [4, 6]))
+print(insert_interval_without_extra_space([[1, 3], [5, 7], [8, 12]], [4, 10]))
+print(insert_interval_without_extra_space([[2, 3], [5, 7]], [1, 4]))
+print(insert_interval_without_extra_space([[1, 5]], [5, 7]))
