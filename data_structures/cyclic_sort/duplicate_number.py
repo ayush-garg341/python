@@ -28,7 +28,6 @@ def find_duplicate(nums):
         else:
             i += 1
 
-    print(nums)
     for i in range(len(nums)):
         if i + 1 != nums[i]:
             return nums[i]
@@ -46,3 +45,44 @@ Challenge to do it without modifying input array and in O(1).
 
 Slow and fast pointer approach
 """
+
+
+def find_duplicate_without_modifying_nums(nums):
+    slow = nums[0]
+    fast = nums[nums[0]]
+
+    # find meet point
+    while slow != fast:
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+
+    # find length of cycle
+    current = nums[nums[slow]]
+    length = 1
+    while current != nums[slow]:
+        current = nums[current]
+        length += 1
+
+    print("length = ", length)
+
+    # find meeting point if known length of cycle i.e. advance the one pointer by length
+    slow = nums[0]
+    fast = nums[0]
+
+    while length != 0:
+        slow = nums[slow]
+        length -= 1
+
+    while slow != fast:
+        slow = nums[slow]
+        fast = nums[fast]
+
+    return slow
+
+
+print("====================================")
+print(find_duplicate_without_modifying_nums([1, 4, 4, 3, 2]))
+print(find_duplicate_without_modifying_nums([2, 1, 3, 3, 5, 4]))
+print(find_duplicate_without_modifying_nums([2, 4, 1, 4, 4]))
+print(find_duplicate_without_modifying_nums([5, 5, 4, 3, 2, 1]))
+print(find_duplicate_without_modifying_nums([5, 4, 4, 3, 2, 1]))
