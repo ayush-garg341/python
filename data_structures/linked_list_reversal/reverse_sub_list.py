@@ -29,11 +29,9 @@ def reverse_sub_list(head, p, q):
         before_temp = before_temp.next
         i += 1
 
-    print("before temp ", before_temp.value)
     prev = None
     i = 1
     temp_head = before_temp
-    print(q - p + 1)
     while i <= q - p + 1:
         temp = temp_head.next
         temp_head.next = prev
@@ -51,14 +49,51 @@ def reverse_sub_list(head, p, q):
     return head
 
 
-head = Node(1)
-head.next = Node(2)
-head.next.next = Node(3)
-head.next.next.next = Node(4)
-head.next.next.next.next = Node(5)
+def reverse_between_two_pos():
+    head = Node(1)
+    head.next = Node(2)
+    head.next.next = Node(3)
+    head.next.next.next = Node(4)
+    head.next.next.next.next = Node(5)
 
-print("Nodes of original LinkedList are: ", end="")
-head.print_list()
-result = reverse_sub_list(head, 2, 4)
-print("Nodes of reversed LinkedList are: ", end="")
-result.print_list()
+    print("Nodes of original LinkedList are: ", end="")
+    head.print_list()
+    result = reverse_sub_list(head, 2, 4)
+    print("Nodes of reversed LinkedList are: ", end="")
+    result.print_list()
+
+
+def reverse_first_k_elements():
+    head = Node(1)
+    head.next = Node(2)
+    head.next.next = Node(3)
+    head.next.next.next = Node(4)
+    head.next.next.next.next = Node(5)
+
+    print("Nodes of original LinkedList are: ", end="")
+    head.print_list()
+    result = reverse_sub_list(head, 1, 3)
+    print("Nodes of reversed LinkedList are: ", end="")
+    result.print_list()
+
+
+def reverse_based_on_size():
+    n = 6
+    head = Node(1)
+    head.next = Node(2)
+    head.next.next = Node(3)
+    head.next.next.next = Node(4)
+    head.next.next.next.next = Node(5)
+    head.next.next.next.next.next = Node(6)
+
+    print("Nodes of original LinkedList are: ", end="")
+    head.print_list()
+    if n % 2 == 0:
+        result = reverse_sub_list(head, 1, n / 2)
+    else:
+        result = reverse_sub_list(head, int(n / 2) + 1, n)
+    print("Nodes of reversed LinkedList are: ", end="")
+    result.print_list()
+
+
+reverse_based_on_size()
