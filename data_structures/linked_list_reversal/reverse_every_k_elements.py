@@ -48,6 +48,35 @@ def reverse_sub_list(head, p, q):
     return head
 
 
+def reverse_every_k_elements_without_length(head, k):
+    current, prev = head, None
+    while True:
+        last_node_of_prev_sublist = prev
+        last_node_of_sublist = current
+        i = 0
+        temp = None
+        while current is not None and i < k:
+            temp = current.next
+            current.next = prev
+            prev = current
+            current = temp
+            i += 1
+
+        if last_node_of_prev_sublist is not None:
+            last_node_of_prev_sublist.next = prev
+        else:
+            head = prev
+
+        last_node_of_sublist.next = current
+
+        if current is None:
+            break
+
+        prev = last_node_of_sublist
+
+    return head
+
+
 def reverse_every_k_elements():
     n = 8
     k = 3
@@ -62,13 +91,15 @@ def reverse_every_k_elements():
 
     print("Nodes of original LinkedList are: ", end="")
     head.print_list()
-    start = 1
-    count = 1
-    while n - start + 1 >= k:
-        end = count * k
-        head = reverse_sub_list(head, start, end)
-        start = end + 1
-        count += 1
+    # start = 1
+    # count = 1
+    # while n - start + 1 >= k:
+    # end = count * k
+    # head = reverse_sub_list(head, start, end)
+    # start = end + 1
+    # count += 1
+
+    head = reverse_every_k_elements_without_length(head, k)
 
     print("Nodes of reversed LinkedList are: ", end="")
     head.print_list()
