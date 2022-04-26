@@ -23,8 +23,10 @@ def rotate_list(head, k):
         return head
     temp = head
     length = 0
+    last_node = head
     while temp is not None:
         length += 1
+        last_node = temp
         temp = temp.next
 
     k = k % length
@@ -39,12 +41,7 @@ def rotate_list(head, k):
 
     new = break_pos.next
     break_pos.next = None
-    old_head = head
-    new_head = new
-    while new_head is not None:
-        temp = new_head
-        new_head = new_head.next
-    temp.next = old_head
+    last_node.next = head
 
     return new
 
