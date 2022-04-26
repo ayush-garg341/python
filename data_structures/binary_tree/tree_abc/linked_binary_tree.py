@@ -194,3 +194,33 @@ class LinkedBinaryTree(BinaryTree):
             yield deq
             for c in self.children(deq):
                 q.append(c)
+
+    def preorder_indent(self):
+        """Generate indented preorder traversal of subtree rooted at p"""
+        if self._root:
+            for p in self._preorder_indent(self.root(), 0):
+                yield p
+
+    def _preorder_indent(self, p, d):
+        """Generate indented recursive preorder traversal of subtree rooted at p"""
+        yield (2 * d * " " + p.element())
+        for child in self.children(p):
+            for other in self._preorder_indent(child, d + 1):
+                yield other
+
+    def preorder_indent_with_numbering(self):
+        """Generate pre-order indent with numbering"""
+        if not self.is_empty():
+            for p in self._preorder_indent_with_numbering(self.root(), 0, []):
+                yield p
+
+    def _preorder_indent_with_numbering(self, p, d, path):
+        """Generate indented preordering with numbering"""
+        idx = ".".join([str(p + 1) for p in path])
+        yield (2 * d * " " + idx + " " + p.element())
+        path.append(0)
+        for child in self.children(p):
+            for other in self._preorder_indent_with_numbering(child, d + 1, path):
+                yield other
+            path[-1] += 1
+        path.pop()
