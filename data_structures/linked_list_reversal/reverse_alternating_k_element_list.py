@@ -69,7 +69,6 @@ def reverse_between_two_pos():
     start = 1
     end = k
     while True:
-        print(start, end)
         head = reverse_sub_list(head, start, end)
 
         start = end + 1
@@ -88,3 +87,54 @@ def reverse_between_two_pos():
 
 
 reverse_between_two_pos()
+
+
+def reverse_alternating_k_elements(head, k):
+    if k <= 1 or head is None:
+        return head
+    current, prev = head, None
+    while current is not None:
+        last_node_of_prev_sublist = prev
+        last_node_of_sublist = current
+        i = 0
+        temp = None
+        while current is not None and i < k:
+            temp = current.next
+            current.next = prev
+            prev = current
+            current = temp
+            i += 1
+
+        if last_node_of_prev_sublist is not None:
+            last_node_of_prev_sublist.next = prev
+        else:
+            head = prev
+
+        last_node_of_sublist.next = current
+
+        i = 0
+        while current is not None and i < k:
+            prev = current
+            current = current.next
+            i += 1
+    return head
+
+
+def reverse_alternating():
+    head = Node(1)
+    head.next = Node(2)
+    head.next.next = Node(3)
+    head.next.next.next = Node(4)
+    head.next.next.next.next = Node(5)
+    head.next.next.next.next.next = Node(6)
+    head.next.next.next.next.next.next = Node(7)
+    head.next.next.next.next.next.next.next = Node(8)
+    head.next.next.next.next.next.next.next.next = Node(9)
+    print("Nodes of original LinkedList are: ", end="")
+    head.print_list()
+    head = reverse_alternating_k_elements(head, 2)
+    print("Nodes of reversed LinkedList are: ", end="")
+    head.print_list()
+
+
+reverse_alternating()
