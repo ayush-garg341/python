@@ -2,6 +2,8 @@
 Given a binary tree, populate an array to represent the averages of all of its levels.
 """
 
+import math
+
 
 class TreeNode:
     def __init__(self, val):
@@ -19,16 +21,19 @@ def find_level_averages(root):
     while len(deq):
         size = len(deq)
         num_nodes = size
+        max_val = -math.inf
         sum = 0
         while size != 0:
             pop = deq.pop(0)
+            max_val = max(max_val, pop.val)
             sum += pop.val
             size -= 1
             if pop.left:
                 deq.append(pop.left)
             if pop.right:
                 deq.append(pop.right)
-        result.append(sum / num_nodes)
+        # result.append(sum / num_nodes)
+        result.append(max_val)
     return result
 
 
