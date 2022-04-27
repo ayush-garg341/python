@@ -41,3 +41,13 @@ Algorithm inOrder(T, p):
     if p has right child rc:
         inOrder(T, rc)
 """
+
+
+# Computing disk space with postorder traversal, internal nodes representing directories and leaves are files.
+"""
+def compute_space(root):
+    total = root.element().space()
+    for child in self.children(root):
+        total += compute_space(child)
+    return total
+"""

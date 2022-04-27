@@ -224,3 +224,18 @@ class LinkedBinaryTree(BinaryTree):
                 yield other
             path[-1] += 1
         path.pop()
+
+    def parenthetic_representation(self, p, string):
+        """Generate pre-order parenthetic representation of binary tree"""
+        string.append(p.element())
+        if not self.is_leaf(p):
+            first_time = True
+            for ch in self.children(p):
+                sep = "(" if first_time else ","
+                string.append(sep)
+                first_time = False
+                string = self.parenthetic_representation(ch, string)
+
+            string.append(")")
+
+        return string
