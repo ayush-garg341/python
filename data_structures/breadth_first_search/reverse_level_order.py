@@ -5,9 +5,6 @@ You should populate the values of all nodes in each level from left to right in 
 """
 
 
-from collections import deque
-
-
 class TreeNode:
     def __init__(self, val):
         self.val = val
@@ -15,7 +12,7 @@ class TreeNode:
 
 
 def traverse(root):
-    result = deque()
+    result = []
     # TODO: Write your code here
     deq = []
     if root is None:
@@ -32,8 +29,13 @@ def traverse(root):
                 deq.append(pop.left)
             if pop.right:
                 deq.append(pop.right)
-        result.appendleft(temp_result)
-    return result
+        result.append(temp_result)
+    i = len(result) - 1
+    new_result = []
+    while i >= 0:
+        new_result.append(result[i])
+        i -= 1
+    return new_result
 
 
 def main():
