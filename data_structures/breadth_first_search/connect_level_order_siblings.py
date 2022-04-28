@@ -36,19 +36,18 @@ def connect_level_order_siblings(root):
     while len(deq):
         size = len(deq)
         temp = []
+        prev = None
         while size != 0:
             pop = deq.pop(0)
             size -= 1
             temp.append(pop)
+            if prev:
+                prev.next = pop
+            prev = pop
             if pop.left:
                 deq.append(pop.left)
             if pop.right:
                 deq.append(pop.right)
-        for i in range(len(temp)):
-            if i == len(temp) - 1:
-                temp[i].next = None
-            else:
-                temp[i].next = temp[i + 1]
     return root
 
 
