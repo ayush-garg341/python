@@ -17,6 +17,10 @@ example3:
     Meetings: [[4,5], [2,3], [2,4], [3,5]]
     Output: 2
     Explanation: We will need one room for [2,3] and [3,5], and another room for [2,4] and [4,5].
+
+Similar problem:-
+Given a list of intervals representing the arrival and departure times of trains to a train station, our goal is to
+find the minimum number of platforms required for the train station so that no train has to wait.
 """
 
 import heapq
