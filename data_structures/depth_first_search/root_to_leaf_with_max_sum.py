@@ -38,6 +38,21 @@ def find_path_recursive(root, current_sum, current_path, allPaths):
         print(s)
 
 
+s = -math.inf
+
+
+def find_max_sum(root, current_sum):
+    global s
+    if root is not None:
+        current_sum += root.val
+        find_max_sum(root.left, current_sum)
+        find_max_sum(root.right, current_sum)
+        if not root.left and not root.right:
+            if current_sum > s:
+                s = current_sum
+        current_sum -= root.val
+
+
 def main():
 
     root = TreeNode(12)
@@ -47,6 +62,8 @@ def main():
     root.right.left = TreeNode(10)
     root.right.right = TreeNode(5)
     print("Tree path with  max sum " + ": " + str(find_paths(root)))
+    find_max_sum(root, 0)
+    print("Tree with  max sum " + ": " + str(s))
 
 
 main()
