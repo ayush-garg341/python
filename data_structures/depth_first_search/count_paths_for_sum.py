@@ -57,6 +57,34 @@ def count_paths_with_give_sum(root, given_sum, total_sum):
     return s1 + s2
 
 
+def count_paths_no_extra_traversal(root, S):
+    path_count = 0
+    path_count = count_paths_no_extra_traversal_rec(root, S, [])
+    return path_count
+
+
+def count_paths_no_extra_traversal_rec(root, given_sum, current_path):
+    if root is None:
+        return 0
+
+    current_path.append(root.val)
+    path_sum, path_count = 0, 0
+    # This for loop is important to consider.
+    # for p in current_path won't work
+    for i in range(len(current_path) - 1, -1, -1):
+        path_sum += current_path[i]
+        if path_sum == given_sum:
+            print(current_path)
+            path_count += 1
+
+    path_count += count_paths_no_extra_traversal_rec(root.left, given_sum, current_path)
+    path_count += count_paths_no_extra_traversal_rec(root.right, given_sum, current_path)
+
+    current_path.pop()
+
+    return path_count
+
+
 def main():
     # root = TreeNode(12)
     # root.left = TreeNode(7)
@@ -71,7 +99,8 @@ def main():
     root.left.right = TreeNode(3)
     root.right.left = TreeNode(-2)
     root.left.left.left = TreeNode(-1)
-    print("Tree has paths: " + str(count_paths(root, -2)))
+    # print("Tree has paths: " + str(count_paths(root, -2)))
+    print("Tree has paths: " + str(count_paths_no_extra_traversal(root, -2)))
 
 
 main()
