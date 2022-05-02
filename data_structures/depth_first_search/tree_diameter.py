@@ -26,7 +26,7 @@ class TreeDiameter:
             while size != 0:
                 pop = deq.pop()
                 size -= 1
-                max_diam = max(max_diam, 1 + self.root_height_by_nodes(pop.left) + self.root_height_by_nodes(pop.right))
+                max_diam = max(max_diam, self.root_height_by_nodes(pop.left) + self.root_height_by_nodes(pop.right))
                 if pop.left:
                     deq.append(pop.left)
                 if pop.right:
