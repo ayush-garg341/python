@@ -4,8 +4,8 @@
     the other responsibility.
 """
 
-class Animal:
 
+class Animal:
     def __init__(self, name) -> None:
         self.name = name
 
@@ -14,6 +14,7 @@ class Animal:
 
     def save(self, animal: Animal):
         pass
+
 
 """
     The Animal class violates the SRP.
@@ -37,15 +38,14 @@ class Animal:
 
 
 class Animal:
-
     def __init__(self, name) -> None:
         self.name = name
 
     def get_name(self) -> str:
         pass
 
-class AnimalDB:
 
+class AnimalDB:
     def get_Animal(self, id) -> Animal:
         pass
 
@@ -68,11 +68,10 @@ class AnimalDB:
 
 
 class Animal:
-
     def __init__(self, name: str) -> None:
         self.name = name
         self.db = AnimalDB()
-    
+
     def get_name(self) -> str:
         return self.name
 
