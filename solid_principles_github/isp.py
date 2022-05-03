@@ -8,19 +8,20 @@
 
 from abc import ABC, abstractmethod
 
+
 class IShape(ABC):
-    
     @abstractmethod
     def draw_square(self):
         raise NotImplementedError
-    
+
     @abstractmethod
     def draw_rectangle(self):
         raise NotImplementedError
-    
+
     @abstractmethod
     def draw_circle(self):
         raise NotImplementedError
+
 
 """
     This interface draws squares, circles, rectangles. class Circle, Square or
@@ -28,15 +29,17 @@ class IShape(ABC):
     draw_square(), draw_rectangle(), draw_circle().
 """
 
+
 class Circle(IShape):
     def draw_square(self):
         pass
 
     def draw_rectangle(self):
         pass
-    
+
     def draw_circle(self):
         pass
+
 
 class Square(IShape):
     def draw_square(self):
@@ -44,9 +47,10 @@ class Square(IShape):
 
     def draw_rectangle(self):
         pass
-    
+
     def draw_circle(self):
         pass
+
 
 class Rectangle(IShape):
     def draw_square(self):
@@ -54,9 +58,10 @@ class Rectangle(IShape):
 
     def draw_rectangle(self):
         pass
-    
+
     def draw_circle(self):
         pass
+
 
 """
     It's quite funny looking at the code above. class Rectangle implements methods
@@ -65,16 +70,17 @@ class Rectangle(IShape):
     If we add another method to the IShape interface, like draw_triangle(),
 """
 
+
 class IShape:
     def draw_square(self):
         raise NotImplementedError
-    
+
     def draw_rectangle(self):
         raise NotImplementedError
-    
+
     def draw_circle(self):
         raise NotImplementedError
-    
+
     def draw_triangle(self):
         raise NotImplementedError
 
@@ -97,21 +103,26 @@ class IShape:
     behavior.
 """
 
+
 class IShape:
     def draw(self):
         raise NotImplementedError
+
 
 class Circle(IShape):
     def draw(self):
         pass
 
+
 class Square(IShape):
     def draw(self):
         pass
 
+
 class Rectangle(IShape):
     def draw(self):
         pass
+
 
 """
     We can then use the I -interfaces to create Shape specifics like Semi Circle,

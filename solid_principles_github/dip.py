@@ -12,18 +12,21 @@
 
 from abc import ABC, abstractmethod
 
+
 class XMLHttpService(ABC):
     pass
+
 
 class Http:
     def __init__(self, xml_http_service: XMLHttpService):
         self.xml_http_service = xml_http_service
-    
+
     def get(self, url: str, options: dict):
-        self.xml_http_service.request(url, 'GET')
+        self.xml_http_service.request(url, "GET")
 
     def post(self, url: str, options: dict):
-        self.xml_http_service.request(url, 'POST')
+        self.xml_http_service.request(url, "POST")
+
 
 """
     Here, Http is the high-level component whereas XMLHttpService is the low-level
@@ -38,25 +41,29 @@ class Http:
     a Connection interface:
 """
 
+
 class Connection(ABC):
     @abstractmethod
     def request(self, url: str, options: dict):
         raise NotImplementedError
+
 
 """
     The Connection interface has a request method. With this, we pass in an argument
     of type Connection to our Http class:
 """
 
+
 class Http:
     def __init__(self, http_connection: Connection):
         self.http_connection = http_connection
-    
+
     def get(self, url: str, options: dict):
-        self.http_connection.request(url, 'GET')
+        self.http_connection.request(url, "GET")
 
     def post(self, url: str, options: dict):
-        self.http_connection.request(url, 'POST')
+        self.http_connection.request(url, "POST")
+
 
 """
     So now, no matter the type of Http connection service passed to Http it can
@@ -66,24 +73,30 @@ class Http:
     interface:
 """
 
+
 class XMLHttpService(Connection):
     xhr = None
 
-    def request(self, url: str, options:dict):
+    def request(self, url: str, options: dict):
         self.xhr.open()
         self.xhr.send()
+
 
 """
     We can create many Http Connection types and pass it to our Http class without
     any fuss about errors.
 """
+
+
 class NodeHttpService(Connection):
-    def request(self, url: str, options:dict):
+    def request(self, url: str, options: dict):
         pass
 
+
 class MockHttpService(Connection):
-    def request(self, url: str, options:dict):
+    def request(self, url: str, options: dict):
         pass
+
 
 """
     Now, we can see that both high-level modules and low-level modules depend on

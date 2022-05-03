@@ -7,8 +7,8 @@
     Let's use our Animal example.
 """
 
-class Animal:
 
+class Animal:
     def __init__(self, name):
         self.name = name
 
@@ -20,7 +20,6 @@ class Animal:
 
 
 class Lion(Animal):
-
     def make_sound(self):
         return "roar"
 
@@ -29,7 +28,6 @@ class Lion(Animal):
 
 
 class Mouse(Animal):
-
     def make_sound(self):
         return "squeek"
 
@@ -38,7 +36,6 @@ class Mouse(Animal):
 
 
 class Cat(Animal):
-
     def make_sound(self):
         return "meow"
 
@@ -46,11 +43,8 @@ class Cat(Animal):
         print("Cat has 4 legs")
 
 
-animals = [
-    Lion("lion"),
-    Mouse("mouse"),
-    Cat("cat")
-]
+animals = [Lion("lion"), Mouse("mouse"), Cat("cat")]
+
 
 def animal_leg_count(animals):
     for animal in animals:
@@ -60,9 +54,9 @@ def animal_leg_count(animals):
             animal.mouse_leg_count()
         elif isinstance(animal, Cat):
             animal.cat_leg_count()
-        
-animal_leg_count(animals)
 
+
+animal_leg_count(animals)
 
 
 """
@@ -78,8 +72,8 @@ animal_leg_count(animals)
 
 from abc import ABC, abstractmethod
 
-class Animal(ABC):
 
+class Animal(ABC):
     @abstractmethod
     def make_sound(self):
         pass
@@ -90,7 +84,6 @@ class Animal(ABC):
 
 
 class Lion(Animal):
-
     def make_sound(self):
         return "roar"
 
@@ -99,7 +92,6 @@ class Lion(Animal):
 
 
 class Mouse(Animal):
-
     def make_sound(self):
         return "squeek"
 
@@ -108,7 +100,6 @@ class Mouse(Animal):
 
 
 class Cat(Animal):
-
     def make_sound(self):
         return "meow"
 
@@ -116,15 +107,13 @@ class Cat(Animal):
         print("Cat has 4 legs")
 
 
-animals = [
-    Lion(),
-    Mouse(),
-    Cat()
-]
+animals = [Lion(), Mouse(), Cat()]
+
 
 def animal_leg_count(animals):
     for animal in animals:
         print(type(animal), animal.__dict__)
         print(animal.leg_count())
-        
+
+
 animal_leg_count(animals)
