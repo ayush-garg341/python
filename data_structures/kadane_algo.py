@@ -1,11 +1,10 @@
 """
 Given an array of integers, find a contiguous subarray which has the largest sum.
 """
-import math
 
 
 def kadane_algo(nums):
-    overall_sum = -math.inf
+    overall_sum = nums[0]
     s = nums[0]
     for i in range(1, len(nums)):
         if s + nums[i] >= nums[i]:
