@@ -1,3 +1,6 @@
+import math
+
+
 class MergeSort:
     """
     Merge sort using recursion (divide and conquer approach)
@@ -86,13 +89,72 @@ class MergeSortLinkedQueue:
             s.enqueue(s2.dequeue())
 
 
+class MergeSortNonRecursive:
+    """
+    Merge sort non-recrsive. Bit faster than recursive as it avoids the extra overhead of recursive calls.
+    And temporary memory at each level.
+    """
+
+    def __init__(self):
+        pass
+
+    def merge_sort(self, nums):
+        """
+        Sort the elements of python list using merge sort.
+        """
+        n = len(nums)
+        logn = math.ceil(math.log(n, 2))
+        src = nums
+        dest = [None] * len(nums)
+        for i in (2**k for k in range(logn)):
+            for j in range(0, n, 2 * i):
+                self.merge(src, dest, j, i)
+
+            src, dest = dest, src
+
+        return src
+
+    def merge(self, src, results, start, inc):
+        end1 = min(start + inc, len(src))
+        end2 = min(start + (2 * inc), len(src))
+        x, y, z = start, start + inc, start
+        while x < end1 and y < end2:
+            if src[x] < src[y]:
+                results[z] = src[x]
+                x += 1
+            else:
+                results[z] = src[y]
+                y += 1
+            z += 1
+
+        while x < end1:
+            results[z] = src[x]
+            x += 1
+            z += 1
+
+        while y < end2:
+            results[z] = src[y]
+            y += 1
+            z += 1
+
+
 if __name__ == "__main__":
     nums = [85, 24, 63, 45, 17, 31, 96, 50]
     ms = MergeSort(nums)
     ms.merge_sort(nums, 0, len(nums) - 1)
-    print(nums)
+    print("merge sort recursuve = ", nums)
+
+    ms2 = MergeSortNonRecursive()
+    nums = [85, 24, 63, 45, 17, 31, 96, 50]
+    nums = ms2.merge_sort(nums)
+    print("merge sort iterative = ", nums)
 
     nums = [-4, -5, -2, -1, -3]
     ms = MergeSort(nums)
     ms.merge_sort(nums, 0, len(nums) - 1)
-    print(nums)
+    print("merge sort recursive = ", nums)
+
+    ms2 = MergeSortNonRecursive()
+    nums = [-4, -5, -2, -1, -3]
+    nums = ms2.merge_sort(nums)
+    print("merge sort iterative = ", nums)
