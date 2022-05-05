@@ -110,6 +110,8 @@ class MergeSortNonRecursive:
             for j in range(0, n, 2 * i):
                 self.merge(src, dest, j, i)
 
+            # this is an important thing, without swapping will get wrong result since both pointing to same list.
+            # src = dest
             src, dest = dest, src
 
         return src
