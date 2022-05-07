@@ -26,6 +26,9 @@ def insertion_sort(nums):
 
 
 def bucket_sort(nums):
+    """
+    Bucket sort for input distributed uniformly between 0.0 and 1.0
+    """
     bucket = []
     for num in nums:
         bucket.append([])
@@ -50,3 +53,24 @@ def bucket_sort(nums):
 x = [0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434]
 print("Sorted Array is")
 print(bucket_sort(x))
+
+
+"""
+Pseudocode for bucket sort.
+
+function bucketSort(array, k) is
+    buckets ← new array of k empty lists
+    M ← the maximum key value in the array
+    for i = 0 to length(array) do
+        insert array[i] into buckets[floor(k × array[i] / M)]
+    for i = 0 to k do
+        nextSort(buckets[i])
+    return the concatenation of buckets[0], ...., buckets[k]
+
+- Let array denote the array to be sorted and k denote the number of buckets to use.
+- The function nextSort is a sorting function used to sort each bucket.
+- The advantage of bucket sort is that once the elements are distributed into buckets, each bucket can be processed independently of the others.
+- This means that you often need to sort much smaller arrays as a follow-up step than the original array.
+- It also means that you can sort all of the buckets in parallel with one another.
+- The disadvantage is that if you get a bad distribution into the buckets, you may end up doing a huge amount of extra work for no benefit or a minimal benefit.
+"""
