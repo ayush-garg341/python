@@ -57,3 +57,6 @@ def radix_sort(nums):
 
 nums = [121, 432, 564, 23, 1, 45, 788]
 print(radix_sort(nums))
+
+nums = [237, 196, 259, 348, 152, 163, 235, 48, 36, 62]
+print(radix_sort(nums))
