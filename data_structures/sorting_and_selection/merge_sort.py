@@ -160,3 +160,19 @@ if __name__ == "__main__":
     nums = [-4, -5, -2, -1, -3]
     nums = ms2.merge_sort(nums)
     print("merge sort iterative = ", nums)
+
+
+"""
+Decorate-sort-undecorate design pattern (merge sorting for key other than natural order i.e. < )
+
+def decorated_merge_sort(data, key=None):
+    if key is not None:
+        for j in range(len(data)):
+            data[j] = _item(key(data[j]), data[j])
+    merge_sort(data)
+    if key is None:
+        for j in range(len(data)):
+            data[j] = data[j]._value
+
+_item(key, value) -> holds key and value.
+"""
