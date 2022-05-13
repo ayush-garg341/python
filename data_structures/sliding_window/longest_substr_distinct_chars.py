@@ -42,6 +42,34 @@ def non_repeat_str(string: str):
     return max_len
 
 
+def non_repeat_str_another_method(string: str):
+    max_len = 0
+    window_start = 0
+    distinct = {}
+    j = 0
+    for window_end in range(len(string)):
+        char = string[window_end]
+        if char not in distinct:
+            distinct[char] = window_end
+
+        else:
+            window_start = distinct[char] + 1
+            while j < window_start:
+                del distinct[string[j]]
+                j += 1
+            distinct[char] = window_end
+
+        max_len = max(max_len, window_end - window_start + 1)
+
+    return max_len
+
+
 print(non_repeat_str("aabccbb"))
 print(non_repeat_str("abbbb"))
 print(non_repeat_str("abccde"))
+print(non_repeat_str("abcdefbgh"))
+print(" ====================== ")
+print(non_repeat_str_another_method("aabccbb"))
+print(non_repeat_str_another_method("abbbb"))
+print(non_repeat_str_another_method("abccde"))
+print(non_repeat_str_another_method("abcdefbgh"))
