@@ -1,17 +1,18 @@
 """
-    It’s pretty easy to implement a sloppy Singleton. 
+    It’s pretty easy to implement a sloppy Singleton.
     You just need to hide the constructor and implement a static creation method.
 
-    The same class behaves incorrectly in a multithreaded environment. 
+    The same class behaves incorrectly in a multithreaded environment.
     Multiple threads can call the creation method simultaneously and get several instances of Singleton class.
 """
 
+
 class SingletonMeta(type):
-    
+
     """
-        The Singleton class can be implemented in different ways in Python. Some
-        possible methods include: base class, decorator, metaclass. We will use the
-        metaclass because it is best suited for this purpose.
+    The Singleton class can be implemented in different ways in Python. Some
+    possible methods include: base class, decorator, metaclass. We will use the
+    metaclass because it is best suited for this purpose.
     """
 
     _instances = {}
@@ -29,13 +30,11 @@ class SingletonMeta(type):
 
         if cls not in cls._instances:
             instance = super().__call__(*args, **kwds)
-            cls._instances[cls] = instance        
+            cls._instances[cls] = instance
         return cls._instances[cls]
 
-    
 
 class Singleton(metaclass=SingletonMeta):
-    
     def some_business_logic(self):
         """
         Finally, any singleton should define some business logic, which can be

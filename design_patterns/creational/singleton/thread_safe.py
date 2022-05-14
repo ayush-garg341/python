@@ -4,10 +4,11 @@
 
 from threading import Lock, Thread
 
+
 class SingletonMeta(type):
 
     _instances = {}
-    _lock : Lock = Lock()
+    _lock: Lock = Lock()
 
     """
         We now have a lock object that will be used to synchronize threads during
@@ -22,8 +23,12 @@ class SingletonMeta(type):
         # first of them will acquire lock and will proceed further, while the
         # rest will wait here.
 
+        print("cls = ", cls)
+        print("args = ", args)
+        print("kwds = ", kwds)
+
         with cls._lock:
-            
+
             # The first thread to acquire the lock, reaches this conditional,
             # goes inside and creates the Singleton instance. Once it leaves the
             # lock block, a thread that might have been waiting for the lock
@@ -32,7 +37,7 @@ class SingletonMeta(type):
 
             if cls not in cls._instances:
                 instance = super().__call__(*args, **kwds)
-                cls._instances[cls] = instance 
+                cls._instances[cls] = instance
 
         return cls._instances[cls]
 
@@ -48,8 +53,8 @@ class Singleton(metaclass=SingletonMeta):
 
     def some_business_logic(self):
         """
-            Finally, any singleton should define some business logic, which can be
-            executed on its instance.
+        Finally, any singleton should define some business logic, which can be
+        executed on its instance.
         """
 
 
@@ -59,10 +64,12 @@ def test_singleton(value: str) -> None:
 
 
 if __name__ == "__main__":
-    print("If you see the same value, then singleton was reused (yay!)\n"
-          "If you see different values, "
-          "then 2 singletons were created (booo!!)\n\n"
-          "RESULT:\n")
+    print(
+        "If you see the same value, then singleton was reused (yay!)\n"
+        "If you see different values, "
+        "then 2 singletons were created (booo!!)\n\n"
+        "RESULT:\n"
+    )
 
     process1 = Thread(target=test_singleton, args=("FOO",))
     process2 = Thread(target=test_singleton, args=("BAR",))
@@ -72,15 +79,17 @@ if __name__ == "__main__":
 
 # Straightforward implementation of the Singleton Pattern
 
-# class Logger(object):
-#     _instance = None
 
-#     def __new__(cls):
-#         if cls._instance is None:
-#             print('Creating the object')
-#             cls._instance = super(Logger, cls).__new__(cls)
-#             # Put any initialization here.
-#         return cls._instance
+# class Logger(object):
+# _instance = None
+
+# def __new__(cls):
+# if cls._instance is None:
+# print("Creating the object")
+# cls._instance = super(Logger, cls).__new__(cls)
+# # Put any initialization here.
+# return cls._instance
+
 
 # log1 = Logger()
 # log2 = Logger()
