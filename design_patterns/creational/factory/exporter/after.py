@@ -1,23 +1,23 @@
 import pathlib
 from abc import ABC, abstractmethod
 
+
 class VideoExporter(ABC):
 
-    """ Basic representation of video exporting codec. """
-
+    """Basic representation of video exporting codec."""
 
     def prepare_export(self, video_data):
-        """ Prepares video data for exporting. """
+        """Prepares video data for exporting."""
         pass
 
     def do_export(self, folder: pathlib.Path):
-        """ Exports the video data to a folder. """
+        """Exports the video data to a folder."""
         pass
 
 
 class LossLessVideoExporter(VideoExporter):
 
-    """ Lossless video exporting codec. """
+    """Lossless video exporting codec."""
 
     def prepare_export(self, video_data):
         print("Preparing video data for lossless export.")
@@ -46,10 +46,9 @@ class H264Hi422PVideoExporter(VideoExporter):
         print(f"Exporting video data in H.264 (Hi422P) format to {folder}.")
 
 
-
 class AudioExporter(ABC):
 
-    """ Basic representation of audio exporting codec. """
+    """Basic representation of audio exporting codec."""
 
     @abstractmethod
     def prepare_export(self, audio_data):
@@ -70,7 +69,6 @@ class AACAudioExporter(AudioExporter):
         print(f"Exporting audio data in AAC format to {folder}.")
 
 
-
 class WAVAudioExporter(AudioExporter):
     """WAV (lossless) audio exporting codec."""
 
@@ -83,8 +81,8 @@ class WAVAudioExporter(AudioExporter):
 
 class ExporterFactory(ABC):
     """
-        Factory that represents a combination of video and audio codecs.
-        The factory doesn't maintain any of the instances it creates.
+    Factory that represents a combination of video and audio codecs.
+    The factory doesn't maintain any of the instances it creates.
     """
 
     @abstractmethod
@@ -139,11 +137,7 @@ def read_factory() -> ExporterFactory:
 
     """Constructs an exporter factory based on the user's preference."""
 
-    factory_exporter = {
-        "high": HighQualityExporter(),
-        "master": MasterQualityExporter(),
-        "low": FastExporter()
-    }
+    factory_exporter = {"high": HighQualityExporter(), "master": MasterQualityExporter(), "low": FastExporter()}
 
     while True:
         export_quality = input("Enter desired output quality (low, high, master): ")
@@ -165,7 +159,6 @@ def main(fac: ExporterFactory):
     folder = pathlib.Path("/usr/tmp/video")
     video_exporter.do_export(folder)
     audio_exporter.do_export(folder)
-
 
 
 if __name__ == "__main__":

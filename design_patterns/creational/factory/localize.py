@@ -1,5 +1,4 @@
 class GreekLocalizer:
-
     def __init__(self) -> None:
         self.translations = {"dog": "σκύλος", "cat": "γάτα"}
 
@@ -9,20 +8,17 @@ class GreekLocalizer:
 
 
 class EnglishLocalizer:
-    """ Simply echoes the message """
+    """Simply echoes the message"""
 
     def localize(self, msg: str):
         return msg
 
 
-
 def get_localizer(language: str = "English") -> object:
-    localizer = {
-        "English": EnglishLocalizer,
-        "Greek": GreekLocalizer
-    }
+    localizer = {"English": EnglishLocalizer, "Greek": GreekLocalizer}
 
     return localizer[language]()
+
 
 if __name__ == "__main__":
     e, g = get_localizer(language="English"), get_localizer(language="Greek")

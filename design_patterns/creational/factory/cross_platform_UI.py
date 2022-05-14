@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 
 
 class Button(ABC):
-
     @abstractmethod
     def render(self):
         pass
@@ -13,7 +12,6 @@ class Button(ABC):
 
 
 class WindowButton(Button):
-
     def render(self):
         print("Window button")
 
@@ -22,14 +20,11 @@ class WindowButton(Button):
 
 
 class HTMLButton(Button):
-
     def render(self):
         print("HTML button")
 
     def onClick(self):
         print("HTML button clicked")
-
-
 
 
 class Dialog(ABC):
@@ -44,9 +39,7 @@ class Dialog(ABC):
         pass
 
 
-
 class WindowDialog(Dialog):
-
     def render(self) -> None:
         print("Window dialog rendering")
 
@@ -55,7 +48,6 @@ class WindowDialog(Dialog):
 
 
 class WebDialog(Dialog):
-
     def render(self) -> None:
         print("Web dialog rendering")
 
@@ -65,17 +57,13 @@ class WebDialog(Dialog):
 
 def read_platform() -> Dialog:
 
-    platform = {
-        "window": WindowDialog(),
-        "web": WebDialog()
-    }
+    platform = {"window": WindowDialog(), "web": WebDialog()}
 
     while True:
         pf = input("Enter the platform (window, web): ")
         if pf in platform:
             return platform[pf]
         print(f"Unknown output quality option: {pf}.")
-
 
 
 def main(pf: Dialog):
