@@ -36,9 +36,30 @@ def generate_valid_parentheses(num):
     return result
 
 
+def gen_valid_paren(num):
+    result = []
+    gen_valid_paren_rec(num, "", 0, 0, result)
+    return result
+
+
+def gen_valid_paren_rec(num, string, open_count, close_count, result):
+    if close_count == num and open_count == num:
+        result.append(string)
+    else:
+        if open_count < num:
+            gen_valid_paren_rec(num, string + "(", open_count + 1, close_count, result)
+
+        if close_count < open_count:
+            gen_valid_paren_rec(num, string + ")", open_count, close_count + 1, result)
+
+
 def main():
     print("All combinations of balanced parentheses are: " + str(generate_valid_parentheses(2)))
     print("All combinations of balanced parentheses are: " + str(generate_valid_parentheses(3)))
+
+    print(" ================================ ")
+    print("All combinations of balanced parentheses are: " + str(gen_valid_paren(2)))
+    print("All combinations of balanced parentheses are: " + str(gen_valid_paren(3)))
 
 
 main()
