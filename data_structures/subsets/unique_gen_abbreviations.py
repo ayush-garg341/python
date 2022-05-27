@@ -72,8 +72,12 @@ def generate_generalized_abbreviation(word):
                     skip = left + word[c]
             queue.append(abbvt)
             queue.append(skip)
+            if c == len(word) - 1:
+                result.append(abbvt)
+                result.append(skip)
 
-    return list(queue)
+    # return list(queue)
+    return result
 
 
 print("Generalized abbreviation are: " + str(generate_generalized_abbreviation("sys")))
