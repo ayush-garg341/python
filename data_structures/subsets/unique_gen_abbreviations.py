@@ -13,6 +13,8 @@ example2:
     "2de", "2d1", "3e", "4"
 """
 
+from collections import deque
+
 
 def generate_generalized_abbreviation_partially_correct(word):
     """
@@ -38,8 +40,42 @@ def generate_generalized_abbreviation_partially_correct(word):
     return permutations
 
 
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_partially_correct("BAT")))
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_partially_correct("code")))
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_partially_correct("sys")))
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_partially_correct("stp")))
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_partially_correct("system")))
+# print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_partially_correct("BAT")))
+# print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_partially_correct("code")))
+# print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_partially_correct("sys")))
+# print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_partially_correct("stp")))
+# print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_partially_correct("system")))
+
+
+def generate_generalized_abbreviation(word):
+    result = []
+    if len(word) == 0:
+        return result
+    queue = deque()
+    queue.append("")
+    abbvt = ""
+    skip = ""
+    for c in range(len(word)):
+        size = len(queue)
+        while size != 0:
+            left = queue.popleft()
+            size -= 1
+            if c == 0:
+                abbvt = str(1)
+                skip = word[c]
+            else:
+                if left[-1] >= "0" and left[-1] <= "9":
+                    abbvt = left[:-1] + str(int(left[-1]) + 1)
+                    skip = left + word[c]
+                else:
+                    abbvt = left + str(1)
+                    skip = left + word[c]
+            queue.append(abbvt)
+            queue.append(skip)
+
+    return list(queue)
+
+
+print("Generalized abbreviation are: " + str(generate_generalized_abbreviation("sys")))
+print("Generalized abbreviation are: " + str(generate_generalized_abbreviation("stp")))
+print("Generalized abbreviation are: " + str(generate_generalized_abbreviation("system")))
