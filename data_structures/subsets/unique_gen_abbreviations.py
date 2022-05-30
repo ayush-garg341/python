@@ -48,6 +48,12 @@ def generate_generalized_abbreviation_partially_correct(word):
 
 
 def generate_generalized_abbreviation(word):
+    """
+    We can have a problem in edge cases like.
+    lets say word have 21 chars in it.
+    B19 is one abbvt and now when adding next char, it should be ideally B20 but acc. to code it will be B110.
+    Since we are just looking at the last index if that's numeric or not.
+    """
     result = []
     if len(word) == 0:
         return result
@@ -80,6 +86,72 @@ def generate_generalized_abbreviation(word):
     return result
 
 
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation("sys")))
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation("stp")))
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation("system")))
+# print("Generalized abbreviation are: " + str(generate_generalized_abbreviation("sys")))
+# print("Generalized abbreviation are: " + str(generate_generalized_abbreviation("stp")))
+# print("Generalized abbreviation are: " + str(generate_generalized_abbreviation("system")))
+
+
+class Abbreviation:
+    def __init__(self, str_content, start, count):
+        self.str_content = str_content
+        self.start = start
+        self.count = count
+
+
+def generate_generalized_abbreviation_prefect(word):
+    result = []
+    if len(word) == 0:
+        return result
+    queue = deque()
+    queue.append(Abbreviation(list(), 0, 0))
+    while queue:
+        abword = queue.popleft()
+        if abword.start == len(word):
+            new_word = "".join(abword.str_content)
+            if abword.count != 0:
+                new_word += str(abword.count)
+            result.append(new_word)
+        else:
+            # abbvt the word and increase the count
+            queue.append(Abbreviation(list(abword.str_content), abword.start + 1, abword.count + 1))
+
+            new_word = list(abword.str_content)
+            if abword.count != 0:
+                new_word.append(str(abword.count))
+
+            # do not abbreviate and made the word by appending current char
+            new_word.append(word[abword.start])
+            queue.append(Abbreviation(new_word, abword.start + 1, 0))
+
+    return result
+
+
+print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_prefect("sys")))
+print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_prefect("stp")))
+print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_prefect("system")))
+
+
+def generate_generalized_abbreviation_rec(word):
+    result = []
+    generate_generalized_abbreviation_recursive(word, [], 0, 0, result)
+    return result
+
+
+def generate_generalized_abbreviation_recursive(word, abword, start, count, result):
+    if start == len(word):
+        if count != 0:
+            abword.append(str(count))
+        result.append("".join(abword))
+    else:
+        generate_generalized_abbreviation_recursive(word, list(abword), start + 1, count + 1, result)
+        new_word = list(abword)
+        if count != 0:
+            new_word.append(str(count))
+        new_word.append(word[start])
+
+        generate_generalized_abbreviation_recursive(word, new_word, start + 1, 0, result)
+
+
+print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_rec("sys")))
+print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_rec("stp")))
+print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_rec("system")))
