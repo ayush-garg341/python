@@ -44,4 +44,34 @@ def different_ways_to_eval_expression(input_str: str):
 
 
 print(different_ways_to_eval_expression("1+2*3"))
-# print(different_ways_to_eval_expression("2*3-4-5"))
+print(different_ways_to_eval_expression("2*3-4-5"))
+
+
+def different_ways_to_eval_expression_memoized(input_str, dp):
+    if input_str in dp:
+        return dp[input_str]
+    result = []
+    if "+" not in input_str and "*" not in input_str and "-" not in input_str:
+        result.append(int(input_str))
+    else:
+        for i in range(len(input_str)):
+            char = input_str[i]
+            if not char.isdigit():
+                left_op = different_ways_to_eval_expression_memoized(input_str[:i], dp)
+                right_op = different_ways_to_eval_expression_memoized(input_str[i + 1 :], dp)
+                for l in left_op:
+                    for r in right_op:
+                        if char == "+":
+                            ops_res = l + r
+                        elif char == "*":
+                            ops_res = l * r
+                        else:
+                            ops_res = l - r
+                        result.append(ops_res)
+    dp[input_str] = result
+
+    return result
+
+
+print(different_ways_to_eval_expression_memoized("1+2*3", {}))
+print(different_ways_to_eval_expression_memoized("2*3-4-5", {}))
