@@ -18,39 +18,30 @@ example3:
 
 def find_range(arr, key):
     result = [-1, -1]
-    if len(arr) == 0:
-        return result
-    n = len(arr)
+    result[0] = binary_search(arr, key, True)
+    if result[0] != -1:
+        result[1] = binary_search(arr, key, False)
+    return result
+
+
+def binary_search(arr, key, find_first_index):
     start = 0
-    end = n - 1
-    index = -1
+    end = len(arr) - 1
+    key_index = -1
     while start <= end:
         mid = (start + end) // 2
-        if arr[mid] == key:
-            index = mid
-            break
-        elif key < arr[mid]:
+        if key < arr[mid]:
             end = mid - 1
-        else:
+        elif key > arr[mid]:
             start = mid + 1
-    if index == -1:
-        return result
-    begin = index
-    while begin > 0:
-        if arr[begin - 1] == key:
-            begin -= 1
         else:
-            break
-    result[0] = begin
+            key_index = mid
+            if find_first_index:
+                end = mid - 1
+            else:
+                start = mid + 1
 
-    end = index
-    while end < n - 1:
-        if arr[end + 1] == key:
-            end += 1
-        else:
-            break
-    result[1] = end
-    return result
+    return key_index
 
 
 def main():
