@@ -30,8 +30,6 @@ def search_next_letter(letters, key):
     if len(letters) == 0:
         return -1
     n = len(letters)
-    if letters[n - 1] < key:
-        return letters[0]
     start = 0
     end = n - 1
     while start <= end:
