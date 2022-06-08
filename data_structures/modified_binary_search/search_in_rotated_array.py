@@ -24,7 +24,7 @@ def search_rotated_array(arr, key):
         mid = (start + end) // 2
         if arr[mid] == key:
             return mid
-        elif arr[mid] > arr[start]:  # left part sorted in ascending order
+        elif arr[mid] >= arr[start]:  # left part sorted in ascending order
             if key < arr[mid] and key >= arr[start]:
                 end = mid - 1
             else:  # key > arr[mid]
