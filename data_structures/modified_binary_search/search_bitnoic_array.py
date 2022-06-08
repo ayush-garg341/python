@@ -37,21 +37,15 @@ def search_bitonic_array(arr, key):
             end = mid
     if arr[start] == key:
         return start
-    left_part = arr[0:start]
-    right_part = arr[start + 1 :]
 
-    index = binary_search(left_part, key)
+    index = binary_search(arr, key, 0, start)
     if index == -1:
-        index = binary_search(right_part, key)
-        if index != -1:
-            index += start + 1
+        index = binary_search(arr, key, start + 1, len(arr) - 1)
 
     return index
 
 
-def binary_search(arr, key):
-    start = 0
-    end = len(arr) - 1
+def binary_search(arr, key, start, end):
     while start <= end:
         mid = (start + end) // 2
         if arr[mid] == key:
