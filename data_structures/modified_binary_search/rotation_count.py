@@ -50,7 +50,7 @@ def count_rotations_with_duplicates(arr):
         elif mid > start and arr[mid] < arr[mid - 1]:
             return mid
         elif arr[start] == arr[mid] and arr[mid] == arr[end]:
-            if arr[start] > arr[start] + 1:
+            if arr[start] > arr[start + 1]:
                 return start + 1
             start += 1
             if arr[end] < arr[end - 1]:
@@ -71,6 +71,7 @@ def main():
     print(count_rotations_with_duplicates([1, 3, 5]))
     print(count_rotations_with_duplicates([2, 2, 2, 0, 1]))
     print(count_rotations_with_duplicates([3, 1]))
+    print(count_rotations_with_duplicates([1, 1, 3, 1]))
 
 
 main()
