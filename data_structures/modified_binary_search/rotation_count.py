@@ -37,32 +37,39 @@ def count_rotations(arr):
 
 
 def count_rotations_with_duplicates(arr):
+    """
+    Smallest element in the array have one unique property, it will be smaller than it's previous element.
+    """
     # TODO: Write your code here
     start = 0
     end = len(arr) - 1
     while start < end:
         mid = (start + end) // 2
-        if arr[mid] < arr[mid + 1] and arr[mid] < arr[mid - 1]:
+        if mid < end and arr[mid] > arr[mid + 1]:
+            return mid + 1
+        elif mid > start and arr[mid] < arr[mid - 1]:
             return mid
         elif arr[start] == arr[mid] and arr[mid] == arr[end]:
+            if arr[start] > arr[start] + 1:
+                return start + 1
             start += 1
+            if arr[end] < arr[end - 1]:
+                return end
             end -= 1
-        elif arr[mid] < arr[start]:
-            end = mid - 1
-        else:
+        elif arr[mid] > arr[start] or (arr[mid] == arr[start] and arr[mid] > arr[end]):
             start = mid + 1
-    print("start == ", start)
-    if start == len(arr) - 1:
-        return 0
-    return start % len(arr)
+        else:
+            end = mid - 1
+
+    return 0
 
 
 def main():
     print(count_rotations([10, 15, 1, 3, 8]))
     print(count_rotations([4, 5, 7, 9, 10, -1, 2]))
     print(count_rotations([1, 3, 8, 10]))
-    # print(count_rotations_with_duplicates([1, 3, 5]))
-    # print(count_rotations_with_duplicates([2, 2, 2, 0, 1]))
+    print(count_rotations_with_duplicates([1, 3, 5]))
+    print(count_rotations_with_duplicates([2, 2, 2, 0, 1]))
     print(count_rotations_with_duplicates([3, 1]))
 
 
