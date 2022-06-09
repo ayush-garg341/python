@@ -45,6 +45,35 @@ def check_if_sorted_from_current_pos(pos, nums):
     return True
 
 
+def check_efficient(nums: List[int]) -> bool:
+    """
+    This will work only when there are distinct integers only.
+    If the array is not rotated but sorted it will return False, since it checks for rotation as well.
+    """
+    min_elt = nums[0]
+    index = 0
+    for i in range(1, len(nums)):
+        if nums[i] < min_elt:
+            min_elt = nums[i]
+            index = i
+
+    # check elements in increasing order before min_elt
+    found1 = True
+    for i in range(1, index):
+        if nums[i] < nums[i - 1]:
+            found1 = False
+
+    # check elements in increasing order after min_elt
+    found2 = True
+    for i in range(index + 1, len(nums)):
+        if nums[i] < nums[i - 1]:
+            found2 = False
+
+    if found1 and found2 and nums[len(nums) - 1] <= nums[0]:
+        return True
+    return False
+
+
 print(check([3, 4, 5, 1, 2]))
 print(check([2, 1, 3, 4]))
 print(check([1, 2, 3]))
