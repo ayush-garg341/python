@@ -36,10 +36,34 @@ def count_rotations(arr):
     return start + 1
 
 
+def count_rotations_with_duplicates(arr):
+    # TODO: Write your code here
+    start = 0
+    end = len(arr) - 1
+    while start < end:
+        mid = (start + end) // 2
+        if arr[mid] < arr[mid + 1] and arr[mid] < arr[mid - 1]:
+            return mid
+        elif arr[start] == arr[mid] and arr[mid] == arr[end]:
+            start += 1
+            end -= 1
+        elif arr[mid] < arr[start]:
+            end = mid - 1
+        else:
+            start = mid + 1
+    print("start == ", start)
+    if start == len(arr) - 1:
+        return 0
+    return start % len(arr)
+
+
 def main():
     print(count_rotations([10, 15, 1, 3, 8]))
     print(count_rotations([4, 5, 7, 9, 10, -1, 2]))
     print(count_rotations([1, 3, 8, 10]))
+    # print(count_rotations_with_duplicates([1, 3, 5]))
+    # print(count_rotations_with_duplicates([2, 2, 2, 0, 1]))
+    print(count_rotations_with_duplicates([3, 1]))
 
 
 main()
