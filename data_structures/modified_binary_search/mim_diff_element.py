@@ -12,6 +12,8 @@ Example2:
     Output: 4
 """
 
+import math
+
 
 def search_min_diff_element(arr, key):
     # TODO: Write your code here
@@ -37,11 +39,42 @@ def search_min_diff_element(arr, key):
         return num2
 
 
+def search_min_diff_element_other_approach(arr, key):
+    start = 0
+    end = len(arr) - 1
+    diff = math.inf
+    ans = math.inf
+    val = None
+    while start <= end:
+        mid = (start + end) // 2
+        if arr[mid] == key:
+            return arr[mid]
+        if key < arr[mid]:
+            diff = arr[mid] - key
+            if diff < ans:
+                ans = diff
+                val = arr[mid]
+            end = end - 1
+        if key > arr[mid]:
+            diff = key - arr[mid]
+            if diff < ans:
+                ans = diff
+                val = arr[mid]
+            start = mid + 1
+
+    return val
+
+
 def main():
     print(search_min_diff_element([4, 6, 10], 7))
     print(search_min_diff_element([4, 6, 10], 4))
     print(search_min_diff_element([1, 3, 8, 10, 15], 12))
     print(search_min_diff_element([4, 6, 10], 17))
+
+    print(search_min_diff_element_other_approach([4, 6, 10], 7))
+    print(search_min_diff_element_other_approach([4, 6, 10], 4))
+    print(search_min_diff_element_other_approach([1, 3, 8, 10, 15], 12))
+    print(search_min_diff_element_other_approach([4, 6, 10], 17))
 
 
 main()
