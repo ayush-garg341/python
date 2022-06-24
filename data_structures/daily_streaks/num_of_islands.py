@@ -44,6 +44,7 @@ def numIslands(grid: List[List[str]]) -> int:
 
 
 def num_of_islands_rec(row, column, m, n, grid):
+
     if row < 0 or row >= m:
         return 0
     if column < 0 or column >= n:
@@ -57,9 +58,41 @@ def num_of_islands_rec(row, column, m, n, grid):
         num_of_islands_rec(row, column + 1, m, n, grid)
 
 
-grid = [["1", "1", "1", "1", "0"], ["1", "1", "0", "1", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "0", "0", "0"]]
-print(numIslands(grid))
+def numIslands_with_visited(grid: List[List[str]]) -> int:
+    num = 0
+    m = len(grid)
+    n = len(grid[0])
+
+    visited = [[0 for i in range(n)] for j in range(m)]
+
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == "0" or visited[i][j] == 1:
+                continue
+            num += 1
+            num_of_islands_rec_with_visited(i, j, m, n, grid, visited)
+
+    return num
 
 
-grid = [["1", "1", "0", "0", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "1", "0", "0"], ["0", "0", "0", "1", "1"]]
-print(numIslands(grid))
+def num_of_islands_rec_with_visited(row, column, m, n, grid, visited):
+    if row < 0 or row >= m:
+        return 0
+    if column < 0 or column >= n:
+        return 0
+
+    if grid[row][column] == "1" and visited[row][column] == 0:
+        visited[row][column] = 1
+        num_of_islands_rec_with_visited(row - 1, column, m, n, grid, visited)
+        num_of_islands_rec_with_visited(row, column - 1, m, n, grid, visited)
+        num_of_islands_rec_with_visited(row + 1, column, m, n, grid, visited)
+        num_of_islands_rec_with_visited(row, column + 1, m, n, grid, visited)
+
+
+grid_1 = [["1", "1", "1", "1", "0"], ["1", "1", "0", "1", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "0", "0", "0"]]
+grid_2 = [["1", "1", "0", "0", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "1", "0", "0"], ["0", "0", "0", "1", "1"]]
+print(numIslands_with_visited(grid_1))
+print(numIslands_with_visited(grid_2))
+print("======= num of islands when modifying input matrix ========")
+print(numIslands(grid_1))
+print(numIslands(grid_2))
