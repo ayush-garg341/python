@@ -23,6 +23,11 @@ class ListNode:
 
 
 def merge_lists(lists):
+    """
+    Time complexity = O(N*log(k))
+    N - total number of elements in all lists
+    k - number of lists
+    """
     resultHead = head = None
     min_heap = []
     for root in lists:
@@ -42,6 +47,59 @@ def merge_lists(lists):
     return head
 
 
+def merge_lists_by_combining(lists):
+    """
+    Time complexity = O(N*k)
+    N - number of elements in each list
+    k - number of lists
+    """
+    if len(lists) == 0:
+        return None
+    elif len(lists) == 1:
+        return lists[0]
+    temp_list = lists[0]
+    for i in range(1, len(lists)):
+        temp_list = merge(temp_list, lists[i])
+
+    return temp_list
+
+
+def merge(temp_list, to_be_merged):
+    temp = None
+    main_head = None
+    temp_head = temp_list
+    to_be_merged_head = to_be_merged
+    while temp_head is not None and to_be_merged_head is not None:
+        if temp_head.value > to_be_merged_head.value:
+            if temp is None:
+                temp = main_head = to_be_merged_head
+            else:
+                temp.next = to_be_merged_head
+                temp = temp.next
+            to_be_merged_head = to_be_merged_head.next
+        else:
+            if temp is None:
+                temp = main_head = temp_head
+            else:
+                temp.next = temp_head
+                temp = temp.next
+            temp_head = temp_head.next
+
+    if temp_head is not None:
+        if temp is None:
+            temp = main_head = temp_head
+        else:
+            temp.next = temp_head
+
+    if to_be_merged_head is not None:
+        if temp is None:
+            temp = main_head = to_be_merged
+        else:
+            temp.next = to_be_merged_head
+
+    return main_head
+
+
 def main():
     l1 = ListNode(2)
     l1.next = ListNode(6)
@@ -55,7 +113,8 @@ def main():
     l3.next = ListNode(3)
     l3.next.next = ListNode(4)
 
-    result = merge_lists([l1, l2, l3])
+    # result = merge_lists([l1, l2, l3])
+    result = merge_lists_by_combining([l1, l2, l3])
     print("Here are the elements form the merged list: ", end="")
     while result != None:
         print(str(result.value) + " ", end="")
