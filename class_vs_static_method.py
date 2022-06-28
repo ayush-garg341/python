@@ -38,11 +38,13 @@ class Person:
 
     @classmethod
     def from_birth_year(cls, name, year):
-        # cls._entity = "Student"
+        # modifying class state that would apply across all instances of the class
+        cls._entity = "Student"
         return cls(name, date.today().year - year)
 
     @staticmethod
     def is_adult(age):
+        # static methods are usually utility functions
         return age > 18
 
 
@@ -50,14 +52,20 @@ person1 = Person("mayank", 21)
 print(person1._entity)
 
 person2 = Person.from_birth_year("mayank", 1996)
+print(person2._entity)
 
 # Modify class variable
-Person._entity = "Student"
+# Person._entity = "Student"
 
-print(person2._entity)
 print(person1._entity)
 
 print(person1._age)
 print(person2._age)
 
 print(Person.is_adult(22))
+
+print(" ----------------------------------- ")
+print("creating different instance")
+person3 = Person("Ayush", 27)
+print(person3._entity)
+print(person3._age)
