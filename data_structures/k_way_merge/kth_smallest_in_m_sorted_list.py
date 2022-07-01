@@ -56,15 +56,15 @@ So if there are ‘N’ total numbers in all the arrays we need to find the K’
 
 
 def main():
-    # print("Kth smallest number is: " + str(find_Kth_smallest([[2, 6, 8], [3, 6, 7], [1, 3, 4]], 5)))
-    # print("Kth smallest number is: " + str(find_Kth_smallest([[5, 8, 9], [1, 7]], 3)))
-    # print("Kth smallest number is: " + str(find_Kth_smallest([[1, 5, 9], [10, 11, 13], [12, 13, 15]], 8)))
-    # print("Kth smallest number is: " + str(find_Kth_smallest([[1, 2], [1, 3]], 1)))
+    print("Kth smallest number is: " + str(find_Kth_smallest([[2, 6, 8], [3, 6, 7], [1, 3, 4]], 5)))
+    print("Kth smallest number is: " + str(find_Kth_smallest([[5, 8, 9], [1, 7]], 3)))
+    print("Kth smallest number is: " + str(find_Kth_smallest([[1, 5, 9], [10, 11, 13], [12, 13, 15]], 8)))
+    print("Kth smallest number is: " + str(find_Kth_smallest([[1, 2], [1, 3]], 1)))
     print(" ----------------------- ")
-    # print("Kth smallest number is: " + str(find_Kth_smallest_optmized_way([[2, 6, 8], [3, 6, 7], [1, 3, 4]], 5)))
-    # print("Kth smallest number is: " + str(find_Kth_smallest_optmized_way([[5, 8, 9], [1, 7]], 3)))
+    print("Kth smallest number is: " + str(find_Kth_smallest_optmized_way([[2, 6, 8], [3, 6, 7], [1, 3, 4]], 5)))
+    print("Kth smallest number is: " + str(find_Kth_smallest_optmized_way([[5, 8, 9], [1, 7]], 3)))
     print("Kth smallest number is: " + str(find_Kth_smallest_optmized_way([[1, 5, 9], [10, 11, 13], [12, 13, 15]], 8)))
-    # print("Kth smallest number is: " + str(find_Kth_smallest_optmized_way([[1, 2], [1, 3]], 1)))
+    print("Kth smallest number is: " + str(find_Kth_smallest_optmized_way([[1, 2], [1, 3]], 1)))
 
 
 main()
