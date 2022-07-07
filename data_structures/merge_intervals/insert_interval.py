@@ -95,3 +95,37 @@ print(insert_interval_without_extra_space([[1, 3], [5, 7], [8, 12]], [4, 6]))
 print(insert_interval_without_extra_space([[1, 3], [5, 7], [8, 12]], [4, 10]))
 print(insert_interval_without_extra_space([[2, 3], [5, 7]], [1, 4]))
 print(insert_interval_without_extra_space([[1, 5]], [5, 7]))
+
+
+def insert_interval_test(intervals, interval):
+    merged_interval = []
+    start_range = interval[0]
+    pos = len(intervals)
+    for i in range(len(intervals)):
+        if intervals[i][0] <= start_range:
+            continue
+        else:
+            pos = i
+            break
+    intervals.insert(pos, interval)
+
+    start_interval = intervals[0]
+    for i in range(1, len(intervals)):
+        if intervals[i][0] <= start_interval[1]:
+            if intervals[i][1] > start_interval[1]:
+                start_interval[1] = intervals[i][1]
+
+        else:
+            merged_interval.append(start_interval)
+            start_interval = intervals[i]
+
+    merged_interval.append(start_interval)
+    return merged_interval
+
+
+print("===============")
+
+print(insert_interval_test([[1, 3], [5, 7], [8, 12]], [4, 6]))
+print(insert_interval_test([[1, 3], [5, 7], [8, 12]], [4, 10]))
+print(insert_interval_test([[2, 3], [5, 7]], [1, 4]))
+print(insert_interval_test([[1, 5]], [5, 7]))
