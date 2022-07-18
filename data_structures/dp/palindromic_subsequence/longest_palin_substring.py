@@ -68,3 +68,32 @@ def longest_palin_susbtr_without_cal_len(string):
 
 
 print(longest_palin_susbtr_without_cal_len("abaxyzzyxf"))
+
+
+def longest_palin_substr_using_two_pointers(string):
+    """
+    For each index we are going left and right and checking max palindromic length.
+    At each index, we are checking for odd and even length palindrome.
+    """
+    current_longest = [0, 1]
+    for i in range(1, len(string)):
+        odd = longest_palindrome(string, i - 1, i + 1)
+        even = longest_palindrome(string, i - 1, i)
+        # we check on the basis of x[1]-x[0], i.e which one is giving maximum ( odd or even )
+        longest = max(even, odd, key=lambda x: x[1] - x[0])
+        current_longest = max(longest, current_longest, key=lambda x: x[1] - x[0])
+
+    return string[current_longest[0] : current_longest[1]]
+
+
+def longest_palindrome(string, left_idx, right_idx):
+    while left_idx >= 0 and right_idx < len(string):
+        if string[left_idx] != string[right_idx]:
+            break
+        left_idx -= 1
+        right_idx += 1
+
+    return [left_idx + 1, right_idx]
+
+
+print(longest_palin_substr_using_two_pointers("abaxyzzyxf"))
