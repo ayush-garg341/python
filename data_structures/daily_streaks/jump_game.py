@@ -110,3 +110,24 @@ print("=============== optmised jump forward ===============")
 print(can_jump_optimized_forward([2, 3, 1, 1, 4]))
 print(can_jump_optimized_forward([3, 2, 1, 0, 4]))
 print(can_jump_optimized_forward(large_num))
+
+
+
+def can_jump_bottom_up(nums):
+    n = len(nums)
+    can_reach_to_end = [False for i in range(n)]
+    can_reach_to_end[n-1] = True
+
+    for i in range(n-2, -1, -1):
+        for j in range(n-1, i, -1):
+            max_jump = i + nums[i]
+            if max_jump >= j:
+                can_reach_to_end[i] = can_reach_to_end[j]
+
+    return can_reach_to_end[0]
+
+print("======= bottom up ==========")
+
+print(can_jump_bottom_up([2, 3, 1, 1, 4]))
+print(can_jump_bottom_up([3, 2, 1, 0, 4]))
+print(can_jump_bottom_up(large_num))
