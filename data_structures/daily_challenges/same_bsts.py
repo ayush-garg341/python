@@ -98,7 +98,45 @@ def check_same_bst_or_not_rec(arr1, arr2):
 
 
 def construct_bst_and_check(arrayOne, arrayTwo):
-    pass
+    #TODO
+    if len(arrayOne) != len(arrayTwo):
+        return False
+    tree_a_dict = {}
+    tree_b_dict = {}
+
+    for i in range(len(arrayOne)):
+        flag = True
+        idx = 0
+        while flag:
+            if idx in tree_a_dict:
+                if arrayOne[i] >= tree_a_dict[idx]:
+                    idx = 2*idx + 2
+                else:
+                    idx = 2*idx + 1
+            else:
+                tree_a_dict[idx] = arrayOne[i]
+                flag = False
+
+    for i in range(len(arrayTwo)):
+        flag = True
+        idx = 0
+        while flag:
+            if idx in tree_b_dict:
+                if arrayTwo[i] >= tree_b_dict[idx]:
+                    idx = 2*idx + 2
+                else:
+                    idx = 2*idx + 1
+            else:
+                tree_b_dict[idx] = arrayTwo[i]
+                if idx in tree_a_dict:
+                    if tree_a_dict[idx] != tree_b_dict[idx]:
+                        return False
+                else:
+                    return False
+                flag = False
+
+    return True
+
 
 
 arrayOne = [10, 15, 8, 12, 94, 81, 5, 2, 11]
@@ -106,7 +144,7 @@ arrayTwo = [10, 8, 5, 15, 2, 12, 11, 94, 81]
 
 print(check_same_bst_or_not(arrayOne, arrayTwo))
 
-
+print(construct_bst_and_check(arrayOne, arrayTwo))
 
 
 
