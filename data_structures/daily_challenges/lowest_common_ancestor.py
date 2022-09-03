@@ -75,5 +75,51 @@ def path_from_root_to_node(root, n, path):
 # path_from_root_to_node(tree, 15, path)
 # print(path)
 
-lowest_common_ancestor_using_path_approach(tree, 4, 7)
-lowest_common_ancestor_using_path_approach(tree2, 5, 8)
+# lowest_common_ancestor_using_path_approach(tree, 4, 7)
+# lowest_common_ancestor_using_path_approach(tree2, 5, 8)
+
+
+def lowest_common_ancestor(tree, n1, n2):
+    """
+    The lowest common ancestor will have values from both left and right subtree.
+    Will propagate that value upto root and then root will return.
+    """
+    return lowest_common_ancestor_rec(tree, n1, n2)
+
+def lowest_common_ancestor_rec(root, n1, n2):
+    if root is None:
+        return None
+
+    if root.value == n1 or root.value == n2:
+        return root.value
+
+    left = lowest_common_ancestor_rec(root.left, n1, n2)
+    right = lowest_common_ancestor_rec(root.right, n1, n2)
+
+    if left and right:
+        return root.value
+    if left:
+        return left
+    if right:
+        return right
+    return None
+
+print(lowest_common_ancestor(tree, 4, 7))
+print(lowest_common_ancestor(tree2, 5, 8))
+print(lowest_common_ancestor(tree2, 3, 8))
+print(lowest_common_ancestor(tree2, 4, 8))
+print(lowest_common_ancestor(tree2, 6, 7))
+
+tree3 = Tree(3)
+tree3.left = Tree(5)
+tree3.right = Tree(1)
+
+tree3.left.left = Tree(6)
+tree3.left.right = Tree(2)
+
+tree3.left.right.left = Tree(7)
+tree3.left.right.right = Tree(4)
+
+tree3.right.left = Tree(0)
+tree3.right.right = Tree(8)
+print(lowest_common_ancestor(tree3, 1, 5))
