@@ -32,8 +32,27 @@ tree2.right.right.right.right = Tree(8)
 
 
 def lowest_common_ancestor_using_path_approach(root, n1, n2):
-    path = []
-    path_from_root_to_node(root, n1, path)
+    found = False
+    path1 = []
+    path_from_root_to_node(root, n1, path1)
+
+    path2 = []
+    path_from_root_to_node(root, n2, path2)
+
+    print(path1, path2)
+    for i in range(len(path1)-1, -1, -1):
+        for j in range(len(path2)-1, -1, -1):
+            last_elt = path1[i]
+            if last_elt == path2[j]:
+                lca = last_elt
+                found = True
+                break
+        if found:
+            break
+    if found:
+        print(lca)
+    else:
+        print("No Common ancestor")
 
 def path_from_root_to_node(root, n, path):
     if root is None:
@@ -49,12 +68,15 @@ def path_from_root_to_node(root, n, path):
     else:
         path.pop()
 
-path = []
-path_from_root_to_node(tree, 5, path)
-print(path)
-path = []
-path_from_root_to_node(tree, 7, path)
-print(path)
-path = []
-path_from_root_to_node(tree, 15, path)
-print(path)
+# path = []
+# path_from_root_to_node(tree, 5, path)
+# print(path)
+# path = []
+# path_from_root_to_node(tree, 7, path)
+# print(path)
+# path = []
+# path_from_root_to_node(tree, 15, path)
+# print(path)
+
+lowest_common_ancestor_using_path_approach(tree, 4, 7)
+lowest_common_ancestor_using_path_approach(tree2, 5, 8)
