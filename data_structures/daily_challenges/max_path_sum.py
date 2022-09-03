@@ -65,4 +65,34 @@ def max_path_sum(root, s):
         max_path_sum(root.right, s)
 
 
-print(max_path_sum_through_root(tree))
+# print("max path sum between two connected nodes through root")
+# print(max_path_sum_through_root(tree))
+
+
+
+def max_path_sum_between_two_nodes(root):
+
+    if root is None:
+        return 0
+
+    left_subtree = max_path_sum_between_two_nodes(root.left)
+    right_subtree = max_path_sum_between_two_nodes(root.right)
+
+    max_val = max(root.val, max(left_subtree+root.val, right_subtree+root.val))
+
+    max_sum = max(max_val, left_subtree + right_subtree + root.val)
+
+    temp_sum = Sum.max_sum
+    temp_max = max(temp_sum, max(max_val, max_sum))
+    Sum.max_sum = temp_max
+
+    return max_val
+
+
+
+print("max path sum between two connected nodes")
+max_path_sum_between_two_nodes(tree)
+
+print(Sum.max_sum)
+
+
