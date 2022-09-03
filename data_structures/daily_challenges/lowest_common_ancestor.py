@@ -39,17 +39,14 @@ def lowest_common_ancestor_using_path_approach(root, n1, n2):
     path2 = []
     path_from_root_to_node(root, n2, path2)
 
+    lca = -1
     print(path1, path2)
-    for i in range(len(path1)-1, -1, -1):
-        for j in range(len(path2)-1, -1, -1):
-            last_elt = path1[i]
-            if last_elt == path2[j]:
-                lca = last_elt
-                found = True
-                break
-        if found:
+    for i in range(len(path1)):
+        if path2[i] and path1[i] == path2[i]:
+            lca = path1[i]
+        else:
             break
-    if found:
+    if lca:
         print(lca)
     else:
         print("No Common ancestor")
