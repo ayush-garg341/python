@@ -73,3 +73,20 @@ print(non_repeat_str_another_method("aabccbb"))
 print(non_repeat_str_another_method("abbbb"))
 print(non_repeat_str_another_method("abccde"))
 print(non_repeat_str_another_method("abcdefbgh"))
+print(" ====================== ")
+
+def non_repeat_str_longest(string: str) -> int:
+    window_start, max_len = 0, 0
+    char_index_map = {}
+    for window_end in range(len(string)):
+        char = string[window_end]
+        if char in char_index_map:
+            window_start = max(window_start, char_index_map[char]+1)
+        char_index_map[char] = window_end
+        max_len = max(max_len, window_end - window_start + 1)
+
+    return max_len
+print(non_repeat_str_longest("aabccbb"))
+print(non_repeat_str_longest("abbbb"))
+print(non_repeat_str_longest("abccde"))
+print(non_repeat_str_longest("abcdefbgh"))
