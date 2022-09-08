@@ -83,7 +83,94 @@ def find_permutation(string, pattern):
 
     return False
 
-print(find_permutation("eidbaooo", "ab"))
-print(find_permutation("ooolleoooleh", "hello"))
-print(find_permutation("dcda", "adc"))
+# print(find_permutation("eidbaooo", "ab"))
+# print(find_permutation("ooolleoooleh", "hello"))
+# print(find_permutation("dcda", "adc"))
 
+
+
+def longest_subsseq(str1, str2):
+    longest = longest_subsseq_rec(str1, str2, 0, 0)
+    return longest
+
+def longest_subsseq_rec(str1, str2, i, j):
+    if len(str1) == i or len(str2) == j:
+        return 0
+
+    if str1[i] == str2[j]:
+        return 1 + longest_subsseq_rec(str1, str2, i+1, j+1)
+
+    count1 = longest_subsseq_rec(str1, str2, i+1, j)
+    count2 = longest_subsseq_rec(str1, str2, i, j+1)
+
+    return max(count1, count2)
+
+# print(longest_subsseq("ZXVVYZW", "XKYKZPW"))
+# print(longest_subsseq("ABCDEFG", "APPLES"))
+
+from collections import deque
+
+def longest_subsseq_tabulation(str1, str2):
+    n1 = len(str1)
+    n2 = len(str2)
+
+    dp = [[0 for j in range(n1+1)] for i in range(n2+1)]
+
+    for i in range(1, n2+1):
+        for j in range(1, n1+1):
+            if str2[i-1] == str1[j-1]:
+                dp[i][j] = 1 + dp[i-1][j-1]
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+
+    output = deque()
+
+    i = n2
+    j = n1
+    while i >= 1 and j >= 1:
+        if dp[i][j] != dp[i-1][j] and dp[i][j] != dp[i][j-1]:
+            output.appendleft(str2[i-1])
+            i = i - 1
+            j = j - 1
+        else:
+            if dp[i][j] == dp[i-1][j]:
+                i = i-1
+            elif dp[i][j] == dp[i][j-1]:
+                j = j - 1
+    return list(output)
+
+
+# print(longest_subsseq_tabulation("ZXVVYZW", "XKYKZPW"))
+# print(longest_subsseq_tabulation("ABCDEFG", "APPLES"))
+
+
+
+def longest_subsseq_tabulation_another_method(str1, str2):
+    n1 = len(str1)
+    n2 = len(str2)
+
+    dp = [[[None, 0, None, None] for j in range(n1+1)] for i in range(n2+1)]
+
+    for i in range(1, n2+1):
+        for j in range(1, n1+1):
+            if str2[i-1] == str1[j-1]:
+                dp[i][j] = [str1[j-1], 1 + dp[i-1][j-1][1], i-1, j-1]
+            else:
+                if dp[i-1][j][1] > dp[i][j-1][1]:
+                    dp[i][j] = [None, dp[i-1][j][1], i-1, j]
+                else:
+                    dp[i][j] = [None, dp[i][j-1][1], i, j-1]
+
+    i = n2
+    j = n1
+    result = []
+    while i!=0 and j!=0:
+        current_record = dp[i][j]
+        if current_record[0] is not None:
+            result.append(current_record[0])
+        i = current_record[2]
+        j = current_record[3]
+    return list(reversed(result))
+
+print(longest_subsseq_tabulation_another_method("ZXVVYZW", "XKYKZPW"))
+print(longest_subsseq_tabulation_another_method("ABCDEFG", "APPLES"))
