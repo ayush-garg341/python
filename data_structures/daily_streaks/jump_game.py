@@ -11,23 +11,29 @@ def jump_game_brute_force(nums):
 
 
 def can_jump_recursive(nums, i):
-    if i == len(nums) - 1:
+    if i >= len(nums) - 1:
         return True
     current_jump = nums[i]
     jump = 1
     while jump <= current_jump:
         index = i + jump
-        if index < len(nums):
-            res = can_jump_recursive(nums, index)
-            if res:
-                return True
+        # if index < len(nums):
+        res = can_jump_recursive(nums, index)
+        if res:
+            return True
 
         jump += 1
 
     return False
 
-# print(jump_game_brute_force([2,3,1,1,4]))
-# print(jump_game_brute_force([3,2,1,0,4]))
+print("======== Jump game brute force =============")
+print(jump_game_brute_force([2,3,1,1,4]))
+print(jump_game_brute_force([3,2,1,0,4]))
+print(jump_game_brute_force([0, 2, 3]))
+print(jump_game_brute_force([1, 2, 1, 2, 0, 1, 3]))
+print(jump_game_brute_force([1, 1, 1, 0, 0]))
+print(jump_game_brute_force([3, 0, 0, 0]))
+print(jump_game_brute_force([1, 2, 0, 4]))
 
 large_num = [2,0,6,9,8,4,5,0,8,9,1,2,9,6,8,8,0,6,3,1,2,2,1,2,6,5,3,1,2,2,6,4,2,4,3,0,0,0,3,8,2,4,0,1,2,0,1,4,6,5,8,0,7,9,3,4,6,6,5,8,9,3,4,3,7,0,4,9,0,9,8,4,3,0,7,7,1,9,1,9,4,9,0,1,9,5,7,7,1,5,8,2,8,2,6,8,2,2,7,5,1,7,9,6]
 
@@ -50,10 +56,10 @@ def can_jump_optimized(nums):
     return last_reachable_pos == 0
 
 
-print("============ Optimized ==================")
-print(can_jump_optimized([2, 3, 1, 1, 4]))
-print(can_jump_optimized([3, 2, 1, 0, 4]))
-print(can_jump_optimized(large_num))
+# print("============ Optimized ==================")
+# print(can_jump_optimized([2, 3, 1, 1, 4]))
+# print(can_jump_optimized([3, 2, 1, 0, 4]))
+# print(can_jump_optimized(large_num))
 # print(can_jump_optimized(very_large_num))
 
 
@@ -87,10 +93,10 @@ def can_jump_rec_dp(nums, i, dp):
     dp[i] = -1
     return False
 
-print("============= dp solution =================")
-print(can_jump_rec([2, 3, 1, 1, 4]))
-print(can_jump_rec([3, 2, 1, 0, 4]))
-print(can_jump_rec(large_num))
+# print("============= dp solution =================")
+# print(can_jump_rec([2, 3, 1, 1, 4]))
+# print(can_jump_rec([3, 2, 1, 0, 4]))
+# print(can_jump_rec(large_num))
 # print(can_jump_rec(very_large_num))
 
 
@@ -105,11 +111,11 @@ def can_jump_optimized_forward(nums):
     if i == n:
         return True
     return False
-print("=============== optmised jump forward ===============")
+# print("=============== optmised jump forward ===============")
 
-print(can_jump_optimized_forward([2, 3, 1, 1, 4]))
-print(can_jump_optimized_forward([3, 2, 1, 0, 4]))
-print(can_jump_optimized_forward(large_num))
+# print(can_jump_optimized_forward([2, 3, 1, 1, 4]))
+# print(can_jump_optimized_forward([3, 2, 1, 0, 4]))
+# print(can_jump_optimized_forward(large_num))
 
 
 
@@ -121,13 +127,15 @@ def can_jump_bottom_up(nums):
     for i in range(n-2, -1, -1):
         for j in range(n-1, i, -1):
             max_jump = i + nums[i]
-            if max_jump >= j:
+            if max_jump >= j and can_reach_to_end[j] == True:
                 can_reach_to_end[i] = can_reach_to_end[j]
+                break
 
     return can_reach_to_end[0]
 
-print("======= bottom up ==========")
+# print("======= bottom up ==========")
 
-print(can_jump_bottom_up([2, 3, 1, 1, 4]))
-print(can_jump_bottom_up([3, 2, 1, 0, 4]))
-print(can_jump_bottom_up(large_num))
+# print(can_jump_bottom_up([2, 3, 1, 1, 4]))
+# print(can_jump_bottom_up([3, 2, 1, 0, 4]))
+# print(can_jump_bottom_up(large_num))
+# print(can_jump_bottom_up([1, 2, 0, 3]))
