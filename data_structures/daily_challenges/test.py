@@ -172,5 +172,42 @@ def longest_subsseq_tabulation_another_method(str1, str2):
         j = current_record[3]
     return list(reversed(result))
 
-print(longest_subsseq_tabulation_another_method("ZXVVYZW", "XKYKZPW"))
-print(longest_subsseq_tabulation_another_method("ABCDEFG", "APPLES"))
+# print(longest_subsseq_tabulation_another_method("ZXVVYZW", "XKYKZPW"))
+# print(longest_subsseq_tabulation_another_method("ABCDEFG", "APPLES"))
+
+import math
+def minWindow(str1: str, pattern: str) -> str:
+    pat_map = {}
+    for char in pattern:
+        if char not in pat_map:
+            pat_map[char] = 0
+        pat_map[char] += 1
+    window_start = 0
+    match_len = 0
+    min_len = math.inf
+    start_window = 0
+    for window_end in range(len(str1)):
+        char = str1[window_end]
+        if char in pat_map:
+            pat_map[char] -= 1
+            if pat_map[char] == 0:
+                match_len += 1
+
+        while match_len == len(pat_map):
+            start_char = str1[window_start]
+            if start_char in pat_map:
+                if pat_map[start_char] == 0:
+                    match_len -= 1
+                pat_map[start_char] += 1
+            if window_end - window_start + 1 < min_len:
+                min_len = window_end - window_start + 1
+                start_window = window_start
+            # min_len = min(min_len, window_end - window_start + 1)
+            window_start += 1
+    substr = ""
+    if min_len != math.inf:
+        end = start_window + min_len
+        return str1[start_window: end]
+    return substr
+
+print(minWindow("cabwefgewcwaefgcf","cae"))
