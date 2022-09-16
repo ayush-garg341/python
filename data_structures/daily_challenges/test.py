@@ -210,4 +210,82 @@ def minWindow(str1: str, pattern: str) -> str:
         return str1[start_window: end]
     return substr
 
-print(minWindow("cabwefgewcwaefgcf","cae"))
+# print(minWindow("cabwefgewcwaefgcf","cae"))
+
+
+from typing import List
+def findSubstring(s:str, words: List[str]) -> List[int]:
+    word_map = {}
+    total_char_count = 0
+    for word in words:
+        for char in word:
+            if char not in word_map:
+                word_map[char] = 0
+            total_char_count += 1
+            word_map[char] += 1
+
+    window_start = 0
+    match_len = 0
+    indices = []
+    for window_end in range(len(s)):
+        char = s[window_end]
+        if char in word_map:
+            word_map[char] -= 1
+            if word_map[char] == 0:
+                match_len += 1
+
+        if match_len == len(word_map):
+            # substr = s[window_start:window_start + total_char_count]
+            individual_list = []
+            word_len = len(words[0])
+            for i in range(window_start, window_start+total_char_count, word_len):
+                individual_list.append(s[i:i+word_len])
+
+            # check for individual word if that's in substr
+            found = True
+            for word in words:
+                if word not in individual_list:
+                    found = False
+                    break
+                else:
+                    index = individual_list.index(word)
+                    individual_list.pop(index)
+            if found:
+                indices.append(window_start)
+
+        if window_end - window_start + 1 >= total_char_count:
+            start_char = s[window_start]
+            if start_char in word_map:
+                if word_map[start_char] == 0:
+                    match_len -= 1
+                word_map[start_char] += 1
+
+            window_start += 1
+
+    return indices
+
+print(findSubstring("barfoothefoobarman", ["foo","bar"]))
+print(findSubstring("wordgoodgoodgoodbestword", ["word","good","best","word"]))
+print(findSubstring("barfoofoobarthefoobarman", ["bar","foo","the"]))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
