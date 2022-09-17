@@ -50,3 +50,37 @@ def pair_with_target_sum(arr, target_sum, triplets_arr):
 
 print(find_triplets_adding_to_zero([-3, 0, 1, 2, -1, 1, -2]))
 print(find_triplets_adding_to_zero([-5, 2, -1, -2, 3]))
+
+
+def find_triplets_adding_to_zero_another_approach(arr):
+    triplets = []
+    # TODO: Write your code here
+    arr.sort()
+    for i in range(len(arr)):
+        if i != 0 and arr[i] == arr[i-1]:
+            continue
+        start = i+1
+        end = len(arr) - 1
+        target_sum = - (arr[i])
+        while start < end:
+            a = arr[start]
+            b = arr[end]
+            if a + b > target_sum:
+                end -= 1
+            elif a + b < target_sum:
+                start += 1
+            else:
+                triplets.append([arr[i], arr[start], arr[end]])
+                while start < len(arr) - 1:
+                    if arr[start+1] != arr[start]:
+                        break
+                    start += 1
+                while end > 0:
+                    if arr[end] != arr[end-1]:
+                        break
+                    end -= 1
+                start += 1
+                end -= 1
+    return triplets
+print(find_triplets_adding_to_zero_another_approach([-3, 0, 1, 2, -1, 1, -2]))
+print(find_triplets_adding_to_zero_another_approach([-5, 2, -1, -2, 3]))
