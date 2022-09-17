@@ -21,12 +21,13 @@ def triplet_with_smaller_sum(arr, target):
     arr.sort()
 
     for i in range(len(arr)):
+        target_sum = target - arr[i]
         start = i + 1
         end = len(arr) - 1
 
         while start < end:
-            actual_sum = arr[i] + arr[start] + arr[end]
-            if actual_sum < target:
+            actual_sum = arr[start] + arr[end]
+            if actual_sum < target_sum:
                 count += end - start
                 start += 1
             else:
@@ -37,3 +38,25 @@ def triplet_with_smaller_sum(arr, target):
 
 print(triplet_with_smaller_sum([-1, 0, 2, 3], 3))
 print(triplet_with_smaller_sum([-1, 4, 2, 1, 3], 5))
+
+def find_triplets_with_smaller_sum(arr, target):
+    arr.sort()
+    triplets = []
+
+    for i in range(len(arr)):
+        target_sum = target - arr[i]
+        start = i + 1
+        end = len(arr) - 1
+
+        while start < end:
+            actual_sum = arr[start] + arr[end]
+            if actual_sum < target_sum:
+                for j in range(end, start, -1):
+                    triplets.append([arr[i], arr[start], arr[j]])
+                start += 1
+            else:
+                end -= 1
+
+    return triplets
+print(find_triplets_with_smaller_sum([-1, 0, 2, 3], 3))
+print(find_triplets_with_smaller_sum([-1, 4, 2, 1, 3], 5))
