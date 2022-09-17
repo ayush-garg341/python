@@ -17,9 +17,7 @@ example2:
 def remove_all_instance_key_inplace(arr, key):
     start = 0
     for i in range(len(arr)):
-        if arr[i] == key:
-            continue
-        else:
+        if arr[i] != key:
             arr[start] = arr[i]
             start += 1
 
