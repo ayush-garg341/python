@@ -39,3 +39,53 @@ def square_sorted_array(arr):
 
 print(square_sorted_array([-2, -1, 0, 2, 3]))
 print(square_sorted_array([-3, -1, 0, 1, 2]))
+
+
+def square_sorted_array_another_approach(arr):
+    index_pos_num = -1
+    for i in range(len(arr)):
+        if arr[i] >= 0:
+            index_pos_num = i
+            break
+
+    if index_pos_num == 0:
+        return [arr[i] * arr[i] for i in range(len(arr))]
+    if index_pos_num == -1:
+        return [arr[i]*arr[i] for i in range(len(arr)-1, -1, -1)]
+
+    negative_num_index = index_pos_num - 1
+    squares = []
+    while negative_num_index >= 0 and index_pos_num <= len(arr) - 1:
+        neg_sq = arr[negative_num_index] * arr[negative_num_index]
+        pos_sq = arr[index_pos_num] * arr[index_pos_num]
+
+        if pos_sq < neg_sq:
+            squares.append(pos_sq)
+            index_pos_num += 1
+        else:
+            squares.append(neg_sq)
+            negative_num_index -= 1
+
+    while negative_num_index >= 0:
+        squares.append(arr[negative_num_index]*arr[negative_num_index])
+        negative_num_index -= 1
+
+    while index_pos_num <= len(arr) - 1:
+        squares.append(arr[index_pos_num]*arr[index_pos_num])
+        index_pos_num += 1
+
+    return squares
+
+
+print(square_sorted_array_another_approach([-2, -1, 0, 2, 3]))
+print(square_sorted_array_another_approach([-3, -1, 0, 1, 2]))
+
+
+
+
+
+
+
+
+
+
