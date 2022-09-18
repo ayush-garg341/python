@@ -45,3 +45,26 @@ def find_subarrays(arr, target):
 print(find_subarrays([2, 5, 3, 10], 30))
 print(find_subarrays([8, 2, 6, 5], 50))
 print(find_subarrays([5, 10, 2], 10))
+
+def find_subarrays_simpler(arr, target):
+    result = []
+    # TODO: Write your code here
+    window_start = 0
+    for window_end in range(len(arr)):
+        window_start = window_end
+        product = 1
+        temp_res = deque()
+        while window_start >= 0:
+            product *= arr[window_start]
+            if product < target:
+                temp_res.appendleft(arr[window_start])
+                result.append(list(temp_res))
+            else:
+                break
+            window_start -= 1
+
+    return result
+print("======= Using simpler approach ======== ")
+print(find_subarrays_simpler([2, 5, 3, 10], 30))
+print(find_subarrays_simpler([8, 2, 6, 5], 50))
+print(find_subarrays_simpler([5, 10, 2], 10))
