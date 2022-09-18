@@ -68,3 +68,24 @@ print("======= Using simpler approach ======== ")
 print(find_subarrays_simpler([2, 5, 3, 10], 30))
 print(find_subarrays_simpler([8, 2, 6, 5], 50))
 print(find_subarrays_simpler([5, 10, 2], 10))
+
+
+def num_subarrays_less_than_target(arr, target):
+    """
+    TC -> O(N)
+    """
+    window_start = 0
+    count = 0
+    product = 1
+    for window_end in range(len(arr)):
+        if arr[window_end] < target:
+            count += 1
+        product *= arr[window_end]
+        while product >= target and window_start < window_end:
+            product //= arr[window_start]
+            window_start += 1
+        count += (window_end - window_start)
+    return count
+
+print(" ===== Only count ====== ")
+print(num_subarrays_less_than_target([10, 5, 2, 6], 100))
