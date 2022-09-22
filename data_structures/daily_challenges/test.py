@@ -309,16 +309,50 @@ def backspace_compare(str1, str2):
 
     # return True
 
-print(backspace_compare("xy#z", "xzz#"))
-print(backspace_compare("xy#z", "xyz#"))
-print(backspace_compare("xywrrmp", "xywrrmu#p"))
+# print(backspace_compare("xy#z", "xzz#"))
+# print(backspace_compare("xy#z", "xyz#"))
+# print(backspace_compare("xywrrmp", "xywrrmu#p"))
 
 
 
+def backspace_compare_efficient(str1, str2):
+    i = len(str1) - 1
+    j = len(str2) - 1
+    while i >= 0 or j >= 0:
+        i = get_next_non_space_index(str1, i)
+        j = get_next_non_space_index(str2, j)
 
+        if i < 0 and j < 0:
+            return True
+        if i < 0 or j < 0:
+            return False
 
+        if str1[i] != str2[j]:
+            return False
 
+        i = i - 1
+        j = j - 1
 
+    return True
+
+def get_next_non_space_index(string, current_idx):
+    count_space = 0
+    while current_idx >= 0:
+        if string[current_idx] == "#":
+            count_space += 1
+        elif count_space:
+            count_space -= 1
+        else:
+            break
+
+        current_idx -= 1
+
+    return current_idx
+
+# print(backspace_compare_efficient("xy#z", "xzz#"))
+# print(backspace_compare_efficient("xy#z", "xyz#"))
+# print(backspace_compare_efficient("xywrrmp", "xywrrmu#p"))
+print(backspace_compare_efficient("bbbextm", "bbb#extm"))
 
 
 
