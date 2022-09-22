@@ -264,10 +264,54 @@ def findSubstring(s:str, words: List[str]) -> List[int]:
 
     return indices
 
-print(findSubstring("barfoothefoobarman", ["foo","bar"]))
-print(findSubstring("wordgoodgoodgoodbestword", ["word","good","best","word"]))
-print(findSubstring("barfoofoobarthefoobarman", ["bar","foo","the"]))
+# print(findSubstring("barfoothefoobarman", ["foo","bar"]))
+# print(findSubstring("wordgoodgoodgoodbestword", ["word","good","best","word"]))
+# print(findSubstring("barfoofoobarthefoobarman", ["bar","foo","the"]))
 
+
+def backspace_compare(str1, str2):
+    substr1 = []
+    count_space = 0
+
+    for i in range(len(str1)-1, -1, -1):
+        if str1[i] == "#":
+            count_space += 1
+        else:
+            if count_space:
+                count_space -= 1
+            else:
+                substr1.append(str1[i])
+
+    count_space = 0
+    i = 0
+    for j in range(len(str2)-1, -1, -1):
+        if str2[j] == "#":
+            count_space += 1
+        else:
+            if count_space:
+                count_space -= 1
+            else:
+                if i < len(substr1) and substr1[i] == str2[j]:
+                    i += 1
+                    continue
+                else:
+                    return False
+    if i != len(substr1):
+        return False
+    return True
+                # substr2.append(str2[j])
+
+    # if len(substr1) != len(substr2):
+        # return False
+    # for i in range(len(substr1)):
+        # if substr1[i] != substr2[i]:
+            # return False
+
+    # return True
+
+print(backspace_compare("xy#z", "xzz#"))
+print(backspace_compare("xy#z", "xyz#"))
+print(backspace_compare("xywrrmp", "xywrrmu#p"))
 
 
 
