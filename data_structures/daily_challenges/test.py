@@ -355,8 +355,53 @@ def get_next_non_space_index(string, current_idx):
 print(backspace_compare_efficient("bbbextm", "bbb#extm"))
 
 
+def shortest_window_sort(arr):
+    start = 1
+    end = len(arr) - 1
+    start_idx = end
+    end_idx = 0
+    while start <= end:
+        if arr[start] < arr[start-1]:
+            start_idx = start - 1
+            break
+        start += 1
+
+    while end > 0:
+        if arr[end-1] > arr[end]:
+            end_idx = end
+            break
+        end -= 1
+
+    if start_idx >= end_idx:
+        return 0
+
+    max_elt = -math.inf
+    min_elt = math.inf
+    for i in range(start_idx, end_idx + 1):
+        if arr[i] > max_elt:
+            max_elt = arr[i]
+        if arr[i] < min_elt:
+            min_elt = arr[i]
+
+    # print(max_elt, min_elt)
+
+    for i in range(len(arr)):
+        if min_elt < arr[i]:
+            start_idx = i
+            break
+
+    for j in range(len(arr)-1, -1, -1):
+        if max_elt > arr[j]:
+            end_idx = j
+            break
+
+    return end_idx - start_idx + 1
 
 
+print(shortest_window_sort([1, 2, 5, 3, 7, 10, 9, 12]))
+print(shortest_window_sort([1, 3, 2, 0, -1, 7, 10]))
+print(shortest_window_sort([1, 2, 3]))
+print(shortest_window_sort([3, 2, 1]))
 
 
 
