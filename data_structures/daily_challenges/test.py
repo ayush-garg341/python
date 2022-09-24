@@ -352,7 +352,7 @@ def get_next_non_space_index(string, current_idx):
 # print(backspace_compare_efficient("xy#z", "xzz#"))
 # print(backspace_compare_efficient("xy#z", "xyz#"))
 # print(backspace_compare_efficient("xywrrmp", "xywrrmu#p"))
-print(backspace_compare_efficient("bbbextm", "bbb#extm"))
+# print(backspace_compare_efficient("bbbextm", "bbb#extm"))
 
 
 def shortest_window_sort(arr):
@@ -398,12 +398,35 @@ def shortest_window_sort(arr):
     return end_idx - start_idx + 1
 
 
-print(shortest_window_sort([1, 2, 5, 3, 7, 10, 9, 12]))
-print(shortest_window_sort([1, 3, 2, 0, -1, 7, 10]))
-print(shortest_window_sort([1, 2, 3]))
-print(shortest_window_sort([3, 2, 1]))
+# print(shortest_window_sort([1, 2, 5, 3, 7, 10, 9, 12]))
+# print(shortest_window_sort([1, 3, 2, 0, -1, 7, 10]))
+# print(shortest_window_sort([1, 2, 3]))
+# print(shortest_window_sort([3, 2, 1]))
 
 
+def happy_number(num):
+    sum_of_sqaures = sum_sqaures(num)
+    sum_of_sqaures_next = sum_sqaures(sum_sqaures(num))
+    if sum_of_sqaures == 1 or sum_of_sqaures_next == 1:
+        return True
+    while sum_of_sqaures != sum_of_sqaures_next:
+        if sum_of_sqaures_next == 1 or sum_of_sqaures == 1:
+            return True
+        else:
+            sum_of_sqaures = sum_sqaures(sum_of_sqaures)
+            sum_of_sqaures_next = sum_sqaures(sum_sqaures(sum_of_sqaures_next))
+    return False
+
+def sum_sqaures(num):
+    s = 0
+    while num != 0:
+        digit = num % 10
+        num = num // 10
+        s += digit * digit
+    return s
+
+print(happy_number(23))
+print(happy_number(12))
 
 
 
