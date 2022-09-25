@@ -53,3 +53,22 @@ def waterAreaSpaceEff(heights):
 
     return max_water
 print(waterAreaSpaceEff([0, 8, 0, 0, 5, 0, 0, 10, 0, 0, 1, 1, 0, 3]))
+
+def waterAreaConstantSpace(heights):
+    left = 0
+    right = len(heights) - 1
+    left_max = -1
+    right_max = -1
+    water_area = 0
+    while left < right:
+        left_max = max(left_max, heights[left])
+        right_max = max(right_max, heights[right])
+        if left_max < right_max:
+            water_area += left_max - heights[left]
+            left += 1
+        else:
+            water_area += right_max - heights[right]
+            right -= 1
+
+    return water_area
+print(waterAreaConstantSpace([0, 8, 0, 0, 5, 0, 0, 10, 0, 0, 1, 1, 0, 3]))
