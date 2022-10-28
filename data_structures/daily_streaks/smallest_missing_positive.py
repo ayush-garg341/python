@@ -37,3 +37,23 @@ def firstMissingPositive(nums: List[int]) -> int:
 print(firstMissingPositive([-3, 1, 5, 4, 2]))
 print(firstMissingPositive([3, -2, 0, 1, 2]))
 print(firstMissingPositive([3, 2, 5, 1]))
+
+
+def firstMissingPositiveOptimized(nums: List[int]) -> int:
+    i = 0
+    n = len(nums)
+    while i < n:
+        if nums[i] > 0 and nums[i] <= n and nums[i] != nums[nums[i]-1]:
+            idx = nums[i] - 1
+            nums[i], nums[idx] = nums[idx], nums[i]
+        else:
+            i += 1
+    for i in range(len(nums)):
+        if nums[i] != i+1:
+            return i + 1
+    return len(nums) + 1
+
+
+print(firstMissingPositiveOptimized([-3, 1, 5, 4, 2]))
+print(firstMissingPositiveOptimized([3, -2, 0, 1, 2]))
+print(firstMissingPositiveOptimized([3, 2, 5, 1]))
