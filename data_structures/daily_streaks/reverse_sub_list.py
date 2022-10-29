@@ -74,15 +74,12 @@ def reverse_list(head):
 # main()
 
 def reverse_every_k_elements(head, k):
-    length = 0
-    temp = head
-    while temp is not None:
-        temp = temp.next
-        length += 1
     count = 0
     k_group = 0
     count_group = 0
-    while count < length:
+    temp = head
+    while temp is not None:
+        temp = temp.next
         count += 1
         if count % k == 0:
             k_group = k*count_group + 1
