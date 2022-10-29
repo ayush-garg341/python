@@ -59,16 +59,57 @@ def reverse_list(head):
         head = temp
     return prev
 
-def main():
+# def main():
+    # head = Node(1)
+    # head.next = Node(2)
+    # head.next.next = Node(3)
+    # head.next.next.next = Node(4)
+    # head.next.next.next.next = Node(5)
+
+    # print("Nodes of original LinkedList are: ", end='')
+    # head.print_list()
+    # result = reverse_sub_list(head, 1, 5)
+    # print("Nodes of reversed LinkedList are: ", end='')
+    # result.print_list()
+# main()
+
+def reverse_every_k_elements(head, k):
+    length = 0
+    temp = head
+    while temp is not None:
+        temp = temp.next
+        length += 1
+    count = 0
+    k_group = 0
+    count_group = 0
+    while count < length:
+        count += 1
+        if count % k == 0:
+            k_group = k*count_group + 1
+            count_group += 1
+            head = reverse_sub_list(head, k_group, count)
+
+    if count % k != 0:
+        rem = count % k
+        head = reverse_sub_list(head, count - rem + 1, count)
+
+    return head
+
+
+def main2():
     head = Node(1)
     head.next = Node(2)
     head.next.next = Node(3)
     head.next.next.next = Node(4)
     head.next.next.next.next = Node(5)
+    head.next.next.next.next.next = Node(6)
+    head.next.next.next.next.next.next = Node(7)
+    head.next.next.next.next.next.next.next = Node(8)
 
     print("Nodes of original LinkedList are: ", end='')
     head.print_list()
-    result = reverse_sub_list(head, 1, 5)
+    result = reverse_every_k_elements(head, 3)
     print("Nodes of reversed LinkedList are: ", end='')
     result.print_list()
-main()
+
+main2()
