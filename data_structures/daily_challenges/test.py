@@ -479,7 +479,28 @@ output -> "language fav my is python"
 # print(longest_palindromic_subseq("abccc"))
 # print(longest_palindromic_subseq("abcs"))
 
+"""
+Calculate maximum profit by buying stock on day and selling them on some other day.
+"""
+def maximize_profit(prices) -> int:
+    n = len(prices)
+    dp = [0 for i in range(n)]
+    min_so_far = prices[0]
 
+    for i in range(1, n):
+        if prices[i] > min_so_far:
+            dp[i] = max(dp[i-1], prices[i] - min_so_far)
+        else:
+            min_so_far = min(prices[i], min_so_far)
+
+    return dp[n-1]
+
+print(maximize_profit( [7,1,5,3,6,4]))
+
+
+"""
+Generate valid pair of parentheses
+"""
 def generate_possible_combinations(n) -> list:
     list_of_valid_parenthesis = []
     gen_parenthesis_rec(n, list_of_valid_parenthesis, "", 0, 0)
