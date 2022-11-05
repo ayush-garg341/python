@@ -501,22 +501,68 @@ print(maximize_profit( [7,1,5,3,6,4]))
 """
 Generate valid pair of parentheses
 """
-def generate_possible_combinations(n) -> list:
-    list_of_valid_parenthesis = []
-    gen_parenthesis_rec(n, list_of_valid_parenthesis, "", 0, 0)
-    return list_of_valid_parenthesis
+# def generate_possible_combinations(n) -> list:
+    # list_of_valid_parenthesis = []
+    # gen_parenthesis_rec(n, list_of_valid_parenthesis, "", 0, 0)
+    # return list_of_valid_parenthesis
 
 
-def gen_parenthesis_rec(n, list_of_valid_parenthesis, cur_str, open_paren, close_paren):
-    if close_paren >= n:
-        list_of_valid_parenthesis.append(cur_str)
-    if close_paren < open_paren:
-        gen_parenthesis_rec(n, list_of_valid_parenthesis, cur_str + ")", open_paren, close_paren + 1)
-    if open_paren < n:
-        for i in range(open_paren, n):
-            cur_str += "("
-            gen_parenthesis_rec(n, list_of_valid_parenthesis, cur_str + ")", i+1, close_paren+1)
+# def gen_parenthesis_rec(n, list_of_valid_parenthesis, cur_str, open_paren, close_paren):
+    # if close_paren >= n:
+        # list_of_valid_parenthesis.append(cur_str)
+    # if close_paren < open_paren:
+        # gen_parenthesis_rec(n, list_of_valid_parenthesis, cur_str + ")", open_paren, close_paren + 1)
+    # if open_paren < n:
+        # for i in range(open_paren, n):
+            # cur_str += "("
+            # gen_parenthesis_rec(n, list_of_valid_parenthesis, cur_str + ")", i+1, close_paren+1)
 
 
-print(generate_possible_combinations(3))
+# print(generate_possible_combinations(3))
+
+from collections import deque
+
+class Parenthesis:
+    def __init__(self, str, open_paren, close_paren):
+        self.str = str
+        self.open_paren = open_paren
+        self.close_paren = close_paren
+
+def generate_possible_combinations_bfs(n) -> list:
+    result = []
+    q = deque()
+    q.append(Parenthesis("(", 1, 0))
+    while len(q):
+        pop = q.popleft()
+        s = pop.str
+        open_paren = pop.open_paren
+        close_paren = pop.close_paren
+        if close_paren < open_paren:
+            new_s = s + ")"
+            q.append(Parenthesis(new_s, open_paren, close_paren+1))
+        if open_paren < n:
+            str  = s + "("
+            q.append(Parenthesis(str, open_paren+1, close_paren))
+
+        if close_paren == n:
+            result.append(s)
+
+    return result
+print(generate_possible_combinations_bfs(3))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
