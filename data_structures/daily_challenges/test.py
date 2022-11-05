@@ -431,52 +431,71 @@ output -> "language fav my is python"
 
 
 
-def longest_palindromic_substring(s):
-    n = len(s)
-    dp = [[0 for i in range(n)] for j in range(n)]
-    for i in range(n):
-        dp[i][i] = 1
+# def longest_palindromic_substring(s):
+    # n = len(s)
+    # dp = [[0 for i in range(n)] for j in range(n)]
+    # for i in range(n):
+        # dp[i][i] = 1
 
-    for i in range(n-2, -1, -1):
-        for j in range(i+1, n):
-            if s[i] == s[j]:
-                if dp[i+1][j-1] == j - (i+1):
-                    dp[i][j] = 2 + dp[i+1][j-1]
-                else:
-                    dp[i][j] = max(dp[i+1][j], dp[i][j-1])
-            else:
-                dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+    # for i in range(n-2, -1, -1):
+        # for j in range(i+1, n):
+            # if s[i] == s[j]:
+                # if dp[i+1][j-1] == j - (i+1):
+                    # dp[i][j] = 2 + dp[i+1][j-1]
+                # else:
+                    # dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+            # else:
+                # dp[i][j] = max(dp[i+1][j], dp[i][j-1])
 
-    return dp[0][n-1]
+    # return dp[0][n-1]
 
 
-print(longest_palindromic_substring("abacab"))
-print(longest_palindromic_substring("aaa"))
-print(longest_palindromic_substring("abcdefghi"))
-print(longest_palindromic_substring("abccc"))
-print(longest_palindromic_substring("axcdxa"))
-print(" ============  ")
+# print(longest_palindromic_substring("abacab"))
+# print(longest_palindromic_substring("aaa"))
+# print(longest_palindromic_substring("abcdefghi"))
+# print(longest_palindromic_substring("abccc"))
+# print(longest_palindromic_substring("axcdxa"))
+# print(" ============  ")
 
-def longest_palindromic_subseq(s):
-    n = len(s)
-    if n == 0:
-        return 0
-    dp = [[0 for i in range(n)] for j in range(n)]
-    for i in range(n):
-        dp[i][i] = 1
+# def longest_palindromic_subseq(s):
+    # n = len(s)
+    # if n == 0:
+        # return 0
+    # dp = [[0 for i in range(n)] for j in range(n)]
+    # for i in range(n):
+        # dp[i][i] = 1
 
-    for i in range(n-2, -1, -1):
-        for j in range(i+1, n):
-            if s[i] == s[j]:
-                dp[i][j] = 2 + dp[i+1][j-1]
-            else:
-                dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+    # for i in range(n-2, -1, -1):
+        # for j in range(i+1, n):
+            # if s[i] == s[j]:
+                # dp[i][j] = 2 + dp[i+1][j-1]
+            # else:
+                # dp[i][j] = max(dp[i+1][j], dp[i][j-1])
 
-    return dp[0][n-1]
+    # return dp[0][n-1]
 
-print(longest_palindromic_subseq("axcdxa"))
-print(longest_palindromic_subseq("axcdexa"))
-print(longest_palindromic_subseq("abccc"))
-print(longest_palindromic_subseq("abcs"))
+# print(longest_palindromic_subseq("axcdxa"))
+# print(longest_palindromic_subseq("axcdexa"))
+# print(longest_palindromic_subseq("abccc"))
+# print(longest_palindromic_subseq("abcs"))
 
+
+def generate_possible_combinations(n) -> list:
+    list_of_valid_parenthesis = []
+    gen_parenthesis_rec(n, list_of_valid_parenthesis, "", 0, 0)
+    return list_of_valid_parenthesis
+
+
+def gen_parenthesis_rec(n, list_of_valid_parenthesis, cur_str, open_paren, close_paren):
+    if close_paren >= n:
+        list_of_valid_parenthesis.append(cur_str)
+    if close_paren < open_paren:
+        gen_parenthesis_rec(n, list_of_valid_parenthesis, cur_str + ")", open_paren, close_paren + 1)
+    if open_paren < n:
+        for i in range(open_paren, n):
+            cur_str += "("
+            gen_parenthesis_rec(n, list_of_valid_parenthesis, cur_str + ")", i+1, close_paren+1)
+
+
+print(generate_possible_combinations(3))
 
