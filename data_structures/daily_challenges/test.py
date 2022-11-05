@@ -482,20 +482,20 @@ output -> "language fav my is python"
 """
 Calculate maximum profit by buying stock on day and selling them on some other day.
 """
-def maximize_profit(prices) -> int:
-    n = len(prices)
-    dp = [0 for i in range(n)]
-    min_so_far = prices[0]
+# def maximize_profit(prices) -> int:
+    # n = len(prices)
+    # dp = [0 for i in range(n)]
+    # min_so_far = prices[0]
 
-    for i in range(1, n):
-        if prices[i] > min_so_far:
-            dp[i] = max(dp[i-1], prices[i] - min_so_far)
-        else:
-            min_so_far = min(prices[i], min_so_far)
+    # for i in range(1, n):
+        # if prices[i] > min_so_far:
+            # dp[i] = max(dp[i-1], prices[i] - min_so_far)
+        # else:
+            # min_so_far = min(prices[i], min_so_far)
 
-    return dp[n-1]
+    # return dp[n-1]
 
-print(maximize_profit( [7,1,5,3,6,4]))
+# print(maximize_profit( [7,1,5,3,6,4]))
 
 
 """
@@ -520,37 +520,83 @@ Generate valid pair of parentheses
 
 # print(generate_possible_combinations(3))
 
-from collections import deque
+# from collections import deque
 
-class Parenthesis:
-    def __init__(self, str, open_paren, close_paren):
-        self.str = str
-        self.open_paren = open_paren
-        self.close_paren = close_paren
+# class Parenthesis:
+    # def __init__(self, str, open_paren, close_paren):
+        # self.str = str
+        # self.open_paren = open_paren
+        # self.close_paren = close_paren
 
-def generate_possible_combinations_bfs(n) -> list:
-    result = []
-    q = deque()
-    q.append(Parenthesis("(", 1, 0))
-    while len(q):
-        pop = q.popleft()
-        s = pop.str
-        open_paren = pop.open_paren
-        close_paren = pop.close_paren
-        if close_paren < open_paren:
-            new_s = s + ")"
-            q.append(Parenthesis(new_s, open_paren, close_paren+1))
-        if open_paren < n:
-            str  = s + "("
-            q.append(Parenthesis(str, open_paren+1, close_paren))
+# def generate_possible_combinations_bfs(n) -> list:
+    # result = []
+    # q = deque()
+    # q.append(Parenthesis("(", 1, 0))
+    # while len(q):
+        # pop = q.popleft()
+        # s = pop.str
+        # open_paren = pop.open_paren
+        # close_paren = pop.close_paren
+        # if close_paren < open_paren:
+            # new_s = s + ")"
+            # q.append(Parenthesis(new_s, open_paren, close_paren+1))
+        # if open_paren < n:
+            # str  = s + "("
+            # q.append(Parenthesis(str, open_paren+1, close_paren))
 
-        if close_paren == n:
-            result.append(s)
+        # if close_paren == n:
+            # result.append(s)
 
-    return result
-print(generate_possible_combinations_bfs(3))
+    # return result
+# print(generate_possible_combinations_bfs(3))
 
 
+def triangle_sum_without_dp(triangle):
+    return triangle_sum_without_dp_rec(triangle, 0, 0)
+
+def triangle_sum_without_dp_rec(triangle, row, index):
+    if row >= len(triangle):
+        return 0
+    if index >= len(triangle[row]):
+        return 0
+
+    sum1, sum2 = 0, 0
+    sum1 += triangle[row][index] + triangle_sum_without_dp_rec(triangle, row + 1, index)
+
+    sum2 += triangle[row][index] + triangle_sum_without_dp_rec(triangle, row + 1, index + 1)
+
+    return min(sum1, sum2)
+
+print(triangle_sum_without_dp([[2],[3,4],[6,5,7],[4,1,8,3]]))
+print(triangle_sum_without_dp([[2], [3,4]]))
+
+import math
+def triangle_sum_dp(triangle):
+    dp = []
+    for i in range(len(triangle)):
+        temp = []
+        for j in range(len(triangle[i])):
+            temp.append(math.inf)
+        dp.append(temp)
+    return triangle_sum_dp_rec(triangle, dp, 0, 0)
+
+def triangle_sum_dp_rec(triangle, dp, row, index):
+    if row >= len(triangle):
+        return 0
+    if index >= len(triangle[row]):
+        return 0
+
+    if dp[row][index] == math.inf:
+        sum1, sum2 = 0, 0
+        sum1 += triangle[row][index] + triangle_sum_dp_rec(triangle, dp, row + 1, index)
+        sum2 += triangle[row][index] + triangle_sum_dp_rec(triangle, dp, row + 1, index + 1)
+
+        dp[row][index] = min(sum1, sum2)
+
+    return dp[row][index]
+
+print(triangle_sum_dp([[2],[3,4],[6,5,7],[4,1,8,3]]))
+print(triangle_sum_dp([[2], [3,4]]))
 
 
 
