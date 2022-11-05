@@ -492,6 +492,7 @@ Calculate maximum profit by buying stock on day and selling them on some other d
             # dp[i] = max(dp[i-1], prices[i] - min_so_far)
         # else:
             # min_so_far = min(prices[i], min_so_far)
+            # dp[i] = dp[i-1]
 
     # return dp[n-1]
 
