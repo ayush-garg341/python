@@ -599,8 +599,33 @@ def triangle_sum_dp_rec(triangle, dp, row, index):
 print(triangle_sum_dp([[2],[3,4],[6,5,7],[4,1,8,3]]))
 print(triangle_sum_dp([[2], [3,4]]))
 
+def triangle_sum_top_bottoms(triangle):
+    dp = []
+    for i in range(len(triangle)):
+        temp = []
+        for j in range(len(triangle[i])):
+            temp.append(math.inf)
+        dp.append(temp)
 
+    min_sum = math.inf
+    dp[0][0] = triangle[0][0]
+    for row in range(1, len(triangle)):
+        for index in range(len(triangle[row])):
+            if index < len(triangle[row-1]) and index > 0:
+                dp[row][index] = triangle[row][index] + min(dp[row-1][index], dp[row-1][index-1])
+            elif index == 0:
+                dp[row][index] = triangle[row][index] + dp[row-1][index]
+            elif index >= len(triangle[row-1]):
+                dp[row][index] = triangle[row][index] + dp[row-1][index-1]
 
+    n = len(dp)
+    for index in range(len(dp[n-1])):
+        min_sum = min(min_sum, dp[n-1][index])
+
+    return min_sum
+
+print(triangle_sum_top_bottoms([[2],[3,4],[6,5,7],[4,1,8,3]]))
+print(triangle_sum_top_bottoms([[2], [3,4]]))
 
 
 
