@@ -700,17 +700,51 @@ def reverse_head(head):
     return prev
 
 
+# head = Node(1)
+# head.next = Node(2)
+# head.next.next = Node(3)
+# head.next.next.next = Node(4)
+# head.next.next.next.next = Node(5)
+# head.next.next.next.next.next = Node(6)
+# head.next.next.next.next.next.next = Node(7)
+# head.next.next.next.next.next.next.next = Node(8)
+
+# print("Nodes of original LinkedList are: ", end="")
+# head.print_list()
+# result = reverse_alternate_k_elements(head, 3)
+# print("Nodes of reversed LinkedList are: ", end="")
+# result.print_list()
+
+
+def rotate(head, rotations):
+    temp_1 = head
+    length = 0
+    last_node = None
+    while temp_1:
+        length += 1
+        last_node = temp_1
+        temp_1 = temp_1.next
+    actual_rot = length - (rotations % length)
+    temp = head
+    prev = None
+    while actual_rot:
+        prev = temp
+        temp = temp.next
+        actual_rot -= 1
+    prev.next = None
+    last_node.next = head
+    return temp
+
+
 head = Node(1)
 head.next = Node(2)
 head.next.next = Node(3)
 head.next.next.next = Node(4)
 head.next.next.next.next = Node(5)
-head.next.next.next.next.next = Node(6)
-head.next.next.next.next.next.next = Node(7)
-head.next.next.next.next.next.next.next = Node(8)
+# head.next.next.next.next.next = Node(6)
 
 print("Nodes of original LinkedList are: ", end="")
 head.print_list()
-result = reverse_alternate_k_elements(head, 3)
-print("Nodes of reversed LinkedList are: ", end="")
+result = rotate(head, 8)
+print("Nodes of rotated LinkedList are: ", end="")
 result.print_list()
