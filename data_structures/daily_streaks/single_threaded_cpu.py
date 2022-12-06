@@ -16,58 +16,37 @@ from typing import List
 
 import heapq
 
-import math
-
 
 def getOrder(tasks: List[List[int]]) -> List[int]:
-    # TODO
-    least_enqueue_time = math.inf
     order_indexes = []
-    min_heap = []
-    for task in tasks:
-        least_enqueue_time = min(least_enqueue_time, task[0])
+    enqueued_tasks = []
+    available_tasks = []
+    for i in range(len(tasks)):
+        heapq.heappush(enqueued_tasks, (tasks[i][0], tasks[i][1], i))
 
-    for idx in range(len(tasks)):
-        if tasks[idx][0] == least_enqueue_time:
-            heapq.heappush(min_heap, (tasks[idx][1], idx, tasks[idx][0]))
-
-    first_processed = heapq.heappop(min_heap)
-    processing_time = first_processed[0]
-    processed_idx = first_processed[1]
-    enqueu_time = first_processed[2]
-    total_time = enqueu_time + processing_time
-    order_indexes.append(processed_idx)
-    while min_heap:
-        heapq.heappop(min_heap)
-
-    for idx in range(len(tasks)):
-        if idx != processed_idx:
-            heapq.heappush(min_heap, (tasks[idx][1], idx, tasks[idx][0]))
-
-    temp = []
-    while min_heap:
-        top = min_heap[0]
-        enqueu_time = top[2]
-        if enqueu_time <= total_time:
-            pop = heapq.heappop(min_heap)
-            processed_idx = pop[1]
-            order_indexes.append(processed_idx)
-            total_time += pop[0]
-            for item in temp:
-                heapq.heappush(min_heap, item)
-            temp = []
+    first_task = heapq.heappop(enqueued_tasks)
+    total_time = first_task[1] + first_task[0]
+    order_indexes.append(first_task[2])
+    while enqueued_tasks:
+        while enqueued_tasks and enqueued_tasks[0][0] <= total_time:
+            pop = heapq.heappop(enqueued_tasks)
+            heapq.heappush(available_tasks, (pop[1], pop[2], pop[0]))
+        if not available_tasks:
+            total_time = enqueued_tasks[0][0]
+            continue
         else:
-            while min_heap:
-                top = min_heap[0]
-                enqueu_time = top[2]
-                if enqueu_time > total_time:
-                    pop = heapq.heappop(min_heap)
-                    temp.append(pop)
-                else:
-                    break
+            pop = heapq.heappop(available_tasks)
+            total_time += pop[0]
+            order_indexes.append(pop[1])
+
+    while available_tasks:
+        pop = heapq.heappop(available_tasks)
+        order_indexes.append(pop[1])
 
     return order_indexes
 
 
 print(getOrder([[1, 2], [2, 4], [3, 2], [4, 1]]))
 print(getOrder([[7, 10], [7, 12], [7, 5], [7, 4], [7, 2]]))
+
+print(getOrder([[1, 2], [8, 5], [3, 2], [4, 1]]))
