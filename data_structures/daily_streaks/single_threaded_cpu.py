@@ -20,6 +20,7 @@ import math
 
 
 def getOrder(tasks: List[List[int]]) -> List[int]:
+    # TODO
     least_enqueue_time = math.inf
     order_indexes = []
     min_heap = []
@@ -51,7 +52,7 @@ def getOrder(tasks: List[List[int]]) -> List[int]:
             pop = heapq.heappop(min_heap)
             processed_idx = pop[1]
             order_indexes.append(processed_idx)
-            total_time = pop[0] + pop[2]
+            total_time += pop[0]
             for item in temp:
                 heapq.heappush(min_heap, item)
             temp = []
