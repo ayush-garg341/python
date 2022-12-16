@@ -743,8 +743,47 @@ head.next.next.next = Node(4)
 head.next.next.next.next = Node(5)
 # head.next.next.next.next.next = Node(6)
 
-print("Nodes of original LinkedList are: ", end="")
-head.print_list()
-result = rotate(head, 8)
-print("Nodes of rotated LinkedList are: ", end="")
-result.print_list()
+
+# print("Nodes of original LinkedList are: ", end="")
+# head.print_list()
+# result = rotate(head, 8)
+# print("Nodes of rotated LinkedList are: ", end="")
+# result.print_list()
+
+
+class TreeNode:
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+def find_path(root, sequence):
+    return find_path_recursive(root, sequence, 0)
+
+
+def find_path_recursive(root, seq, idx):
+    if root is None or root.val != seq[idx] or idx >= len(seq):
+        return False
+    if (
+        root.val == seq[idx]
+        and idx == len(seq) - 1
+        and root.left is None
+        and root.right is None
+    ):
+        return True
+
+    return find_path_recursive(root.left, seq, idx + 1) or find_path_recursive(
+        root.right, seq, idx + 1
+    )
+
+
+root = TreeNode(1)
+root.left = TreeNode(0)
+root.right = TreeNode(1)
+root.left.left = TreeNode(1)
+root.right.left = TreeNode(6)
+root.right.right = TreeNode(5)
+
+print("Tree has path sequence: " + str(find_path(root, [1, 0, 7])))
+print("Tree has path sequence: " + str(find_path(root, [1, 1, 6])))
