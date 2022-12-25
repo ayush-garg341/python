@@ -1,16 +1,19 @@
 # define Python user-defined exceptions
 class Error(Exception):
     """Base class for other exceptions"""
+
     pass
 
 
 class ValueTooSmallError(Error):
     """Raised when the input value is too small"""
+
     pass
 
 
 class ValueTooLargeError(Error):
     """Raised when the input value is too large"""
+
     pass
 
 
@@ -28,7 +31,7 @@ class SalaryNotInRangeError(Exception):
         super().__init__(self.message)
 
     def __str__(self):
-        return f'{self.salary} -> {self.message}'
+        return f"{self.salary} -> {self.message}"
 
 
 number = 10

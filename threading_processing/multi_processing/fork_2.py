@@ -28,8 +28,8 @@ def process_task():
     lock.release()
 
 
-if __name__ == '__main__':
-    multiprocessing.set_start_method('fork')
+if __name__ == "__main__":
+    multiprocessing.set_start_method("fork")
     process = Process(target=process_task)
 
     # acquire the lock just before starting a new process
@@ -44,6 +44,3 @@ if __name__ == '__main__':
     print("Parent process waiting for child process to finish")
     process.join()
     print("done")
-
-
-

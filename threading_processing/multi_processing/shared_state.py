@@ -5,17 +5,24 @@ The parent process modifies an object put on the queue but the print statements 
 from multiprocessing import Queue, Process, Semaphore
 import multiprocessing
 
+
 def child_process(q, sem1, sem2):
     var = q.get()
-    print("Child process received var = {0} with id {1} from queue".format(str(var), id(var)))
+    print(
+        "Child process received var = {0} with id {1} from queue".format(
+            str(var), id(var)
+        )
+    )
     sem2.release()
     sem1.acquire()
 
-    print("After changes by parent process var in child process = {0}".format(str(var)), flush=True)
+    print(
+        "After changes by parent process var in child process = {0}".format(str(var)),
+        flush=True,
+    )
 
 
-
-if __name__=="__main__":
+if __name__ == "__main__":
     q = Queue()
     sem1 = Semaphore(0)
     sem2 = Semaphore(0)

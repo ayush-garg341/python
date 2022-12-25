@@ -1,11 +1,13 @@
 from functools import wraps
 
+
 def decorator_fn(original_fn):
     def wrapper_fn(*args, **kwargs):
         print("wrapper fn executed this before {}".format(original_fn.__name__))
         return original_fn(*args, **kwargs)
-    
+
     return wrapper_fn
+
 
 """
 Without using purely decorator syntax, below is how we can simulate the decorator functionality.
@@ -22,11 +24,12 @@ decorator_display()
 """
     We can achieve the decorator functionality using class decorator also. But fun. decorator are more common
 """
-class decorator_class(object):
 
+
+class decorator_class(object):
     def __init__(self, original_fn) -> None:
         self.original_fn = original_fn
-    
+
     def __call__(self, *args, **kwds):
         print("call method executed this before {}".format(self.original_fn.__name__))
         return self.original_fn(*args, **kwds)
@@ -34,11 +37,18 @@ class decorator_class(object):
 
 def my_logger(original_fn):
     import logging
-    logging.basicConfig(filename="{}.log".format(original_fn.__name__), level=logging.INFO)
-    
+
+    logging.basicConfig(
+        filename="{}.log".format(original_fn.__name__), level=logging.INFO
+    )
+
     @wraps(original_fn)
     def wrapper_fn(*args, **kwargs):
-        logging.info('Running {} with args: {} and kwargs: {}'.format(original_fn.__name__, args, kwargs))
+        logging.info(
+            "Running {} with args: {} and kwargs: {}".format(
+                original_fn.__name__, args, kwargs
+            )
+        )
         return original_fn(*args, **kwargs)
 
     return wrapper_fn
@@ -54,13 +64,15 @@ def my_timer(original_fn):
         t2 = time.time() - t
         print("{} took {} secs to run".format(original_fn.__name__, t2))
         return t2
+
     return wrapper_fn
+
 
 # @decorator_fn
 # # @decorator_class
 # def display():
 #     print("display fn. ran")
-# display() 
+# display()
 
 
 # @decorator_fn
@@ -69,8 +81,10 @@ def my_timer(original_fn):
 @my_timer
 def display_info(name, age):
     import time
+
     time.sleep(1)
     print("display_info ran with argument ({} {})".format(name, age))
+
 
 display_info("AAAyush", 26)
 

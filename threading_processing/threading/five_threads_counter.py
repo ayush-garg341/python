@@ -1,8 +1,8 @@
 from threading import Thread
 import sys
 
-class Counter:
 
+class Counter:
     def __init__(self):
         self.count = 0
 
@@ -11,11 +11,11 @@ class Counter:
             self.count += 1
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     sys.setswitchinterval(0.005)
 
     num_threads = 5
-    threads = [0]*num_threads
+    threads = [0] * num_threads
     counter = Counter()
 
     for i in range(0, num_threads):

@@ -27,7 +27,9 @@ class PersonSingleton(IPerson):
 
     @staticmethod
     def print_data():
-        print(f"Name: {PersonSingleton.__instance.name}, Age: {PersonSingleton.__instance.age}")
+        print(
+            f"Name: {PersonSingleton.__instance.name}, Age: {PersonSingleton.__instance.age}"
+        )
 
 
 p1 = PersonSingleton("Ayush Garg", 26)

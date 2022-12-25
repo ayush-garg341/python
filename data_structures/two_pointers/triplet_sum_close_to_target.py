@@ -36,20 +36,32 @@ def triplet_sum_closest_to_target(arr, target_sum):
         while start < end:
             actual_sum = arr[start] + arr[end]
             if actual_sum == target:
-                triplet_arr[0], triplet_arr[1], triplet_arr[2] = arr[i], arr[start], arr[end]
+                triplet_arr[0], triplet_arr[1], triplet_arr[2] = (
+                    arr[i],
+                    arr[start],
+                    arr[end],
+                )
                 return target_sum
             elif actual_sum > target:
                 abs_val = abs(target - actual_sum)
                 if closest_sum > abs_val:
                     closest_sum = abs_val
-                    triplet_arr[0], triplet_arr[1], triplet_arr[2] = arr[i], arr[start], arr[end]
+                    triplet_arr[0], triplet_arr[1], triplet_arr[2] = (
+                        arr[i],
+                        arr[start],
+                        arr[end],
+                    )
                     s = arr[i] + arr[start] + arr[end]
                 end -= 1
             else:
                 abs_val = abs(target - actual_sum)
                 if closest_sum > abs_val:
                     closest_sum = abs_val
-                    triplet_arr[0], triplet_arr[1], triplet_arr[2] = arr[i], arr[start], arr[end]
+                    triplet_arr[0], triplet_arr[1], triplet_arr[2] = (
+                        arr[i],
+                        arr[start],
+                        arr[end],
+                    )
                     s = arr[i] + arr[start] + arr[end]
                 start += 1
 

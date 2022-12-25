@@ -19,7 +19,6 @@ from unittest.mock import patch
 """
 
 
-
 # class TestCalendar(unittest.TestCase):
 #     def test_get_holidays_timeout(self):
 #         with patch('my_calendar.requests') as mock_requests:
@@ -29,13 +28,12 @@ from unittest.mock import patch
 #                 mock_requests.get.assert_called_once()
 
 
-
 class TestCalendar(unittest.TestCase):
-    @patch.object(requests, 'get', side_effect=requests.exceptions.Timeout)
+    @patch.object(requests, "get", side_effect=requests.exceptions.Timeout)
     def test_get_holidays_timeout(self, mock_requests):
-            with self.assertRaises(requests.exceptions.Timeout):
-                get_holidays()
+        with self.assertRaises(requests.exceptions.Timeout):
+            get_holidays()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

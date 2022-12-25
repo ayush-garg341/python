@@ -3,6 +3,8 @@ Calculate the max sum of strictly increasing subseq in an array and alsp return 
 """
 
 import math
+
+
 def maxSumIncreasingSubsequence(array):
     # Write your code here.
     max_sum_at_each_index = [(-math.inf, -1)] * len(array)
@@ -12,7 +14,7 @@ def maxSumIncreasingSubsequence(array):
     elts = []
     for start in range(len(array)):
         sum = array[start]
-        for end in range(start-1, -1, -1):
+        for end in range(start - 1, -1, -1):
             if array[end] < array[start]:
                 if max_sum_at_each_index[end][0] + array[start] > sum:
                     sum = max_sum_at_each_index[end][0] + array[start]
@@ -31,5 +33,6 @@ def maxSumIncreasingSubsequence(array):
     elts.reverse()
 
     return [global_max, elts]
+
 
 print(maxSumIncreasingSubsequence([10, 70, 20, 30, 50, 11, 30]))

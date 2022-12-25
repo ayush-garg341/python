@@ -15,13 +15,14 @@ The first argument recv_conn returned by the constructor can receive messages an
 from multiprocessing import Process, Pipe
 import time
 
+
 def child_process(conn):
     for i in range(0, 10):
         conn.send("hello " + str(i + 1))
     conn.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parent_conn, child_conn = Pipe()
     p = Process(target=child_process, args=(child_conn,))
     p.start()

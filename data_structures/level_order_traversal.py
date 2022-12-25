@@ -1,5 +1,6 @@
 from queue_linked_list import Queue
 
+
 class TreeNode:
     def __init__(self, data) -> None:
         self.data = data
@@ -40,6 +41,7 @@ def levelOrder(root):
         level_order_traversal.append(same_level_elts)
 
     return level_order_traversal
+
 
 level_order_traversal = levelOrder(root)
 print("level order traversal => ", level_order_traversal)

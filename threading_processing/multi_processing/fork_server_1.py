@@ -8,8 +8,8 @@ def process_task():
     time.sleep(1000 * 1000)
 
 
-if __name__ == '__main__':
-    multiprocessing.set_start_method('forkserver')
+if __name__ == "__main__":
+    multiprocessing.set_start_method("forkserver")
 
     process = Process(target=process_task)
     process.start()

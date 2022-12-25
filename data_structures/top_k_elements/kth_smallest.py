@@ -54,9 +54,18 @@ def find_Kth_smallest_number_brute_force(nums, k):
     return previous_smallest_num
 
 
-print("Kth smallest number using brute force is: " + str(find_Kth_smallest_number_brute_force([1, 5, 12, 2, 11, 5], 3)))
-print("Kth smallest number using brute force is: " + str(find_Kth_smallest_number_brute_force([1, 5, 12, 2, 11, 5], 4)))
-print("Kth smallest number using brute force is: " + str(find_Kth_smallest_number_brute_force([5, 12, 11, -1, 12], 3)))
+print(
+    "Kth smallest number using brute force is: "
+    + str(find_Kth_smallest_number_brute_force([1, 5, 12, 2, 11, 5], 3))
+)
+print(
+    "Kth smallest number using brute force is: "
+    + str(find_Kth_smallest_number_brute_force([1, 5, 12, 2, 11, 5], 4))
+)
+print(
+    "Kth smallest number using brute force is: "
+    + str(find_Kth_smallest_number_brute_force([5, 12, 11, -1, 12], 3))
+)
 
 
 def find_Kth_smallest_number_sorting(nums, k):
@@ -67,9 +76,18 @@ def find_Kth_smallest_number_sorting(nums, k):
     return sorted(nums)[k - 1]
 
 
-print("Kth smallest number using sorting is: " + str(find_Kth_smallest_number_sorting([1, 5, 12, 2, 11, 5], 3)))
-print("Kth smallest number using sorting is: " + str(find_Kth_smallest_number_sorting([1, 5, 12, 2, 11, 5], 4)))
-print("Kth smallest number using sorting is: " + str(find_Kth_smallest_number_sorting([5, 12, 11, -1, 12], 3)))
+print(
+    "Kth smallest number using sorting is: "
+    + str(find_Kth_smallest_number_sorting([1, 5, 12, 2, 11, 5], 3))
+)
+print(
+    "Kth smallest number using sorting is: "
+    + str(find_Kth_smallest_number_sorting([1, 5, 12, 2, 11, 5], 4))
+)
+print(
+    "Kth smallest number using sorting is: "
+    + str(find_Kth_smallest_number_sorting([5, 12, 11, -1, 12], 3))
+)
 
 
 def find_Kth_smallest_number_max_heap(nums, k):
@@ -92,9 +110,18 @@ def find_Kth_smallest_number_max_heap(nums, k):
     return -max_heap[0]
 
 
-print("Kth smallest number using max heap is: " + str(find_Kth_smallest_number_max_heap([1, 5, 12, 2, 11, 5], 3)))
-print("Kth smallest number using max heap is: " + str(find_Kth_smallest_number_max_heap([1, 5, 12, 2, 11, 5], 4)))
-print("Kth smallest number using max heap is: " + str(find_Kth_smallest_number_max_heap([5, 12, 11, -1, 12], 3)))
+print(
+    "Kth smallest number using max heap is: "
+    + str(find_Kth_smallest_number_max_heap([1, 5, 12, 2, 11, 5], 3))
+)
+print(
+    "Kth smallest number using max heap is: "
+    + str(find_Kth_smallest_number_max_heap([1, 5, 12, 2, 11, 5], 4))
+)
+print(
+    "Kth smallest number using max heap is: "
+    + str(find_Kth_smallest_number_max_heap([5, 12, 11, -1, 12], 3))
+)
 
 
 def find_Kth_smallest_number_min_heap(nums, k):
@@ -118,9 +145,18 @@ def find_Kth_smallest_number_min_heap(nums, k):
     return min_heap[0]
 
 
-print("Kth smallest number using min heap is: " + str(find_Kth_smallest_number_min_heap([1, 5, 12, 2, 11, 5], 3)))
-print("Kth smallest number using min heap is: " + str(find_Kth_smallest_number_min_heap([1, 5, 12, 2, 11, 5], 4)))
-print("Kth smallest number using min heap is: " + str(find_Kth_smallest_number_min_heap([5, 12, 11, -1, 12], 3)))
+print(
+    "Kth smallest number using min heap is: "
+    + str(find_Kth_smallest_number_min_heap([1, 5, 12, 2, 11, 5], 3))
+)
+print(
+    "Kth smallest number using min heap is: "
+    + str(find_Kth_smallest_number_min_heap([1, 5, 12, 2, 11, 5], 4))
+)
+print(
+    "Kth smallest number using min heap is: "
+    + str(find_Kth_smallest_number_min_heap([5, 12, 11, -1, 12], 3))
+)
 
 
 def find_Kth_smallest_number_partition_scheme_quick_sort(nums, k, start, high):
@@ -137,7 +173,9 @@ def find_Kth_smallest_number_partition_scheme_quick_sort(nums, k, start, high):
         return nums[p]
 
     if k - 1 > p:
-        return find_Kth_smallest_number_partition_scheme_quick_sort(nums, k, p + 1, high)
+        return find_Kth_smallest_number_partition_scheme_quick_sort(
+            nums, k, p + 1, high
+        )
 
     return find_Kth_smallest_number_partition_scheme_quick_sort(nums, k, 0, p - 1)
 
@@ -159,15 +197,27 @@ def partition(nums, low, high):
 
 print(
     "Kth smallest number using quick sort partitioning is: "
-    + str(find_Kth_smallest_number_partition_scheme_quick_sort([1, 5, 12, 2, 11, 5], 3, 0, 5))
+    + str(
+        find_Kth_smallest_number_partition_scheme_quick_sort(
+            [1, 5, 12, 2, 11, 5], 3, 0, 5
+        )
+    )
 )
 print(
     "Kth smallest number using quick sort partitioning is: "
-    + str(find_Kth_smallest_number_partition_scheme_quick_sort([1, 5, 12, 2, 11, 5], 4, 0, 5))
+    + str(
+        find_Kth_smallest_number_partition_scheme_quick_sort(
+            [1, 5, 12, 2, 11, 5], 4, 0, 5
+        )
+    )
 )
 print(
     "Kth smallest number using quick sort partitioning is: "
-    + str(find_Kth_smallest_number_partition_scheme_quick_sort([5, 12, 11, -1, 12], 3, 0, 4))
+    + str(
+        find_Kth_smallest_number_partition_scheme_quick_sort(
+            [5, 12, 11, -1, 12], 3, 0, 4
+        )
+    )
 )
 
 
@@ -213,15 +263,21 @@ def partition_randomized(nums, start, high):
 
 print(
     "Kth smallest number using randomized quick select partitioning is: "
-    + str(find_Kth_smallest_number_randomized_quick_select([1, 5, 12, 2, 11, 5], 3, 0, 5))
+    + str(
+        find_Kth_smallest_number_randomized_quick_select([1, 5, 12, 2, 11, 5], 3, 0, 5)
+    )
 )
 print(
     "Kth smallest number using randomized quick select partitioning is: "
-    + str(find_Kth_smallest_number_randomized_quick_select([1, 5, 12, 2, 11, 5], 4, 0, 5))
+    + str(
+        find_Kth_smallest_number_randomized_quick_select([1, 5, 12, 2, 11, 5], 4, 0, 5)
+    )
 )
 print(
     "Kth smallest number using randomized quick select partitioning is: "
-    + str(find_Kth_smallest_number_randomized_quick_select([5, 12, 11, -1, 12], 3, 0, 4))
+    + str(
+        find_Kth_smallest_number_randomized_quick_select([5, 12, 11, -1, 12], 3, 0, 4)
+    )
 )
 
 
@@ -289,13 +345,19 @@ def find_median_of_medians(nums, low, high):
 
 print(
     "Kth smallest number using median of medians is: "
-    + str(find_Kth_smallest_number_using_median_of_medians([1, 5, 12, 2, 11, 5], 3, 0, 5))
+    + str(
+        find_Kth_smallest_number_using_median_of_medians([1, 5, 12, 2, 11, 5], 3, 0, 5)
+    )
 )
 print(
     "Kth smallest number using median of medians is: "
-    + str(find_Kth_smallest_number_using_median_of_medians([1, 5, 12, 2, 11, 5], 4, 0, 5))
+    + str(
+        find_Kth_smallest_number_using_median_of_medians([1, 5, 12, 2, 11, 5], 4, 0, 5)
+    )
 )
 print(
     "Kth smallest number using median of medians is: "
-    + str(find_Kth_smallest_number_using_median_of_medians([5, 12, 11, -1, 12], 3, 0, 4))
+    + str(
+        find_Kth_smallest_number_using_median_of_medians([5, 12, 11, -1, 12], 3, 0, 4)
+    )
 )

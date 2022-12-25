@@ -31,8 +31,12 @@ def find_sum_of_path_numbers_leaf_to_root(root):
 def find_sum_of_path_numbers_leaf_to_root_recursive(root, current_path, allPaths):
     if root is not None:
         current_path.append(root.val)
-        find_sum_of_path_numbers_leaf_to_root_recursive(root.left, current_path, allPaths)
-        find_sum_of_path_numbers_leaf_to_root_recursive(root.right, current_path, allPaths)
+        find_sum_of_path_numbers_leaf_to_root_recursive(
+            root.left, current_path, allPaths
+        )
+        find_sum_of_path_numbers_leaf_to_root_recursive(
+            root.right, current_path, allPaths
+        )
         if not root.left and not root.right:
             allPaths.append(list(current_path))
         current_path.pop()
@@ -87,8 +91,12 @@ def main():
     root.left.left = TreeNode(1)
     root.right.left = TreeNode(6)
     root.right.right = TreeNode(5)
-    print("Total Sum of Path Numbers: " + str(find_sum_of_path_numbers_leaf_to_root(root)))
-    print("Total Sum of Path Numbers: " + str(find_sum_of_path_numbers_root_to_leaf(root)))
+    print(
+        "Total Sum of Path Numbers: " + str(find_sum_of_path_numbers_leaf_to_root(root))
+    )
+    print(
+        "Total Sum of Path Numbers: " + str(find_sum_of_path_numbers_root_to_leaf(root))
+    )
 
 
 main()

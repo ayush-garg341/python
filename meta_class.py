@@ -26,31 +26,33 @@ print(type(x)) # <type 'instance'>
 
 # If obj is an instance of a new-style class, type(obj) is the same as obj.__class__
 
+
 class Foo:
     pass
 
+
 x = Foo()
-print(x.__class__) # <class '__main__.Foo'>
-print(type(x)) # <class '__main__.Foo'>
-print(type(x) is x.__class__) # True
+print(x.__class__)  # <class '__main__.Foo'>
+print(type(x))  # <class '__main__.Foo'>
+print(type(x) is x.__class__)  # True
 
 
 n = 5
-d = {'a':1, 'b':2}
+d = {"a": 1, "b": 2}
 
 for obj in (n, d, x):
     print(type(obj) is obj.__class__)
 
 
-# In python everything is an object. Classes are objects as well. As a result, a class must have a type. 
+# In python everything is an object. Classes are objects as well. As a result, a class must have a type.
 # In general, the type of any new-style class is type.
 
-print("type of Foo is ",type(Foo)) # <class 'type'>
+print("type of Foo is ", type(Foo))  # <class 'type'>
 
 for t in (int, float, dict, list, tuple):
     print("type of {} is {}".format(t, type(t)))
 
-print("type of type is ", type(type)) # <class 'type'>
+print("type of type is ", type(type))  # <class 'type'>
 
 
 """
@@ -74,34 +76,36 @@ Calling type() in this manner creates a new instance of the type metaclass. In o
 
 # Example 1
 
-Foo = type('Foo', (), {})
+Foo = type("Foo", (), {})
 x = Foo()
-print(x) 
+print(x)
 # <__main__.Foo object at 0x04CFAD50>
-
 
 
 class Foo:
     pass
+
+
 x = Foo()
 print(x)
 
 # <__main__.Foo object at 0x04CFAD50>
 
 
-
 # Example 2
 # Here, <bases> is a tuple with a single element Foo, specifying the parent class that Bar inherits from
 
-Bar = type('Bar', (Foo,), dict(attr=100))
+Bar = type("Bar", (Foo,), dict(attr=100))
 x = Bar()
 print("Creating class using type")
 print(x.attr)
 print(x.__class__)
 print(x.__class__.__bases__)
 
+
 class Bar(Foo):
     attr = 100
+
 
 x = Bar()
 print("Creating class using normal convention")
@@ -113,14 +117,7 @@ print(x.__class__.__bases__)
 # Example 3
 # This time, <bases> is again empty. Two objects are placed into the namespace dictionary via the <dct> argument.
 
-Foo = type(
-    'Foo',
-    (),
-    {
-        'attr': 100,
-        'attr_val': lambda x : x.attr
-    }
-)
+Foo = type("Foo", (), {"attr": 100, "attr_val": lambda x: x.attr})
 
 print("=========== type =========== ")
 x = Foo()
@@ -134,6 +131,7 @@ class Foo:
     def attr_val(self):
         return self.attr
 
+
 print("==============  Normal ============== ")
 x = Foo()
 print(x.attr)
@@ -143,17 +141,12 @@ print(x.attr_val())
 # Example 4
 # Only very simple functions can be defined with lambda in Python.
 
+
 def f(obj):
     print("attr = ", obj.attr)
 
-Foo = type(
-    'Foo',
-    (),
-    {
-        'attr': 100,
-        'attr_val': f
-    }
-)
+
+Foo = type("Foo", (), {"attr": 100, "attr_val": f})
 
 print("=========== type =========== ")
 x = Foo()
@@ -161,10 +154,10 @@ print(x.attr)
 x.attr_val()
 
 
-
 class Foo:
     attr = 100
     attr_val = f
+
 
 print("==============  Normal ============== ")
 x = Foo()
@@ -200,8 +193,8 @@ print("Custom meta class")
 class Meta(type):
 
     """
-        See how we are changing and controlling the attrs of class using meta class..
-        Metaclasses are sometimes referred to as class factories.
+    See how we are changing and controlling the attrs of class using meta class..
+    Metaclasses are sometimes referred to as class factories.
     """
 
     def __new__(self, class_name, bases, attrs):
@@ -214,7 +207,7 @@ class Meta(type):
         a = {}
 
         for name, val in attrs.items():
-            if(name.startswith("__")):
+            if name.startswith("__"):
                 a[name] = val
             else:
                 a[name.upper()] = val
@@ -232,6 +225,7 @@ class Dog(metaclass=Meta):
     def hello(self):
         print("Hiiiiii")
 
+
 d = Dog()
 d.HELLO()
 
@@ -248,17 +242,21 @@ def decorator(cls):
 
     return NewClass
 
+
 @decorator
 class X:
     pass
+
 
 @decorator
 class Y:
     pass
 
+
 @decorator
 class Z:
     pass
+
 
 print(X.attr)
 X.hello()

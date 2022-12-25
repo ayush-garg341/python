@@ -12,6 +12,7 @@ In aggregation, the parent only contains a reference to the child, which removes
 
 # Each person is associated with a country, but the country can exist without that person.
 
+
 class Country:
     def __init__(self, name, population):
         self.name = name
@@ -22,9 +23,7 @@ class Country:
         print("Country Population", self.population)
 
 
-
 class Person:
-
     def __init__(self, name, country):
         self.name = name
         self.country = country

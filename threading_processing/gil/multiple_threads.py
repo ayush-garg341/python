@@ -8,8 +8,7 @@ from threading import Lock
 import socket, time, random, sys
 
 
-class PrimeService():
-
+class PrimeService:
     def __init__(self, server_port):
         self.server_port = server_port
         self.requests = 0
@@ -63,7 +62,9 @@ class PrimeService():
 
         while True:
             client_socket, addr = connection.accept()
-            Thread(target=self.handle_client, args=(client_socket,), daemon=True).start()
+            Thread(
+                target=self.handle_client, args=(client_socket,), daemon=True
+            ).start()
 
 
 def run_simple_client(server_host, server_port):
@@ -96,15 +97,18 @@ if __name__ == "__main__":
     monitor_thread = Thread(target=server.monitor_requests_per_thread, daemon=True)
     monitor_thread.start()
 
-    simple_req_thread = Thread(target=run_simple_client, args=(server_host, server_port), daemon=True)
+    simple_req_thread = Thread(
+        target=run_simple_client, args=(server_host, server_port), daemon=True
+    )
     simple_req_thread.start()
 
     time.sleep(3)
 
-    Thread(target=run_long_request, args=(server_host, server_port), daemon=True).start()
+    Thread(
+        target=run_long_request, args=(server_host, server_port), daemon=True
+    ).start()
 
     time.sleep(1000)
-
 
 
 """

@@ -1,5 +1,6 @@
 from collections import deque
 import string
+
 d = deque(string.ascii_lowercase)
 for letter in d:
     print(letter)

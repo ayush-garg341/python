@@ -16,15 +16,14 @@ print(type(x))
 x = "Educative"  # type of x is now string
 print(type(x))
 
-class PyCharm:
 
+class PyCharm:
     def execute(self):
         print("compiling")
         print("running")
 
 
 class MyEditor:
-
     def execute(self):
         print("Spell Check")
         print("Convention chec")
@@ -33,9 +32,9 @@ class MyEditor:
 
 
 class Laptop:
-    
     def code(self, ide):
         ide.execute()
+
 
 """
 Here type of ide i.e. object type does not matter as long as object has execute method. This is Duck typing.
@@ -52,14 +51,14 @@ lap = Laptop()
 lap.code(ide)
 
 
-
 class Duck:
     def quack(self):
         print("Quack, quack")
 
     def fly(self):
         print("Flap, flip!")
-    
+
+
 class Person:
     def quack(self):
         print("I am quacking like a Duck!")
@@ -67,13 +66,14 @@ class Person:
     def fly(self):
         print("I am flapping my arms")
 
+
 def quack_and_fly(thing):
     # look before you leap LBYL ( Non-pythonic )
     """
     if hasattr(thing, 'quack'):
         if callable(thing.quack):
             thing.quack()
-        
+
     if hasattr(thing, 'fly'):
         if callable(thing.fly):
             thing.fly()
@@ -86,7 +86,6 @@ def quack_and_fly(thing):
     except AttributeError as e:
         print(e)
 
-
     print()
 
 
@@ -97,18 +96,17 @@ p = Person()
 quack_and_fly(p)
 
 
-
-person = {'name':"Ayush", 'age':26, 'job':"programmer"}
+person = {"name": "Ayush", "age": 26, "job": "programmer"}
 # person = {'name':"Ayush", 'age':26}
 
 # LBYL ( non-pythonic )
-if 'name' in person and 'age' in person and 'job' in person:
+if "name" in person and "age" in person and "job" in person:
     print("I am {name} and {age} years old. I am a {job}.".format(**person))
 else:
     print("Some missing keys")
 
 # EAFP ( pythonic )
 try:
-   print("I am {name} and {age} years old. I am a {job}.".format(**person))
+    print("I am {name} and {age} years old. I am a {job}.".format(**person))
 except KeyError as e:
     print("Missing {} key".format(e))

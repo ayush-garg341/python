@@ -8,6 +8,7 @@
 
 # For example, if your engines are uniquely defined by their id, you can use that as the basis of your hash:
 
+
 class Engine(object):
     def __init__(self, id):
         self.id = id
@@ -19,6 +20,7 @@ class Engine(object):
         if isinstance(other, self.__class__):
             return self.id == other.id
         return NotImplemented
+
 
 eng1 = Engine(1)
 eng2 = Engine(2)

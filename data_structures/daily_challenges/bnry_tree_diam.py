@@ -26,7 +26,9 @@ def binaryTreeDiameterRec(root):
     max_diameter = max(left_subtree.diameter, right_subtree.diameter)
     current_diameter = max(max_diameter, longest_path_so_far)
 
-    return TreeInfo(current_diameter, 1 + max(left_subtree.height, right_subtree.height))
+    return TreeInfo(
+        current_diameter, 1 + max(left_subtree.height, right_subtree.height)
+    )
 
 
 class TreeInfo:

@@ -46,7 +46,11 @@ def groupAnagramsUsingFrozenSet(words):
     return list(anagrams.values())
 
 
-print(groupAnagramsUsingFrozenSet(["yo", "act", "flop", "tac", "foo", "cat", "oy", "olfp"]))
+print(
+    groupAnagramsUsingFrozenSet(
+        ["yo", "act", "flop", "tac", "foo", "cat", "oy", "olfp"]
+    )
+)
 
 
 """

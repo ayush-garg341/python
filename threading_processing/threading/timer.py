@@ -19,4 +19,3 @@ timer.start()
 time.sleep(2)
 
 print("{0} exiting".format(current_thread().getName()))
-

@@ -59,12 +59,25 @@ def count_less_equal(matrix, mid, smaller, larger):
     return count, smaller, larger
 
 
-print("Kth smallest number is: " + str(find_Kth_smallest_using_binary_search([[1, 4], [2, 5]], 2)))
-
-print("Kth smallest number is: " + str(find_Kth_smallest_using_binary_search([[-5]], 1)))
-
-print("Kth smallest number is: " + str(find_Kth_smallest_using_binary_search([[2, 6, 8], [3, 7, 10], [5, 8, 11]], 5)))
+print(
+    "Kth smallest number is: "
+    + str(find_Kth_smallest_using_binary_search([[1, 4], [2, 5]], 2))
+)
 
 print(
-    "Kth smallest number is: " + str(find_Kth_smallest_using_binary_search([[1, 5, 9], [10, 11, 13], [12, 13, 15]], 8))
+    "Kth smallest number is: " + str(find_Kth_smallest_using_binary_search([[-5]], 1))
+)
+
+print(
+    "Kth smallest number is: "
+    + str(find_Kth_smallest_using_binary_search([[2, 6, 8], [3, 7, 10], [5, 8, 11]], 5))
+)
+
+print(
+    "Kth smallest number is: "
+    + str(
+        find_Kth_smallest_using_binary_search(
+            [[1, 5, 9], [10, 11, 13], [12, 13, 15]], 8
+        )
+    )
 )

@@ -9,10 +9,12 @@
 
 from abc import ABC, abstractmethod
 
-print("------------------------------------------  Before ISP  ---------------------------------------------")
+print(
+    "------------------------------------------  Before ISP  ---------------------------------------------"
+)
+
 
 class Order:
-    
     def __init__(self):
         self.items = []
         self.prices = []
@@ -28,7 +30,7 @@ class Order:
         total = 0
         for i in range(len(self.items)):
             total += self.prices[i] * self.quantities[i]
-        
+
         return total
 
     def set_payment_status(self):
@@ -41,12 +43,13 @@ class PaymentProcessor(ABC):
         pass
 
     @abstractmethod
-    def auth_sms(self): # but not every kind of payment will have auth sms, and hence needed ISP
+    def auth_sms(
+        self,
+    ):  # but not every kind of payment will have auth sms, and hence needed ISP
         pass
 
 
 class DebitPaymentProcessor(PaymentProcessor):
-
     def __init__(self, security_code):
         self.security_code = security_code
         self.verified = False
@@ -54,7 +57,7 @@ class DebitPaymentProcessor(PaymentProcessor):
     def auth_sms(self, code):
         print("Verifying SMS code {}".format(code))
         self.verified = True
-    
+
     def pay(self, order):
         if not self.verified:
             raise Exception("Not authorized")
@@ -63,9 +66,7 @@ class DebitPaymentProcessor(PaymentProcessor):
         order.set_payment_status()
 
 
-
 class CreditPaymentProcessor(PaymentProcessor):
-
     def __init__(self, security_code):
         self.security_code = security_code
 
@@ -80,10 +81,9 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 
 class PaypalPaymentProcessor(PaymentProcessor):
-
     def __init__(self, email_add):
         self.email_add = email_add
-        self.verified  = False
+        self.verified = False
 
     def auth_sms(self, code):
         print("Verifying SMS code {}".format(code))
@@ -107,11 +107,12 @@ payment_processor.pay(order)
 print(order.status)
 
 
+print(
+    "------------------------------------------  After ISP  ---------------------------------------------"
+)
 
-print("------------------------------------------  After ISP  ---------------------------------------------")
 
 class Order:
-    
     def __init__(self):
         self.items = []
         self.prices = []
@@ -127,7 +128,7 @@ class Order:
         total = 0
         for i in range(len(self.items)):
             total += self.prices[i] * self.quantities[i]
-        
+
         return total
 
     def set_payment_status(self):
@@ -139,10 +140,10 @@ class PaymentProcessor(ABC):
     def pay(self):
         pass
 
-    
+
 class PaymentProcessor_SMS(PaymentProcessor):
 
-    """ Inheriting pay abstract method from PaymentProcessor class. No need to define it in this class"""
+    """Inheriting pay abstract method from PaymentProcessor class. No need to define it in this class"""
 
     @abstractmethod
     def auth_sms(self):
@@ -150,7 +151,6 @@ class PaymentProcessor_SMS(PaymentProcessor):
 
 
 class DebitPaymentProcessor(PaymentProcessor_SMS):
-
     def __init__(self, security_code):
         self.security_code = security_code
         self.verified = False
@@ -159,7 +159,6 @@ class DebitPaymentProcessor(PaymentProcessor_SMS):
         print("Verifying SMS code {}".format(code))
         self.verified = True
 
-    
     def pay(self, order):
         if not self.verified:
             raise Exception("Not authorized")
@@ -168,9 +167,7 @@ class DebitPaymentProcessor(PaymentProcessor_SMS):
         order.set_payment_status()
 
 
-
 class CreditPaymentProcessor(PaymentProcessor):
-
     def __init__(self, security_code):
         self.security_code = security_code
 
@@ -181,7 +178,6 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 
 class PaypalPaymentProcessor(PaymentProcessor_SMS):
-
     def __init__(self, email_add):
         self.email_add = email_add
         self.verified = False
@@ -208,10 +204,12 @@ payment_processor.pay(order)
 print(order.status)
 
 
-print("------------------------------------------  ISP After composition  ---------------------------------------------")
+print(
+    "------------------------------------------  ISP After composition  ---------------------------------------------"
+)
+
 
 class Order:
-    
     def __init__(self):
         self.items = []
         self.prices = []
@@ -227,7 +225,7 @@ class Order:
         total = 0
         for i in range(len(self.items)):
             total += self.prices[i] * self.quantities[i]
-        
+
         return total
 
     def set_payment_status(self):
@@ -253,12 +251,10 @@ class PaymentProcessor(ABC):
 
 
 class DebitPaymentProcessor(PaymentProcessor):
-
     def __init__(self, security_code, authorizer: SMSAuthorizer):
         self.security_code = security_code
         self.authorizer = authorizer
 
-    
     def pay(self, order):
         if not self.authorizer.is_authorized():
             raise Exception("Not authorized")
@@ -267,9 +263,7 @@ class DebitPaymentProcessor(PaymentProcessor):
         order.set_payment_status()
 
 
-
 class CreditPaymentProcessor(PaymentProcessor):
-
     def __init__(self, security_code):
         self.security_code = security_code
 
@@ -280,7 +274,6 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 
 class PaypalPaymentProcessor(PaymentProcessor):
-
     def __init__(self, email_add, authorizer: SMSAuthorizer):
         self.email_add = email_add
         self.authorizer = authorizer

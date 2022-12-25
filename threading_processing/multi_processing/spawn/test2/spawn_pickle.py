@@ -8,15 +8,14 @@ from multiprocessing import Process
 from threading import Lock
 import multiprocessing
 
+
 def process_task(lock):
     print("child process")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     lock = Lock()
-    multiprocessing.set_start_method('spawn')
-    process = Process(target=process_task,
-                      args=(lock,))
+    multiprocessing.set_start_method("spawn")
+    process = Process(target=process_task, args=(lock,))
     process.start()
     process.join()
-

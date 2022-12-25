@@ -30,7 +30,9 @@ def longest_substr_same_letters_after_replacement(string: str, k: int) -> int:
         if char not in distinct:
             distinct[char] = 0
         distinct[char] += 1
-        max_repeating_letter = max(max_repeating_letter, distinct[char])  # do we need to update this while shrinking
+        max_repeating_letter = max(
+            max_repeating_letter, distinct[char]
+        )  # do we need to update this while shrinking
         remaining_letters = window_end - window_start + 1 - max_repeating_letter
 
         while remaining_letters > k:

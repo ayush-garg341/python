@@ -69,7 +69,7 @@ def finder_thread():
             i += 1
             # Add a timer to slow down the thread
             # so that we can see the output
-            time.sleep(.01)
+            time.sleep(0.01)
 
         prime_holder = i
 
@@ -93,7 +93,6 @@ if __name__ == "__main__":
     found_prime = False
     prime_holder = None
     exit_prog = False
-
 
     exit_prog = False
     printerThread = Thread(target=printer_thread)
@@ -122,8 +121,6 @@ if __name__ == "__main__":
     printerThread2.join()
     printerThread3.join()
     finderThread.join()
-
-
 
 
 """

@@ -2,20 +2,17 @@
     Binary search tree insertion and deletion.
 """
 
-class BSTNode:
 
+class BSTNode:
     def __init__(self, data):
         self.data = data
         self.left = None
         self.right = None
 
 
-
 class BST:
-
     def __init__(self):
         self.path = []
-
 
     def search(self, root, data, paths):
         if root.data == data:
@@ -29,20 +26,17 @@ class BST:
 
         return paths
 
-
     def find_minimum_in_right_subtree(self, root):
-        while(root.left!=None):
+        while root.left != None:
             root = root.left
 
         return root.data
 
-
     def find_max_in_left_subtree(self, root):
-        while(root.right!=None):
+        while root.right != None:
             root = root.right
 
         return root.data
-
 
     def insert(self, root, data):
         if root == None:
@@ -55,9 +49,8 @@ class BST:
 
         return root
 
-
     def delete(self, root, data):
-        if (root.data == data):
+        if root.data == data:
             if root.left != None and root.right != None:
                 # handle the two child case
                 mim_elt = self.find_minimum_in_right_subtree(root.right)
@@ -68,7 +61,7 @@ class BST:
                 # handle the no child case
                 del root
                 return None
-            elif root.left==None or root.right == None:
+            elif root.left == None or root.right == None:
                 # handle the one child case
                 if root.left == None:
                     root.data = root.right.data
@@ -87,7 +80,7 @@ class BST:
         return root
 
 
-root=None
+root = None
 bst = BST()
 root = bst.insert(root, 50)
 root = bst.insert(root, 40)

@@ -137,7 +137,11 @@ def read_factory() -> ExporterFactory:
 
     """Constructs an exporter factory based on the user's preference."""
 
-    factory_exporter = {"high": HighQualityExporter(), "master": MasterQualityExporter(), "low": FastExporter()}
+    factory_exporter = {
+        "high": HighQualityExporter(),
+        "master": MasterQualityExporter(),
+        "low": FastExporter(),
+    }
 
     while True:
         export_quality = input("Enter desired output quality (low, high, master): ")

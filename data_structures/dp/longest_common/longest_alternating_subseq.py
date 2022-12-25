@@ -37,7 +37,10 @@ def brute_force_las(seq):
     n = len(seq)
     if n <= 2:
         return 0
-    return max(brute_force_las_recursive(seq, -1, 0, True), brute_force_las_recursive(seq, -1, 0, False))
+    return max(
+        brute_force_las_recursive(seq, -1, 0, True),
+        brute_force_las_recursive(seq, -1, 0, False),
+    )
 
 
 def brute_force_las_recursive(seq: list, prev: int, curr: int, flag: bool):

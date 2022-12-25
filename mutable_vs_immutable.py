@@ -14,8 +14,8 @@ mutable :- list, dictionary, set and user-defined classes
 immutable :- int, float, decimal, bool, string, tuple, and range
 """
 
-list_values = [1, 2, 3] # list
-set_values = (10, 20, 30) # tuple
+list_values = [1, 2, 3]  # list
+set_values = (10, 20, 30)  # tuple
 print(list_values[0])
 print(set_values[0])
 
@@ -32,16 +32,16 @@ list_values = [1, 2, 3]
 set_values = (1, 2, 3)
 print(list_values)
 print(set_values)
-print(id(list_values)) # 4423663040
-print(id(set_values)) # 4423412992
+print(id(list_values))  # 4423663040
+print(id(set_values))  # 4423412992
 print()
 
 list_values += [4, 5, 6]
 set_values += (4, 5, 6)
 print(list_values)
 print(set_values)
-print(id(list_values)) # 4423663040
-print(id(set_values)) # 4423604544
+print(id(list_values))  # 4423663040
+print(id(set_values))  # 4423604544
 
 """
 We can see that the list identity is not changed, while the tuple identity is changed. 

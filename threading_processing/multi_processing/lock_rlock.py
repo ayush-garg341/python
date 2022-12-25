@@ -11,6 +11,7 @@ import multiprocessing, sys
 import time
 import random
 
+
 def child_process(q, lock):
     count = 0
     keep_going = True
@@ -28,10 +29,15 @@ def child_process(q, lock):
         # a single process
         time.sleep(0.001)
 
-    print("child process {0} processed {1} items from the queue".format(current_process().name, count), flush=True)
+    print(
+        "child process {0} processed {1} items from the queue".format(
+            current_process().name, count
+        ),
+        flush=True,
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     multiprocessing.set_start_method("forkserver")
     print("This machine has {0} CPUs".format(str(multiprocessing.cpu_count())))
     lock = Lock()
@@ -49,4 +55,3 @@ if __name__ == '__main__':
 
     p1.join()
     p2.join()
-

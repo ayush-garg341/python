@@ -5,6 +5,7 @@ Write a function that returns the surface area of water trapped between pillars.
 Hint: At any index we can store the max water = min(left_max, right_max) of that index.
 """
 
+
 def waterArea(heights):
     # Write your code here.
     right_max = [-1] * len(heights)
@@ -28,7 +29,9 @@ def waterArea(heights):
 
     return max_water
 
+
 print(waterArea([0, 8, 0, 0, 5, 0, 0, 10, 0, 0, 1, 1, 0, 3]))
+
 
 def waterAreaSpaceEff(heights):
     # Write your code here.
@@ -39,9 +42,8 @@ def waterAreaSpaceEff(heights):
             left_max = heights[i]
         dp[i] = left_max
 
-
     right_max = -1
-    for j in range(len(heights)-1, -1, -1):
+    for j in range(len(heights) - 1, -1, -1):
         if heights[j] > right_max:
             right_max = heights[j]
 
@@ -52,7 +54,10 @@ def waterAreaSpaceEff(heights):
         max_water += dp[i] - heights[i]
 
     return max_water
+
+
 print(waterAreaSpaceEff([0, 8, 0, 0, 5, 0, 0, 10, 0, 0, 1, 1, 0, 3]))
+
 
 def waterAreaConstantSpace(heights):
     left = 0
@@ -71,4 +76,6 @@ def waterAreaConstantSpace(heights):
             right -= 1
 
     return water_area
+
+
 print(waterAreaConstantSpace([0, 8, 0, 0, 5, 0, 0, 10, 0, 0, 1, 1, 0, 3]))

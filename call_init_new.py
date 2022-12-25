@@ -23,15 +23,16 @@
 
 print("------------------------- Call method -------------------------")
 
+
 class A:
     def __init__(self, x):
         print("inside __init__()")
         self.y = x
-  
+
     def __str__(self):
         print("inside __str__()")
         print("value of y:", str(self.y))
-  
+
     def __call__(self):
         res = 0
         print("inside __call__()")
@@ -42,21 +43,21 @@ class A:
 
 # declaration of instance of class A
 a = A(3)
-  
+
 # calling __str__() for a
 a.__str__()
-  
-# calling __call__() for a 
+
+# calling __call__() for a
 r = a()
 print(r)
-  
+
 # declaration of another instance
 # of class A
 b = A(10)
-  
+
 # calling __str__() for b
 b.__str__()
-  
+
 # calling __call__() for b
 r = b()
 print(r)
@@ -64,40 +65,44 @@ print(r)
 print()
 print("---------------------------- New and init method ------------------------")
 
+
 class A(object):
     def __new__(cls):
         print("Creating instance")
-        print("cls = ",cls)
+        print("cls = ", cls)
         print("A = ", A)
         # return super(A, cls).__new__(cls) # works
         return object.__new__(cls)
-  
+
     def __init__(self):
         print("Init is called")
-  
+
+
 A()
 
 
 class A(object):
     def __new__(cls):
         print("Creating instance")
-  
+
     # It is not called. Since new does not return instance of the class. __new__ controls the __init__ method
     def __init__(self):
         print("Init is called")
-  
+
+
 print(A())
 
 print()
 print("----------------------------- New vs init method --------------------------")
 
+
 class A:
     def __new__(cls, *args, **kwargs):
-        print('new', cls, args, kwargs)
+        print("new", cls, args, kwargs)
         return super().__new__(cls)
 
     def __init__(self, *args, **kwargs):
-        print('init', self, args, kwargs)
+        print("init", self, args, kwargs)
 
 
 def how_object_construction_works():
@@ -110,6 +115,7 @@ def how_object_construction_works():
         print("same type ", type(x))
         type(x).__init__(x, 1, 2, 3, x=4)
     print(x)
+
 
 how_object_construction_works()
 
@@ -129,5 +135,6 @@ class UppercaseTuple(tuple):
 def inheriting_immutable_uppercase_tuple_example():
     print("UPPERCASE TUPLE EXAMPLE")
     print(UppercaseTuple(["hi", "there"]))
+
 
 inheriting_immutable_uppercase_tuple_example()

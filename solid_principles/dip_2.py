@@ -6,8 +6,8 @@ from abc import ABC, abstractmethod
 
 print("----------------------------- Before DIP ---------------------------")
 
-class LightBulb:
 
+class LightBulb:
     def turn_on(self):
         print("Bulb: turn on")
 
@@ -15,15 +15,14 @@ class LightBulb:
         print("Bulb: turn off")
 
 
-
 """
     Here the class ElectricPowerSwitch depends upon LightBulb, High level module depending upon lower level module
     rather than abstraction.
 """
 
-class ElectricPowerSwitch:
 
-    def __init__(self, l:LightBulb) -> None:
+class ElectricPowerSwitch:
+    def __init__(self, l: LightBulb) -> None:
         self.l = l
         self.on = False
 
@@ -45,8 +44,8 @@ switch.press_switch()
 
 print("----------------------------- After DIP ---------------------------")
 
-class Switchable(ABC):
 
+class Switchable(ABC):
     @abstractmethod
     def turn_on(self):
         pass
@@ -57,7 +56,6 @@ class Switchable(ABC):
 
 
 class LightBulb(Switchable):
-
     def turn_on(self):
         print("Bulb: turn on")
 
@@ -73,11 +71,10 @@ class Fan(Switchable):
         print("Fan: turn off")
 
 
-
 class ElectricPowerSwitch:
 
     # Now this module is depending upon abstraction rather than low level modules
-    def __init__(self, l:Switchable) -> None:
+    def __init__(self, l: Switchable) -> None:
         self.l = l
         self.on = False
 
@@ -89,7 +86,7 @@ class ElectricPowerSwitch:
             self.l.turn_on()
             self.on = True
 
-    
+
 l = Fan()
 
 switch = ElectricPowerSwitch(l)

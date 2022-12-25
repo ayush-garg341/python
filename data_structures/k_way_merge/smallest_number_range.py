@@ -38,8 +38,12 @@ def find_smallest_range(lists):
             num1 = min_elt
             num2 = current_max_number
         if elt_index < len(lists[list_index]) - 1:
-            current_max_number = max(current_max_number, lists[list_index][elt_index + 1])
-            heapq.heappush(min_heap, (lists[list_index][elt_index + 1], list_index, elt_index + 1))
+            current_max_number = max(
+                current_max_number, lists[list_index][elt_index + 1]
+            )
+            heapq.heappush(
+                min_heap, (lists[list_index][elt_index + 1], list_index, elt_index + 1)
+            )
         else:
             break
 
@@ -47,9 +51,20 @@ def find_smallest_range(lists):
 
 
 def main():
-    print("Smallest range is: " + str(find_smallest_range([[1, 5, 8], [4, 12], [7, 8, 10]])))
-    print("Smallest range is: " + str(find_smallest_range([[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]])))
-    print("Smallest range is: " + str(find_smallest_range([[1, 2, 3], [1, 2, 3], [1, 2, 3]])))
+    print(
+        "Smallest range is: "
+        + str(find_smallest_range([[1, 5, 8], [4, 12], [7, 8, 10]]))
+    )
+    print(
+        "Smallest range is: "
+        + str(
+            find_smallest_range([[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]])
+        )
+    )
+    print(
+        "Smallest range is: "
+        + str(find_smallest_range([[1, 2, 3], [1, 2, 3], [1, 2, 3]]))
+    )
 
 
 main()

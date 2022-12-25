@@ -1,5 +1,6 @@
 import sqlite3
 
+
 class DBConn:
     def __init__(self, db_name) -> None:
         """Constructor"""
@@ -21,7 +22,7 @@ class DBConn:
             raise
 
 
-if __name__=="__main__":
-    db = 'test.db'
+if __name__ == "__main__":
+    db = "test.db"
     with DBConn(db) as conn:
         cursor = conn.cursor()

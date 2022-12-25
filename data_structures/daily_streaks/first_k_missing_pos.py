@@ -2,11 +2,12 @@
 Given an unsorted array containing numbers and a number ‘k’, find the first ‘k’ missing positive numbers in the array.
 """
 
+
 def find_first_k_missing_positive(nums, k):
     result = []
     i, n = 0, len(nums)
     while i < n:
-        if nums[i] > 0 and nums[i] <= n and nums[i] != nums[nums[i]-1]:
+        if nums[i] > 0 and nums[i] <= n and nums[i] != nums[nums[i] - 1]:
             idx = nums[i] - 1
             nums[i], nums[idx] = nums[idx], nums[i]
         else:
@@ -14,8 +15,8 @@ def find_first_k_missing_positive(nums, k):
 
     number_present = set()
     for i in range(len(nums)):
-        if nums[i] != i+1:
-            result.append(i+1)
+        if nums[i] != i + 1:
+            result.append(i + 1)
             if len(result) == k:
                 return result
             number_present.add(nums[i])
@@ -30,10 +31,8 @@ def find_first_k_missing_positive(nums, k):
 
     return result
 
+
 print(find_first_k_missing_positive([3, -1, 4, 5, 5], 3))
 print(find_first_k_missing_positive([2, 3, 4], 3))
 print(find_first_k_missing_positive([-2, -3, 4], 2))
 print(find_first_k_missing_positive([-2, -3, 7], 4))
-
-
-

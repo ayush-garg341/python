@@ -11,6 +11,7 @@ optimal complexity
     Space -> O(1)
 """
 
+
 def subarray_sort(array):
     """
     Time complexity -> O(N logN)
@@ -27,6 +28,7 @@ def subarray_sort(array):
 
     return result
 
+
 print(subarray_sort([1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19]))
 
 print("Optimized vversionn")
@@ -38,7 +40,7 @@ def subarraySortOptmizie(array):
     start_idx = -1
     max_so_far = array[0]
     for i in range(1, n):
-        if array[i] < array[i-1]:
+        if array[i] < array[i - 1]:
             start_idx = i
             max_so_far = array[i]
             break
@@ -48,11 +50,10 @@ def subarraySortOptmizie(array):
 
     # find end index of unsorted array
     end_idx = -1
-    for i in range(n-2, -1, -1):
-        if array[i] > array[i+1] or array[i] < max_so_far:
+    for i in range(n - 2, -1, -1):
+        if array[i] > array[i + 1] or array[i] < max_so_far:
             end_idx = i
             break
-
 
     # find the min and max element in the range start_idx to end_idx
     min_elt = array[start_idx]
@@ -63,7 +64,6 @@ def subarraySortOptmizie(array):
         elif array[i] > max_elt:
             max_elt = array[i]
 
-
     # check the correct position of min element
     start_pos = -1
     for i in range(n):
@@ -72,12 +72,14 @@ def subarraySortOptmizie(array):
             break
     # check the correct position of max element
     end_pos = -1
-    for i in range(n-1, -1, -1):
+    for i in range(n - 1, -1, -1):
         if array[i] < max_elt:
             end_pos = i
             break
 
     return [start_pos, end_pos]
+
+
 print(subarraySortOptmizie([1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19]))
 print(subarraySortOptmizie([1, 2, 4, 7, 10, 11, 7, 12, 7, 7, 16, 18, 19]))
 print(subarraySortOptmizie([-41, 8, 7, 12, 11, 9, -1, 3, 9, 16, -15, 11, 57]))

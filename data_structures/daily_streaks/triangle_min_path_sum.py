@@ -44,7 +44,9 @@ class Solution:
             return dp[row_index][elt_index]
         else:
             sum1, sum2 = 0, 0
-            sum1 += triangle[row_index][elt_index] + self.minimumTotalRec(triangle, dp, row_index + 1, elt_index)
+            sum1 += triangle[row_index][elt_index] + self.minimumTotalRec(
+                triangle, dp, row_index + 1, elt_index
+            )
 
             if elt_index + 1 < len(triangle[row_index]):
                 sum2 += triangle[row_index][elt_index + 1] + self.minimumTotalRec(

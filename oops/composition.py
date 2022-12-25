@@ -6,8 +6,9 @@ Composition relationships are Part-of relationships where the part must constitu
 In composition, the lifetime of the owned object depends on the lifetime of the owner.
 """
 
-# A car is composed of an engine, tires, and doors. 
+# A car is composed of an engine, tires, and doors.
 # In this case, a Car owned these objects, so a Car is an Owner class, and the tires, doors, and engine classes are Owned classes.
+
 
 class Engine:
     def __init__(self, engine):

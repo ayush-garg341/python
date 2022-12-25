@@ -40,10 +40,11 @@ def remove_duplicates_simpler(arr):
     start = 0
     for i in range(1, len(arr)):
         if arr[start] != arr[i]:
-            arr[start+1] = arr[i]
+            arr[start + 1] = arr[i]
             start += 1
 
-    return arr[:start+1]
+    return arr[: start + 1]
+
 
 print(remove_duplicates_simpler([2, 3, 3, 3, 6, 9, 9]))
 print(remove_duplicates_simpler([2, 2, 2, 11]))

@@ -27,6 +27,6 @@ def insert_interval(intervals, interval):
     return merge_intervals
 
 
-print(insert_interval([[1,3], [5,7], [8,12]], [4,6]))
-print(insert_interval([[1,3], [5,7], [8,12]], [4,10]))
-print(insert_interval([[2,3],[5,7]], [1,4]))
+print(insert_interval([[1, 3], [5, 7], [8, 12]], [4, 6]))
+print(insert_interval([[1, 3], [5, 7], [8, 12]], [4, 10]))
+print(insert_interval([[2, 3], [5, 7]], [1, 4]))

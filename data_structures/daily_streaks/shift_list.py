@@ -3,10 +3,12 @@ Given a linked list rotate/shift it by K places.
 If k is pos rotate forward else backward.
 """
 
+
 class LinkedList:
     def __init__(self, value):
         self.value = value
         self.next = None
+
 
 def rotate(head, k):
     if not head:
@@ -38,6 +40,7 @@ def length(head):
         head = head.next
 
     return l, head
+
 
 def print_list(head):
     while head:

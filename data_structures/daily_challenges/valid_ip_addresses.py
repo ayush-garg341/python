@@ -41,7 +41,9 @@ def gen_valid_ip_add_rec(string, current_idx, dot_count, current_ip, result):
         for i in range(current_idx, min(current_idx + 3, len(string))):
             temp_num += string[i]
             if is_valid(temp_num):
-                gen_valid_ip_add_rec(string, i + 1, dot_count + 1, current_ip + temp_num + ".", result)
+                gen_valid_ip_add_rec(
+                    string, i + 1, dot_count + 1, current_ip + temp_num + ".", result
+                )
 
 
 def is_valid(num):

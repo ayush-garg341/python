@@ -34,7 +34,9 @@ def point_of_max_overlap(meetings):
     return (point_of_time, max_overlap)
 
 
-point, max_overlap = point_of_max_overlap([Meeting(1, 4), Meeting(2, 5), Meeting(9, 12), Meeting(5, 9), Meeting(5, 12)])
+point, max_overlap = point_of_max_overlap(
+    [Meeting(1, 4), Meeting(2, 5), Meeting(9, 12), Meeting(5, 9), Meeting(5, 12)]
+)
 print("There are maximum of {} people at time {}".format(max_overlap, point))
 point, max_overlap = point_of_max_overlap(
     [

@@ -32,8 +32,14 @@ for word in words:
 print(reg_dict)
 
 
-my_list = [(1234, 100.23), (345, 10.45), (1234, 75.00),
-           (345, 222.66), (678, 300.25), (1234, 35.67)]
+my_list = [
+    (1234, 100.23),
+    (345, 10.45),
+    (1234, 75.00),
+    (345, 222.66),
+    (678, 300.25),
+    (1234, 35.67),
+]
 
 reg_dict = {}
 
@@ -54,14 +60,11 @@ print(reg_dict)
 
 
 animal = defaultdict(lambda: "Monkey")
-animal['Sam'] = 'Tiger'
-print (animal['Nick'])
-#Monkey
+animal["Sam"] = "Tiger"
+print(animal["Nick"])
+# Monkey
 
-print (animal)
+print(animal)
 
 x = defaultdict(None)
-x['Mike']
-
-
-
+x["Mike"]

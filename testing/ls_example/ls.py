@@ -4,14 +4,14 @@ from subprocess import check_output
     This function will output 'ls' where it has been used i.e. where this python file has been run, not where it is defined.
 """
 
-class LsContent:
 
+class LsContent:
     def __init__(self) -> None:
         pass
 
     def add(self):
         print("here === addd")
-        return 5 + 5       
+        return 5 + 5
 
     def calc(self):
         print("here === calc")

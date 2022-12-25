@@ -27,11 +27,13 @@ def is_palindromic_linked_list(head):
 
     return is_palin
 
+
 def print_list(head):
     while head:
         print(head.value, end=" ")
         head = head.next
     print()
+
 
 def reverse(head, end_node=None):
     temp = head
@@ -52,7 +54,7 @@ def is_palindromic_linked_list_extra_space(head):
 
     i = 0
     j = len(nums) - 1
-    while i<=j:
+    while i <= j:
         if nums[i] != nums[j]:
             return False
         i += 1

@@ -30,19 +30,28 @@ def merge(intervals_b, intervals_a):
         elif intervals_a[i][0] > intervals_b[j][1]:
             j += 1
         # b overlaps a and a ends after b
-        elif intervals_a[i][0] <= intervals_b[j][1] and intervals_a[i][1] > intervals_b[j][1]:
+        elif (
+            intervals_a[i][0] <= intervals_b[j][1]
+            and intervals_a[i][1] > intervals_b[j][1]
+        ):
             min_a = max(intervals_a[i][0], intervals_b[j][0])
             min_b = intervals_b[j][1]
             merged.append([min_a, min_b])
             j += 1
         # a overlaps b and b ends after a
-        elif intervals_a[i][1] >= intervals_b[j][0] and intervals_a[i][0] < intervals_b[j][0]:
+        elif (
+            intervals_a[i][1] >= intervals_b[j][0]
+            and intervals_a[i][0] < intervals_b[j][0]
+        ):
             min_a = intervals_b[j][0]
             min_b = min(intervals_a[i][1], intervals_b[j][1])
             merged.append([min_a, min_b])
             i += 1
         # b completely overlaps a
-        elif intervals_a[i][0] >= intervals_b[j][0] and intervals_a[i][1] <= intervals_b[j][1]:
+        elif (
+            intervals_a[i][0] >= intervals_b[j][0]
+            and intervals_a[i][1] <= intervals_b[j][1]
+        ):
             min_a = max(intervals_a[i][0], intervals_b[j][0])
             min_b = min(intervals_a[i][1], intervals_b[j][1])
             merged.append([min_a, min_b])
@@ -52,7 +61,10 @@ def merge(intervals_b, intervals_a):
             else:
                 i += 1
         # a completely overlap b
-        elif intervals_a[i][0] <= intervals_b[j][0] and intervals_a[1][1] >= intervals_b[j][1]:
+        elif (
+            intervals_a[i][0] <= intervals_b[j][0]
+            and intervals_a[1][1] >= intervals_b[j][1]
+        ):
             min_a = max(intervals_a[i][0], intervals_b[j][0])
             min_b = min(intervals_a[i][1], intervals_b[j][1])
             merged.append([min_a, min_b])
@@ -65,5 +77,7 @@ def merge(intervals_b, intervals_a):
     return merged
 
 
-print("Intervals Intersection: " + str(merge([[1, 3], [5, 6], [7, 9]], [[2, 3], [5, 7]])))
+print(
+    "Intervals Intersection: " + str(merge([[1, 3], [5, 6], [7, 9]], [[2, 3], [5, 7]]))
+)
 print("Intervals Intersection: " + str(merge([[1, 3], [5, 7], [9, 12]], [[5, 10]])))

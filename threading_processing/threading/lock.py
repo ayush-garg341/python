@@ -44,7 +44,7 @@ def thread2_operations():
     print("{0} released the lock".format(current_thread().getName()))
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     # create and run the two threads
     thread1 = Thread(target=thread1_operations, name="thread1")
     thread1.start()

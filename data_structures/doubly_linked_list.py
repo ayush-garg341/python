@@ -1,7 +1,7 @@
 from custom_ds_exceptions import LinkedListEmptyException
 
-class Node:
 
+class Node:
     def __init__(self, data) -> None:
         self.data = data
         self.next = None
@@ -9,12 +9,10 @@ class Node:
 
 
 class DoublyLinkedList:
-
     def __init__(self) -> None:
         self.head = None
         self.tail = None
         self.__len = 0
-
 
     def insert_at_front(self, data):
         self.__len += 1
@@ -28,7 +26,6 @@ class DoublyLinkedList:
         if self.tail == None:
             self.tail = new_node
 
-
     def insert_at_last(self, data):
         self.__len += 1
         new_node = Node(data)
@@ -41,7 +38,6 @@ class DoublyLinkedList:
 
         if self.head == None:
             self.head = new_node
-
 
     def remove_from_front(self):
         try:
@@ -57,7 +53,6 @@ class DoublyLinkedList:
             del temp
         except LinkedListEmptyException as emptyerr:
             print(emptyerr)
-
 
     def remove_from_last(self):
         try:
@@ -76,7 +71,6 @@ class DoublyLinkedList:
         except LinkedListEmptyException as emptyerr:
             print(emptyerr)
 
-
     def front(self):
         try:
             if self.head == None:
@@ -84,7 +78,6 @@ class DoublyLinkedList:
             return self.head.data
         except LinkedListEmptyException as emptyerr:
             print(emptyerr)
-
 
     def last(self):
         try:
@@ -94,28 +87,24 @@ class DoublyLinkedList:
         except LinkedListEmptyException as emptyerr:
             print(emptyerr)
 
-
     def forward_traverse(self):
         elts = []
         temp = self.head
         while temp != None:
             elts.append(temp.data)
-            temp = temp.next        
+            temp = temp.next
         return elts
-
 
     def backward_traverse(self):
         elts = []
         temp = self.tail
         while temp != None:
             elts.append(temp.data)
-            temp = temp.prev  
+            temp = temp.prev
         return elts
 
-    
     def is_empty(self):
         return self.head == None or self.tail == None
 
-    
     def size(self):
         return self.__len

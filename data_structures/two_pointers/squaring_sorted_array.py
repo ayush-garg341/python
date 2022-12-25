@@ -51,7 +51,7 @@ def square_sorted_array_another_approach(arr):
     if index_pos_num == 0:
         return [arr[i] * arr[i] for i in range(len(arr))]
     if index_pos_num == -1:
-        return [arr[i]*arr[i] for i in range(len(arr)-1, -1, -1)]
+        return [arr[i] * arr[i] for i in range(len(arr) - 1, -1, -1)]
 
     negative_num_index = index_pos_num - 1
     squares = []
@@ -67,11 +67,11 @@ def square_sorted_array_another_approach(arr):
             negative_num_index -= 1
 
     while negative_num_index >= 0:
-        squares.append(arr[negative_num_index]*arr[negative_num_index])
+        squares.append(arr[negative_num_index] * arr[negative_num_index])
         negative_num_index -= 1
 
     while index_pos_num <= len(arr) - 1:
-        squares.append(arr[index_pos_num]*arr[index_pos_num])
+        squares.append(arr[index_pos_num] * arr[index_pos_num])
         index_pos_num += 1
 
     return squares
@@ -79,13 +79,3 @@ def square_sorted_array_another_approach(arr):
 
 print(square_sorted_array_another_approach([-2, -1, 0, 2, 3]))
 print(square_sorted_array_another_approach([-3, -1, 0, 1, 2]))
-
-
-
-
-
-
-
-
-
-

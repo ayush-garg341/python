@@ -14,11 +14,12 @@
 from abc import abstractmethod, ABC
 
 
-print("------------------------------------------  Before DIP  ---------------------------------------------")
+print(
+    "------------------------------------------  Before DIP  ---------------------------------------------"
+)
 
 
 class Order:
-    
     def __init__(self):
         self.items = []
         self.prices = []
@@ -34,7 +35,7 @@ class Order:
         total = 0
         for i in range(len(self.items)):
             total += self.prices[i] * self.quantities[i]
-        
+
         return total
 
     def set_payment_status(self):
@@ -60,12 +61,10 @@ class PaymentProcessor(ABC):
 
 
 class DebitPaymentProcessor(PaymentProcessor):
-
     def __init__(self, security_code, authorizer: SMSAuthorizer):
         self.security_code = security_code
         self.authorizer = authorizer
 
-    
     def pay(self, order):
         if not self.authorizer.is_authorized():
             raise Exception("Not authorized")
@@ -74,9 +73,7 @@ class DebitPaymentProcessor(PaymentProcessor):
         order.set_payment_status()
 
 
-
 class CreditPaymentProcessor(PaymentProcessor):
-
     def __init__(self, security_code):
         self.security_code = security_code
 
@@ -87,7 +84,6 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 
 class PaypalPaymentProcessor(PaymentProcessor):
-
     def __init__(self, email_add, authorizer: SMSAuthorizer):
         self.email_add = email_add
         self.authorizer = authorizer
@@ -112,12 +108,12 @@ payment_processor.pay(order)
 print(order.status)
 
 
-
-print("------------------------------------------  After DIP  ---------------------------------------------")
+print(
+    "------------------------------------------  After DIP  ---------------------------------------------"
+)
 
 
 class Order:
-    
     def __init__(self):
         self.items = []
         self.prices = []
@@ -133,7 +129,7 @@ class Order:
         total = 0
         for i in range(len(self.items)):
             total += self.prices[i] * self.quantities[i]
-        
+
         return total
 
     def set_payment_status(self):
@@ -147,39 +143,36 @@ class Authorizer(ABC):
 
 
 class SMS_Authorizer(Authorizer):
-
     def __init__(self) -> None:
         self.authorized = False
 
     def verify_code(self, code):
         print(f"Verifying SMS code {code}")
         self.authorized = True
-    
+
     def is_authorized(self):
         return self.authorized
 
 
 class Google_Authorizer(Authorizer):
-
     def __init__(self) -> None:
         self.authorized = False
 
     def verify_code(self, code):
         print(f"Verifying SMS code {code}")
         self.authorized = True
-    
+
     def is_authorized(self):
         return self.authorized
 
 
 class Robot_Authorizer(Authorizer):
-
     def __init__(self) -> None:
         self.authorized = False
 
     def not_a_robot(self):
         self.authorized = True
-    
+
     def is_authorized(self):
         return self.authorized
 
@@ -191,11 +184,10 @@ class PaymentProcessor(ABC):
 
 
 class DebitPaymentProcessor(PaymentProcessor):
-
     def __init__(self, security_code, authorizer: Authorizer):
         self.security_code = security_code
         self.authorizer = authorizer
-    
+
     def pay(self, order):
         if not self.authorizer.is_authorized():
             raise Exception("Not authorized")
@@ -204,9 +196,7 @@ class DebitPaymentProcessor(PaymentProcessor):
         order.set_payment_status()
 
 
-
 class CreditPaymentProcessor(PaymentProcessor):
-
     def __init__(self, security_code):
         self.security_code = security_code
 
@@ -217,7 +207,6 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 
 class PaypalPaymentProcessor(PaymentProcessor):
-
     def __init__(self, email_add, authorizer: Authorizer):
         self.email_add = email_add
         self.authorizer = authorizer

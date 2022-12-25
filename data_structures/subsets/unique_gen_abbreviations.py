@@ -31,7 +31,11 @@ def generate_generalized_abbreviation_partially_correct(word):
             if idx != -1:
                 previous_char = old_per[idx - 1]
                 if previous_char >= "1" and previous_char <= "9":
-                    old_per = old_per[: idx - 1] + str(int(previous_char) + 1) + old_per[idx + 1 :]
+                    old_per = (
+                        old_per[: idx - 1]
+                        + str(int(previous_char) + 1)
+                        + old_per[idx + 1 :]
+                    )
                 else:
                     old_per = old_per[:idx] + str(1) + old_per[idx + 1 :]
 
@@ -113,7 +117,11 @@ def generate_generalized_abbreviation_prefect(word):
             result.append(new_word)
         else:
             # abbvt the word and increase the count
-            queue.append(Abbreviation(list(abword.str_content), abword.start + 1, abword.count + 1))
+            queue.append(
+                Abbreviation(
+                    list(abword.str_content), abword.start + 1, abword.count + 1
+                )
+            )
 
             new_word = list(abword.str_content)
             if abword.count != 0:
@@ -126,9 +134,18 @@ def generate_generalized_abbreviation_prefect(word):
     return result
 
 
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_prefect("sys")))
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_prefect("stp")))
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_prefect("system")))
+print(
+    "Generalized abbreviation are: "
+    + str(generate_generalized_abbreviation_prefect("sys"))
+)
+print(
+    "Generalized abbreviation are: "
+    + str(generate_generalized_abbreviation_prefect("stp"))
+)
+print(
+    "Generalized abbreviation are: "
+    + str(generate_generalized_abbreviation_prefect("system"))
+)
 
 
 def generate_generalized_abbreviation_rec(word):
@@ -143,15 +160,26 @@ def generate_generalized_abbreviation_recursive(word, abword, start, count, resu
             abword.append(str(count))
         result.append("".join(abword))
     else:
-        generate_generalized_abbreviation_recursive(word, list(abword), start + 1, count + 1, result)
+        generate_generalized_abbreviation_recursive(
+            word, list(abword), start + 1, count + 1, result
+        )
         new_word = list(abword)
         if count != 0:
             new_word.append(str(count))
         new_word.append(word[start])
 
-        generate_generalized_abbreviation_recursive(word, new_word, start + 1, 0, result)
+        generate_generalized_abbreviation_recursive(
+            word, new_word, start + 1, 0, result
+        )
 
 
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_rec("sys")))
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_rec("stp")))
-print("Generalized abbreviation are: " + str(generate_generalized_abbreviation_rec("system")))
+print(
+    "Generalized abbreviation are: " + str(generate_generalized_abbreviation_rec("sys"))
+)
+print(
+    "Generalized abbreviation are: " + str(generate_generalized_abbreviation_rec("stp"))
+)
+print(
+    "Generalized abbreviation are: "
+    + str(generate_generalized_abbreviation_rec("system"))
+)

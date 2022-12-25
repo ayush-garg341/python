@@ -16,7 +16,7 @@
 #             h = D.top() + 1
 #         s[i] = (i+1) - h
 #         D.push(i)
-    
+
 #     return s
 
 
@@ -25,11 +25,10 @@
 
 
 class StockSpanner:
-
     def __init__(self):
-       self.stack = []
-       self.stock_price_list = []
-       self.len = -1
+        self.stack = []
+        self.stock_price_list = []
+        self.len = -1
 
     def next(self, price: int) -> int:
         self.stock_price_list.append(price)
@@ -40,10 +39,10 @@ class StockSpanner:
                 self.stack.pop()
             else:
                 break
-        
+
         if self.stack:
             h = self.stack[-1] + 1
-        
+
         self.stack.append(self.len)
 
         return self.len + 1 - h

@@ -39,13 +39,12 @@ def bottom_to_top(curr_row, curr_col, result, total_rows, total_cols, array):
         curr_col += 1
 
     while True:
-        if curr_row >= 0 and  curr_col < total_cols:
+        if curr_row >= 0 and curr_col < total_cols:
             result.append(array[curr_row][curr_col])
             if curr_row == 0 or curr_col == total_cols - 1:
                 return curr_row, curr_col
             curr_row -= 1
             curr_col += 1
-
 
 
 def top_to_bottom(curr_row, curr_col, result, total_rows, total_cols, array):
@@ -54,7 +53,7 @@ def top_to_bottom(curr_row, curr_col, result, total_rows, total_cols, array):
     else:
         curr_row += 1
     while True:
-        if curr_row < total_rows and  curr_col >= 0:
+        if curr_row < total_rows and curr_col >= 0:
             result.append(array[curr_row][curr_col])
             if curr_row == total_rows - 1 or curr_col == 0:
                 return curr_row, curr_col
@@ -62,13 +61,9 @@ def top_to_bottom(curr_row, curr_col, result, total_rows, total_cols, array):
             curr_col -= 1
 
 
-inp = [
-  [1, 3, 4, 10],
-  [2, 5, 9, 11],
-  [6, 8, 12, 15],
-  [7, 13, 14, 16]
-]
+inp = [[1, 3, 4, 10], [2, 5, 9, 11], [6, 8, 12, 15], [7, 13, 14, 16]]
 print(zigzag_traverse(inp))
+
 
 def zigzag_traverse_dict(array):
     dic = {}
@@ -82,9 +77,8 @@ def zigzag_traverse_dict(array):
     for i in range(rows):
         for j in range(cols):
             if i + j not in dic:
-                dic[i+j] = []
-            dic[i+j].append(array[i][j])
-
+                dic[i + j] = []
+            dic[i + j].append(array[i][j])
 
     for i in range(total):
         if i % 2 == 0:
@@ -93,5 +87,6 @@ def zigzag_traverse_dict(array):
             result += reversed(dic[i])
 
     return result
+
 
 print(zigzag_traverse_dict(inp))

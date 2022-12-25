@@ -22,6 +22,7 @@ ex3:
 
 from heapq import *
 
+
 def min_meetings_room(meetings):
     ending_times_heap = []
     meetings.sort()
@@ -40,7 +41,7 @@ def min_meetings_room(meetings):
     return len(ending_times_heap)
 
 
-print(min_meetings_room([[1,4], [2,5], [7,9]]))
-print(min_meetings_room([[6,7], [2,4], [8,12]]))
-print(min_meetings_room([[1,4], [2,3], [3,6]]))
-print(min_meetings_room([[4,5], [2,3], [2,4], [3,5]]))
+print(min_meetings_room([[1, 4], [2, 5], [7, 9]]))
+print(min_meetings_room([[6, 7], [2, 4], [8, 12]]))
+print(min_meetings_room([[1, 4], [2, 3], [3, 6]]))
+print(min_meetings_room([[4, 5], [2, 3], [2, 4], [3, 5]]))

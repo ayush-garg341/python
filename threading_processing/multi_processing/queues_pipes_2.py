@@ -18,10 +18,15 @@ def child_process(q):
         except:
             pass
 
-    print("child process {0} processed {1} items from the queue".format(current_process().name, count), flush=True)
+    print(
+        "child process {0} processed {1} items from the queue".format(
+            current_process().name, count
+        ),
+        flush=True,
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     multiprocessing.set_start_method("fork")
     q = Queue()
 

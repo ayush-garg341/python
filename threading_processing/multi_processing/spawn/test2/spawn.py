@@ -16,14 +16,14 @@ def process_task():
     file_desc.flush()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # create a file descriptor in the parent process
     file_desc = open("sample.txt", "w")
     file_desc.write("\nline written by parent process with id {0}".format(os.getpid()))
     file_desc.flush()
 
     # changed the start method to spawn
-    multiprocessing.set_start_method('spawn')
+    multiprocessing.set_start_method("spawn")
 
     process = Process(target=process_task)
     process.start()
@@ -35,4 +35,3 @@ if __name__ == '__main__':
     print(file_desc.read())
 
     os.remove("sample.txt")
-

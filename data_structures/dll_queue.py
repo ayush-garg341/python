@@ -5,13 +5,14 @@
 
 from doubly_linked_list import DoublyLinkedList
 
+
 class DLLQueue:
     def __init__(self):
         self.dll = DoublyLinkedList()
 
     def insert(self, elt):
         self.dll.insert_at_last(elt)
-            
+
     def front(self):
         return self.dll.front()
 
@@ -33,11 +34,9 @@ queue.insert(5)
 queue.insert(10)
 queue.insert(20)
 queue.insert(21)
-print("Elements in a queue => ",queue.print_elts())
-print("Front element of a queue => ",queue.front())
+print("Elements in a queue => ", queue.print_elts())
+print("Front element of a queue => ", queue.front())
 queue.pop()
-print("After popping elements in a queue => ",queue.print_elts())
+print("After popping elements in a queue => ", queue.print_elts())
 print("After popping front element => ", queue.front())
 print(queue.length())
-
-

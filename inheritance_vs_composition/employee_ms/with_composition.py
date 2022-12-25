@@ -12,7 +12,6 @@ from typing import Optional
 
 @dataclass
 class Contract(ABC):
-
     @abstractmethod
     def compute_pay(self):
         pass
@@ -20,10 +19,10 @@ class Contract(ABC):
 
 @dataclass
 class Commission(ABC):
-
     @abstractmethod
     def get_commission(self):
         pass
+
 
 @dataclass
 class ContractCommission(Commission):
@@ -33,8 +32,6 @@ class ContractCommission(Commission):
 
     def get_commission(self):
         return self.commission * self.contract_landed
-
-
 
 
 @dataclass
@@ -52,11 +49,10 @@ class Employee:
         """Compute how much the employee should be paid."""
 
         payout = self.contract.compute_pay()
-        if(self.commission is not None):
+        if self.commission is not None:
             payout += self.commission.get_commission()
 
         return payout
-
 
 
 @dataclass
@@ -107,7 +103,9 @@ def main() -> None:
 
     sarah_commission = ContractCommission(contract_landed=100)
 
-    sarah = Employee(name="Sarah", id=47832, contract=sarah_contract, commission=sarah_commission)
+    sarah = Employee(
+        name="Sarah", id=47832, contract=sarah_contract, commission=sarah_commission
+    )
 
     print(
         f"{sarah.name} landed {sarah_commission.contract_landed} contracts and earned ${sarah.compute_pay()}."

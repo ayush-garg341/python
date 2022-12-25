@@ -17,7 +17,9 @@ def find_letter_case_string_permutations(string):
         return permutations
     permutations.append(string)
     for i in range(len(string)):
-        if (string[i] <= "z" and string[i] >= "a") or (string[i] <= "Z" and string[i] >= "A"):
+        if (string[i] <= "z" and string[i] >= "a") or (
+            string[i] <= "Z" and string[i] >= "A"
+        ):
             n = len(permutations)
             for j in range(n):
                 old_per = permutations[j][:]
@@ -31,8 +33,12 @@ def find_letter_case_string_permutations(string):
 
 
 def main():
-    print("String permutations are: " + str(find_letter_case_string_permutations("ad52")))
-    print("String permutations are: " + str(find_letter_case_string_permutations("ab7c")))
+    print(
+        "String permutations are: " + str(find_letter_case_string_permutations("ad52"))
+    )
+    print(
+        "String permutations are: " + str(find_letter_case_string_permutations("ab7c"))
+    )
     print("String permutations are: " + str(find_letter_case_string_permutations("C")))
 
 

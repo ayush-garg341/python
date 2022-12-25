@@ -26,7 +26,9 @@ def brute_force_max_edit_distance(str1, str2):
     return brute_force_max_edit_distance_recursive(str1, str2, 0, 0)
 
 
-def brute_force_max_edit_distance_recursive(str1: str, str2: str, str1_index: int, str2_index: int):
+def brute_force_max_edit_distance_recursive(
+    str1: str, str2: str, str1_index: int, str2_index: int
+):
     if str1_index == len(str1):
         return len(str2) - str2_index
 
@@ -34,11 +36,19 @@ def brute_force_max_edit_distance_recursive(str1: str, str2: str, str1_index: in
         return len(str1) - str1_index
 
     if str1[str1_index] == str2[str2_index]:
-        return brute_force_max_edit_distance_recursive(str1, str2, str1_index + 1, str2_index + 1)
+        return brute_force_max_edit_distance_recursive(
+            str1, str2, str1_index + 1, str2_index + 1
+        )
 
-    l1 = 1 + brute_force_max_edit_distance_recursive(str1, str2, str1_index + 1, str2_index)  # delete
-    l2 = 1 + brute_force_max_edit_distance_recursive(str1, str2, str1_index, str2_index + 1)  # insert
-    l3 = 1 + brute_force_max_edit_distance_recursive(str1, str2, str1_index + 1, str2_index + 1)  # replace
+    l1 = 1 + brute_force_max_edit_distance_recursive(
+        str1, str2, str1_index + 1, str2_index
+    )  # delete
+    l2 = 1 + brute_force_max_edit_distance_recursive(
+        str1, str2, str1_index, str2_index + 1
+    )  # insert
+    l3 = 1 + brute_force_max_edit_distance_recursive(
+        str1, str2, str1_index + 1, str2_index + 1
+    )  # replace
 
     return min(l1, min(l2, l3))
 

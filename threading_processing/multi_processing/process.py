@@ -13,25 +13,30 @@ import os
 
 
 def process_task(x, y, z, key1, key2):
-    print("{0} has pid: {1} with parent pid: {2}".format(current_process().name, os.getpid(), os.getppid()))
+    print(
+        "{0} has pid: {1} with parent pid: {2}".format(
+            current_process().name, os.getpid(), os.getppid()
+        )
+    )
     print("Received arguemnts {0} {1} {2} {3} {4}\n".format(x, y, z, key1, key2))
+
 
 if __name__ == "__main__":
     process = [0] * 3
 
     for i in range(0, 3):
-        process[i] = Process(target=process_task, name="process-{0}".format(i), args=(1, 2, 3),
-                  kwargs={
-                      'key1': 'arg1',
-                      'key2': 'arg2'})
+        process[i] = Process(
+            target=process_task,
+            name="process-{0}".format(i),
+            args=(1, 2, 3),
+            kwargs={"key1": "arg1", "key2": "arg2"},
+        )
         process[i].start()
 
     for i in range(0, 3):
         process[i].join()
 
     print("{0} has pid: {1} ".format(current_process().name, os.getpid()))
-
-
 
 
 """

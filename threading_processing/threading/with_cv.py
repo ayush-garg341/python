@@ -12,6 +12,7 @@ def thread2_task(cv, sem):
 
     print("Released by thread_1 thread")
 
+
 cv = Condition()
 sem = Semaphore(0)
 

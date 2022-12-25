@@ -58,7 +58,9 @@ def different_ways_to_eval_expression_memoized(input_str, dp):
             char = input_str[i]
             if not char.isdigit():
                 left_op = different_ways_to_eval_expression_memoized(input_str[:i], dp)
-                right_op = different_ways_to_eval_expression_memoized(input_str[i + 1 :], dp)
+                right_op = different_ways_to_eval_expression_memoized(
+                    input_str[i + 1 :], dp
+                )
                 for l in left_op:
                     for r in right_op:
                         if char == "+":

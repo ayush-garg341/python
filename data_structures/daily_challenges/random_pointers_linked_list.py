@@ -3,17 +3,15 @@ Given a linkedlist with Node having three parts i.e data, next pointer and rando
 Clone this linked list.
 """
 
-class Node:
 
+class Node:
     def __init__(self, data, next=None, random=None):
         self.data = data
         self.next = next
         self.random = random
 
 
-
 class CloneLinkedList:
-
     def __init__(self, head):
         self.head = head
         self.random_ptr_map = {}
@@ -45,8 +43,6 @@ class CloneLinkedList:
         return head
 
 
-
-
 node1 = Node(1, None, None)
 node2 = Node(2, None, None)
 node3 = Node(3, None, None)
@@ -70,5 +66,3 @@ while new_head is not None:
 
     print()
     new_head = new_head.next
-
-

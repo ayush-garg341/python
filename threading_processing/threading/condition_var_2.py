@@ -34,4 +34,3 @@ def finder_thread():
         cond_var.release()
 
         i += 1
-

@@ -8,6 +8,7 @@ Now, if ‘M’ is positive we will move forward ‘M’ indices and if ‘M’ 
 Write a method to determine if the array has a cycle.
 """
 
+
 def circular_array_loop_exists(arr):
     """
     TC - O(N^2)
@@ -28,6 +29,7 @@ def circular_array_loop_exists(arr):
             return True
     return False
 
+
 def next_elt_circular_arr(idx, arr, direction):
     is_fwd = arr[idx] >= 0
     if is_fwd != direction:
@@ -40,8 +42,6 @@ def next_elt_circular_arr(idx, arr, direction):
     return next_idx
 
 
-
-
 def main():
     print(circular_array_loop_exists([1, 2, -1, 2, 2]))
     print(circular_array_loop_exists([2, 2, -1, 2]))
@@ -49,4 +49,3 @@ def main():
 
 
 main()
-

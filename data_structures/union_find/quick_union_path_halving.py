@@ -12,7 +12,9 @@ class QuickUnionPathHalving:
 
     def find_root(self, i):
         while i != self.n[i]:
-            self.n[i] = self.n[self.n[i]]  # this line points current element to its grand parent.
+            self.n[i] = self.n[
+                self.n[i]
+            ]  # this line points current element to its grand parent.
             i = self.n[i]
         return i
 

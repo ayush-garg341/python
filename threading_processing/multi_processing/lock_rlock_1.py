@@ -16,8 +16,9 @@ def child_task(rlock):
     for _ in range(0, 5):
         rlock.release()
 
-if __name__ == '__main__':
-    multiprocessing.set_start_method('fork')
+
+if __name__ == "__main__":
+    multiprocessing.set_start_method("fork")
 
     rlock = RLock()
     rlock.acquire()
@@ -34,4 +35,3 @@ if __name__ == '__main__':
 
     process1.join()
     process2.join()
-

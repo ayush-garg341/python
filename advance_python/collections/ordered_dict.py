@@ -4,25 +4,26 @@
 
 """
 
-d = {'banana': 3, 'apple':4, 'pear': 1, 'orange': 2}
-print (d)
+d = {"banana": 3, "apple": 4, "pear": 1, "orange": 2}
+print(d)
 
 keys = d.keys()
-print (keys)
+print(keys)
 
 keys = sorted(keys)
-print (keys)
+print(keys)
 
 for key in keys:
-    print (key, d[key])
+    print(key, d[key])
 
 from collections import OrderedDict
-d = {'banana': 3, 'apple':4, 'pear': 1, 'orange': 2}
+
+d = {"banana": 3, "apple": 4, "pear": 1, "orange": 2}
 new_d = OrderedDict(sorted(d.items()))
-print (new_d)
+print(new_d)
 
 for key in new_d:
-    print (key, new_d[key])
+    print(key, new_d[key])
 
 """
 Note: that if you add new keys, they will be added to the end of the OrderedDict instead of being automatically sorted.

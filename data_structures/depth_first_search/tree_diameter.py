@@ -26,7 +26,11 @@ class TreeDiameter:
             while size != 0:
                 pop = deq.pop()
                 size -= 1
-                max_diam = max(max_diam, self.root_height_by_nodes(pop.left) + self.root_height_by_nodes(pop.right))
+                max_diam = max(
+                    max_diam,
+                    self.root_height_by_nodes(pop.left)
+                    + self.root_height_by_nodes(pop.right),
+                )
                 if pop.left:
                     deq.append(pop.left)
                 if pop.right:
@@ -37,7 +41,10 @@ class TreeDiameter:
         if root is None:
             return 0
         else:
-            return 1 + max(self.root_height_by_nodes(root.left), self.root_height_by_nodes(root.right))
+            return 1 + max(
+                self.root_height_by_nodes(root.left),
+                self.root_height_by_nodes(root.right),
+            )
 
     def find_diameter_without_extra_space(self, root):
         self.find_diameter_without_extra_space_rec(root)
@@ -47,7 +54,9 @@ class TreeDiameter:
         if current_node is None:
             return 0
         left_tree_height = self.find_diameter_without_extra_space_rec(current_node.left)
-        right_tree_height = self.find_diameter_without_extra_space_rec(current_node.right)
+        right_tree_height = self.find_diameter_without_extra_space_rec(
+            current_node.right
+        )
         if left_tree_height != 0 and right_tree_height != 0:
             diameter = left_tree_height + right_tree_height + 1
             self.treeDiameter = max(self.treeDiameter, diameter)
@@ -64,7 +73,10 @@ def main():
     root.right.left = TreeNode(5)
     root.right.right = TreeNode(6)
     print("Tree Diameter: " + str(treeDiameter.find_diameter(root)))
-    print("Tree Diameter with nodes: " + str(treeDiameter.find_diameter_without_extra_space(root)))
+    print(
+        "Tree Diameter with nodes: "
+        + str(treeDiameter.find_diameter_without_extra_space(root))
+    )
     root.left.left = None
     root.right.left.left = TreeNode(7)
     root.right.left.right = TreeNode(8)
@@ -72,7 +84,10 @@ def main():
     root.right.left.right.left = TreeNode(10)
     root.right.right.left.left = TreeNode(11)
     print("Tree Diameter: " + str(treeDiameter.find_diameter(root)))
-    print("Tree Diameter with nodes: " + str(treeDiameter.find_diameter_without_extra_space(root)))
+    print(
+        "Tree Diameter with nodes: "
+        + str(treeDiameter.find_diameter_without_extra_space(root))
+    )
 
 
 main()

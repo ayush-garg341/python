@@ -14,7 +14,10 @@ def flip_and_invert_image(matrix):
         row_len = len(matrix[i])
         j = 0
         while j <= (row_len - 1) // 2:
-            matrix[i][j], matrix[i][row_len - 1 - j] = matrix[i][row_len - 1 - j] ^ 1, matrix[i][j] ^ 1
+            matrix[i][j], matrix[i][row_len - 1 - j] = (
+                matrix[i][row_len - 1 - j] ^ 1,
+                matrix[i][j] ^ 1,
+            )
             j += 1
 
     return matrix
@@ -22,7 +25,9 @@ def flip_and_invert_image(matrix):
 
 def main():
     print(flip_and_invert_image([[1, 0, 1], [1, 1, 1], [0, 1, 1]]))
-    print(flip_and_invert_image([[1, 1, 0, 0], [1, 0, 0, 1], [0, 1, 1, 1], [1, 0, 1, 0]]))
+    print(
+        flip_and_invert_image([[1, 1, 0, 0], [1, 0, 0, 1], [0, 1, 1, 1], [1, 0, 1, 0]])
+    )
 
 
 main()

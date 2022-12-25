@@ -29,9 +29,11 @@ def count_subset_sum_brute_force(arr: list, current_idx: int, s: int) -> int:
 
     count = 0
     if arr[current_idx] <= s:
-        count += count_subset_sum_brute_force(arr, current_idx+1, s-arr[current_idx])
+        count += count_subset_sum_brute_force(
+            arr, current_idx + 1, s - arr[current_idx]
+        )
 
-    count += count_subset_sum_brute_force(arr, current_idx+1, s)
+    count += count_subset_sum_brute_force(arr, current_idx + 1, s)
 
     return count
 
@@ -42,16 +44,17 @@ print(count_subset_sum([1, 2, 7, 1, 5], 9))
 print(count_subset_sum([1, 2, 3], 4))
 
 
-
 def count_subset_sum_dp(arr, s):
     count = 0
     current_idx = 0
-    dp = [[-1 for i in range(s+1)] for j in range(len(arr))]
+    dp = [[-1 for i in range(s + 1)] for j in range(len(arr))]
     count = count_subset_sum_dp_top_bottom(arr, current_idx, s, dp)
     return count
 
 
-def count_subset_sum_dp_top_bottom(arr: list, current_idx: int, s: int, dp: list) -> int:
+def count_subset_sum_dp_top_bottom(
+    arr: list, current_idx: int, s: int, dp: list
+) -> int:
     if s == 0:
         return 1
     if current_idx >= len(arr):
@@ -60,9 +63,11 @@ def count_subset_sum_dp_top_bottom(arr: list, current_idx: int, s: int, dp: list
     if dp[current_idx][s] == -1:
         count = 0
         if arr[current_idx] <= s:
-            count += count_subset_sum_brute_force(arr, current_idx+1, s-arr[current_idx])
+            count += count_subset_sum_brute_force(
+                arr, current_idx + 1, s - arr[current_idx]
+            )
 
-        count += count_subset_sum_brute_force(arr, current_idx+1, s)
+        count += count_subset_sum_brute_force(arr, current_idx + 1, s)
         dp[current_idx][s] = count
 
     return dp[current_idx][s]
@@ -79,28 +84,25 @@ def count_subset_sum_dp_bottom_up_tabular(arr: list, s: int) -> int:
     if n == 0:
         return 0
 
-    dp = [[0 for i in range(s+1)] for j in range(len(arr))]
+    dp = [[0 for i in range(s + 1)] for j in range(len(arr))]
 
     for i in range(len(arr)):
         dp[i][0] = 1
 
-    for s in range(1, s+1):
+    for s in range(1, s + 1):
         if s == arr[0]:
             dp[0][s] = 1
 
     for i in range(1, len(arr)):
-        for s in range(1, s+1):
+        for s in range(1, s + 1):
             count1, count2 = 0, 0
-            count1 = dp[i-1][s]
+            count1 = dp[i - 1][s]
             if arr[i] <= s:
-                count2 = dp[i-1][s-arr[i]]
+                count2 = dp[i - 1][s - arr[i]]
 
             dp[i][s] = count1 + count2
 
-
-    return dp[n-1][s]
-
-
+    return dp[n - 1][s]
 
 
 print("=============== bottom up tabular ===============")

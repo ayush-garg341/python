@@ -5,12 +5,13 @@ from queue import Queue
 import time
 import multiprocessing
 
+
 class SumUpClass:
     def __init__(self):
         self.counter = 0
 
     def add_integers(self, start, end):
-        for i in range(start, end+1):
+        for i in range(start, end + 1):
             self.counter += i
 
     def get_counter(self):
@@ -23,16 +24,31 @@ def single_thread():
     obj1.add_integers(1, 3000000)
     end = time.time() - start
 
-    print("single threaded took : {} seconds and summed to {}".format(end, obj1.get_counter()))
-
+    print(
+        "single threaded took : {} seconds and summed to {}".format(
+            end, obj1.get_counter()
+        )
+    )
 
 
 def multiple_threads():
     obj1 = SumUpClass()
     obj2 = SumUpClass()
     start = time.time()
-    t1 = Thread(target=obj1.add_integers, args=(1, 15000000,))
-    t2 = Thread(target=obj2.add_integers, args=(15000001, 30000000,))
+    t1 = Thread(
+        target=obj1.add_integers,
+        args=(
+            1,
+            15000000,
+        ),
+    )
+    t2 = Thread(
+        target=obj2.add_integers,
+        args=(
+            15000001,
+            30000000,
+        ),
+    )
     t1.start()
     t2.start()
 
@@ -41,37 +57,57 @@ def multiple_threads():
 
     combined_sum = obj1.get_counter() + obj2.get_counter()
     end = time.time() - start
-    print("multiple threads took : {} seconds and summed to {}".format(end, combined_sum))
+    print(
+        "multiple threads took : {} seconds and summed to {}".format(end, combined_sum)
+    )
 
 
 def single_process(obj, start, end):
-    obj.add_integers(start,end)
+    obj.add_integers(start, end)
 
 
 def multi_process():
-    BaseManager.register('SumUpClass', SumUpClass)
-    manager = BaseManager(address=('127.0.0.1', 63333))
+    BaseManager.register("SumUpClass", SumUpClass)
+    manager = BaseManager(address=("127.0.0.1", 63333))
     manager.start()
     obj1 = manager.SumUpClass()
     obj2 = manager.SumUpClass()
     start = time.time()
 
-    p1 = Process(target=single_process, args=(obj1, 1, 15000000,))
-    p2 = Process(target=single_process, args=(obj2, 15000001, 30000000,))
+    p1 = Process(
+        target=single_process,
+        args=(
+            obj1,
+            1,
+            15000000,
+        ),
+    )
+    p2 = Process(
+        target=single_process,
+        args=(
+            obj2,
+            15000001,
+            30000000,
+        ),
+    )
 
     p1.start()
     p2.start()
-    
+
     p1.join()
     p2.join()
 
     combined_sum = obj1.get_counter() + obj2.get_counter()
     end = time.time() - start
-    print("multiple processes took : {} seconds and summed to {}".format(end, combined_sum))
+    print(
+        "multiple processes took : {} seconds and summed to {}".format(
+            end, combined_sum
+        )
+    )
     manager.shutdown()
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     print("System has {0} CPUs".format(multiprocessing.cpu_count()))
     single_thread()
     multiple_threads()

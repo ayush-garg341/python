@@ -56,7 +56,7 @@ def finder_thread_func():
             i += 1
             # Add a timer to slow down the thread
             # so that we can see the output
-            time.sleep(.01)
+            time.sleep(0.01)
 
         prime_holder = i
 
@@ -96,4 +96,3 @@ cond_var.release()
 
 printerThread.join()
 finderThread.join()
-

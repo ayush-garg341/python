@@ -37,5 +37,9 @@ def min_number_intervals(intervals):
     return remove_count
 
 
-print(min_number_intervals([Interval(1, 2), Interval(2, 3), Interval(3, 4), Interval(1, 3)]))
+print(
+    min_number_intervals(
+        [Interval(1, 2), Interval(2, 3), Interval(3, 4), Interval(1, 3)]
+    )
+)
 print(min_number_intervals([Interval(1, 2), Interval(1, 2), Interval(1, 2)]))

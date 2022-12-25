@@ -63,9 +63,13 @@ def interleaving_strings_brute_force_recursive(m, n, p, mIndex, nIndex, pIndex):
     b1, b2 = False, False
 
     if mIndex < mLen and m[mIndex] == p[pIndex]:
-        b1 = interleaving_strings_brute_force_recursive(m, n, p, mIndex + 1, nIndex, pIndex + 1)
+        b1 = interleaving_strings_brute_force_recursive(
+            m, n, p, mIndex + 1, nIndex, pIndex + 1
+        )
     if nIndex < nLen and n[nIndex] == p[pIndex]:
-        b2 = interleaving_strings_brute_force_recursive(m, n, p, mIndex, nIndex + 1, pIndex + 1)
+        b2 = interleaving_strings_brute_force_recursive(
+            m, n, p, mIndex, nIndex + 1, pIndex + 1
+        )
 
     return b1 or b2
 

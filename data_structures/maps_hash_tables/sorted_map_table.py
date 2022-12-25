@@ -106,6 +106,8 @@ class SortedMapTable(MapBase):
         else:
             index = self._find_index(start, 0, len(self._table) - 1)
 
-        while index < len(self._table) and (stop is None or self._table[index]._key < stop):
+        while index < len(self._table) and (
+            stop is None or self._table[index]._key < stop
+        ):
             yield (self._table[index]._key, self._table[index]._value)
             index += 1

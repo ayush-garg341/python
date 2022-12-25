@@ -1,5 +1,6 @@
 import datetime
 
+
 class Employee:
 
     num_of_emps = 0
@@ -14,10 +15,10 @@ class Employee:
         Employee.num_of_emps += 1
 
     def fullName(self):
-        return '{} {}'.format(self.first, self.last)
+        return "{} {}".format(self.first, self.last)
 
     def apply_raise(self):
-        self.pay = int(self.pay * self.raise_amount) 
+        self.pay = int(self.pay * self.raise_amount)
 
     @classmethod
     def set_raise_amt(cls, amount):
@@ -37,7 +38,7 @@ class Employee:
         return True
 
 
-emp_1 = Employee("Ayush", "Garg", 50000) 
+emp_1 = Employee("Ayush", "Garg", 50000)
 emp_2 = Employee("Arnim", "Garg", 60000)
 
 Employee.set_raise_amt(1.05)

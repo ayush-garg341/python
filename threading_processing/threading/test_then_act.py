@@ -6,6 +6,7 @@ import time
 
 rand_int = 0
 
+
 def updater():
     global rand_int
     while True:
@@ -15,13 +16,12 @@ def updater():
 def printer():
     global rand_int
     while True:
-        if rand_int%5 == 0:
-            if rand_int%5!=0:
+        if rand_int % 5 == 0:
+            if rand_int % 5 != 0:
                 print(rand_int)
 
 
-
-if __name__=="__main__":
+if __name__ == "__main__":
     Thread(target=updater, daemon=True).start()
     Thread(target=printer, daemon=True).start()
 

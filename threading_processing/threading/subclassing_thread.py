@@ -1,8 +1,8 @@
 from threading import Thread
 from threading import current_thread
 
-class MyTask(Thread):
 
+class MyTask(Thread):
     def __init__(self):
         # The two args will not get passed to the overridden
         # run method.
@@ -27,4 +27,3 @@ print("{0} exiting".format(current_thread().getName()))
 # 2. Thread.__init__() must be invoked if the subclass choses to override the constructor.
 
 # 3. Note that the args or kwargs don't get passed to the run method.
-

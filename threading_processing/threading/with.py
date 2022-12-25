@@ -40,8 +40,8 @@ with open("test.txt") as file:
     data = file.read()
 """
 
-class ExampleClass(object):
 
+class ExampleClass(object):
     def __init__(self, val):
         print("init")
         self.val = val
@@ -60,6 +60,3 @@ class ExampleClass(object):
 if __name__ == "__main__":
     with ExampleClass("hello world") as example:
         example.display()
-
-
-

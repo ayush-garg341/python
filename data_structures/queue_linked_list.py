@@ -1,20 +1,17 @@
 from custom_ds_exceptions import QueueEmptyException
 
-class Node:
-   def __init__(self, data=None):
-      self.data = data
-      self.next = None
 
-      
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
 
 class Queue:
-
-
     def __init__(self) -> None:
         self.head = None
         self.tail = None
         self.len = 0
-
 
     def enqueue(self, elt):
         self.len += 1
@@ -28,17 +25,15 @@ class Queue:
         if self.head == None:
             self.head = new_node
 
-
     def dequeue(self):
         try:
             if self.head == None:
                 raise QueueEmptyException
             temp_node = self.head.next
-            self.head = temp_node   
+            self.head = temp_node
             self.len -= 1
         except QueueEmptyException:
             print("Queue is already empty")
-
 
     def front(self):
         try:
@@ -48,11 +43,8 @@ class Queue:
         except QueueEmptyException:
             print("Queue is already empty")
 
-
     def is_empty(self):
         return self.head == None
 
-
     def size(self):
         return self.len
-

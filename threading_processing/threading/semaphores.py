@@ -27,6 +27,7 @@ def task1():
 def task2():
     sem.release()
 
+
 # initialize with zero
 sem = Semaphore(0)
 
@@ -43,4 +44,3 @@ thread1.start()
 
 thread1.join()
 thread2.join()
-

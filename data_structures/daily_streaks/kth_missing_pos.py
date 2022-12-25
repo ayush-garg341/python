@@ -7,6 +7,7 @@ example1:
     [3,5,6,7,9,10,11], here the 6th term is 10
 """
 
+
 def find_kth_missing_sorted_array(nums, k):
     num = 1
     count = 0
@@ -19,6 +20,6 @@ def find_kth_missing_sorted_array(nums, k):
 
     return num
 
-print(find_kth_missing_sorted_array([1,2,4,8,12],6))
-print(find_kth_missing_sorted_array([1,2,3,4,5,6,7,8], 4))
 
+print(find_kth_missing_sorted_array([1, 2, 4, 8, 12], 6))
+print(find_kth_missing_sorted_array([1, 2, 3, 4, 5, 6, 7, 8], 4))

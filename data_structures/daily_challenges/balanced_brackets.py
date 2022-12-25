@@ -7,7 +7,11 @@ def balancedBrackets(string):
         elif char == ")" or char == "]" or char == "}":
             if stack:
                 top = stack.pop()
-                if (char == ")" and top == "(") or (char == "]" and top == "[") or (char == "}" and top == "{"):
+                if (
+                    (char == ")" and top == "(")
+                    or (char == "]" and top == "[")
+                    or (char == "}" and top == "{")
+                ):
                     continue
             return False
 

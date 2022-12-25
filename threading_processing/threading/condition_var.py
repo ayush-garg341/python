@@ -7,6 +7,7 @@ Locks aren't enough when threads want to coordinate among themselves.
 from threading import Thread
 import time
 
+
 def print_prime():
     global found_prime
     global prime_holder
@@ -21,12 +22,11 @@ def print_prime():
             prime_holder = None
 
 
-
 def is_prime(num):
-    if num==2 or num==3:
+    if num == 2 or num == 3:
         return True
     div = 2
-    while div <= num/2:
+    while div <= num / 2:
         if num % div == 0:
             return False
         div += 1
@@ -51,7 +51,7 @@ def prime_finder():
         i += 1
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
 
     found_prime = False
     prime_holder = None

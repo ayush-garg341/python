@@ -5,8 +5,7 @@ from concurrent.futures import ProcessPoolExecutor
 import socket, time, random
 
 
-class PrimeService():
-
+class PrimeService:
     def __init__(self, server_port):
         self.server_port = server_port
         self.requests = 0
@@ -45,7 +44,7 @@ class PrimeService():
     def run_service(self):
 
         s = socket.socket()
-        s.bind(('', self.server_port))
+        s.bind(("", self.server_port))
 
         # put the socket into listening mode
         s.listen(5)
@@ -91,12 +90,16 @@ if __name__ == "__main__":
     monitor_thread = Thread(target=server.moniter_thread, daemon=True)
     monitor_thread.start()
 
-    small_reqs_thread = Thread(target=run_client, args=(server_host, server_port), daemon=True)
+    small_reqs_thread = Thread(
+        target=run_client, args=(server_host, server_port), daemon=True
+    )
     small_reqs_thread.start()
 
     time.sleep(3)
 
-    long_reqs_thread = Thread(target=run_long_request, args=(server_host, server_port), daemon=True)
+    long_reqs_thread = Thread(
+        target=run_long_request, args=(server_host, server_port), daemon=True
+    )
     long_reqs_thread.start()
 
     time.sleep(100)

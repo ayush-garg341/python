@@ -2,6 +2,7 @@
 Given the head of a LinkedList and two positions ‘p’ and ‘q’, reverse the LinkedList from position ‘p’ to ‘q’.
 """
 
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -14,12 +15,13 @@ class Node:
             temp = temp.next
         print()
 
+
 def reverse_sub_list(head, p, q):
     if p > q:
         return head
     front = 1
     front_head = head
-    while front < p-1:
+    while front < p - 1:
         front_head = front_head.next
         front += 1
 
@@ -49,6 +51,7 @@ def reverse_sub_list(head, p, q):
 
     return head
 
+
 def reverse_list(head):
     prev = None
     temp = head
@@ -59,19 +62,21 @@ def reverse_list(head):
         head = temp
     return prev
 
-# def main():
-    # head = Node(1)
-    # head.next = Node(2)
-    # head.next.next = Node(3)
-    # head.next.next.next = Node(4)
-    # head.next.next.next.next = Node(5)
 
-    # print("Nodes of original LinkedList are: ", end='')
-    # head.print_list()
-    # result = reverse_sub_list(head, 1, 5)
-    # print("Nodes of reversed LinkedList are: ", end='')
-    # result.print_list()
+# def main():
+# head = Node(1)
+# head.next = Node(2)
+# head.next.next = Node(3)
+# head.next.next.next = Node(4)
+# head.next.next.next.next = Node(5)
+
+# print("Nodes of original LinkedList are: ", end='')
+# head.print_list()
+# result = reverse_sub_list(head, 1, 5)
+# print("Nodes of reversed LinkedList are: ", end='')
+# result.print_list()
 # main()
+
 
 def reverse_every_k_elements(head, k):
     count = 0
@@ -82,7 +87,7 @@ def reverse_every_k_elements(head, k):
         temp = temp.next
         count += 1
         if count % k == 0:
-            k_group = k*count_group + 1
+            k_group = k * count_group + 1
             count_group += 1
             head = reverse_sub_list(head, k_group, count)
 
@@ -103,10 +108,11 @@ def main2():
     head.next.next.next.next.next.next = Node(7)
     head.next.next.next.next.next.next.next = Node(8)
 
-    print("Nodes of original LinkedList are: ", end='')
+    print("Nodes of original LinkedList are: ", end="")
     head.print_list()
     result = reverse_every_k_elements(head, 3)
-    print("Nodes of reversed LinkedList are: ", end='')
+    print("Nodes of reversed LinkedList are: ", end="")
     result.print_list()
+
 
 main2()

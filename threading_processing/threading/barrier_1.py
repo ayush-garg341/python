@@ -6,6 +6,7 @@ from threading import Thread, Barrier, current_thread
 import time
 import random
 
+
 def thread_task():
     time.sleep(random.randint(0, 5))
     print("\nCurrently {0} threads blocked on barrier".format(barrier.n_waiting))

@@ -41,12 +41,13 @@ Iterate over all numbers and find the other number in remaining array using bina
 TC -> O(NlogN)
 """
 
+
 def pair_with_target_sum_binary_search(arr, target_sum):
     for i in range(len(arr)):
         other_num = target_sum - arr[i]
-        binary_search_index = binary_search(arr[i+1:], other_num)
+        binary_search_index = binary_search(arr[i + 1 :], other_num)
         if binary_search_index != -1:
-            return [i, binary_search_index+i+1]
+            return [i, binary_search_index + i + 1]
     return [-1, -1]
 
 
@@ -63,6 +64,7 @@ def binary_search(arr, num):
             start = mid + 1
 
     return -1
+
 
 print(pair_with_target_sum_binary_search([1, 2, 3, 4, 6], 6))
 print(pair_with_target_sum_binary_search([2, 5, 9, 11], 11))

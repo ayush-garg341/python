@@ -22,17 +22,22 @@ from multiprocessing import Queue, current_process, Process
 import multiprocessing, sys
 import random
 
+
 def child_process(q):
     count = 0
     while not q.empty():
         print(q.get())
         count += 1
 
-    print("child process {0} processed {1} items from the queue".format(current_process().name, count), flush=True)
+    print(
+        "child process {0} processed {1} items from the queue".format(
+            current_process().name, count
+        ),
+        flush=True,
+    )
 
 
-
-if __name__=="__main__":
+if __name__ == "__main__":
     multiprocessing.set_start_method("forkserver")
     q = Queue()
 
@@ -50,7 +55,6 @@ if __name__=="__main__":
 
     p1.join()
     p2.join()
-
 
 
 """

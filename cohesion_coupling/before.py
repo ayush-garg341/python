@@ -9,17 +9,16 @@
 import random
 import string
 
-class VehicleRegistry:
 
+class VehicleRegistry:
     def vehicle_id(self, length):
-        return ''.join(random.choices(string.ascii_uppercase, k = length))
+        return "".join(random.choices(string.ascii_uppercase, k=length))
 
     def vehicle_license_plate(self, id):
         return f"{id[:2]}-{''.join(random.choices(string.digits, k=2))}-{''.join(random.choices(string.ascii_uppercase, k=2))}"
 
 
 class Application:
-
     def register_vehicle(self, brand):
 
         registry = VehicleRegistry()
@@ -55,4 +54,3 @@ class Application:
 
 car = Application()
 car.register_vehicle("BMW 5")
-

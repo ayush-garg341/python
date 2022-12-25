@@ -20,7 +20,9 @@ def min_distance(word1: str, word2: str) -> int:
     return len(word1) + len(word2) - 2 * longest_common_subseq(word1, word2, dp, 0, 0)
 
 
-def longest_common_subseq(word1: str, word2: str, dp, index_1: int, index_2: int) -> int:
+def longest_common_subseq(
+    word1: str, word2: str, dp, index_1: int, index_2: int
+) -> int:
     if index_1 == len(word1):
         return 0
 

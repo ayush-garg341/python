@@ -39,6 +39,7 @@ def triplet_with_smaller_sum(arr, target):
 print(triplet_with_smaller_sum([-1, 0, 2, 3], 3))
 print(triplet_with_smaller_sum([-1, 4, 2, 1, 3], 5))
 
+
 def find_triplets_with_smaller_sum(arr, target):
     arr.sort()
     triplets = []
@@ -58,5 +59,7 @@ def find_triplets_with_smaller_sum(arr, target):
                 end -= 1
 
     return triplets
+
+
 print(find_triplets_with_smaller_sum([-1, 0, 2, 3], 3))
 print(find_triplets_with_smaller_sum([-1, 4, 2, 1, 3], 5))

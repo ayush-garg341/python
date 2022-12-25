@@ -14,10 +14,10 @@
 
 
 def stock_spanning_list(stock_price_list):
-    span = [1]*len(stock_price_list)
+    span = [1] * len(stock_price_list)
     for i in range(0, len(stock_price_list)):
         count = 1
-        for j in range(i-1, -1, -1):
+        for j in range(i - 1, -1, -1):
             if stock_price_list[j] < stock_price_list[i]:
                 count += 1
             else:

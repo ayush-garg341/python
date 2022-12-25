@@ -47,4 +47,3 @@ if __name__ == "__main__":
     # wait for the two threads to complete
     thread1.join()
     thread2.join()
-

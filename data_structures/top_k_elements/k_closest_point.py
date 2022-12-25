@@ -36,7 +36,9 @@ def find_closest_points(points, k):
         distance = -(points[i].x ** 2 + points[i].y ** 2)
         if distance > max_heap[0][0]:
             heapq.heappop(max_heap)
-            heapq.heappush(max_heap, [-(points[i].x ** 2 + points[i].y ** 2), points[i]])
+            heapq.heappush(
+                max_heap, [-(points[i].x ** 2 + points[i].y ** 2), points[i]]
+            )
 
     while len(max_heap):
         max_elt = heapq.heappop(max_heap)

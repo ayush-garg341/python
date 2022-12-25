@@ -23,14 +23,14 @@ Explanation: Need to find two subsets s.t S1-S2 = s
 
 def find_target_subsets(arr, s):
     if any(i < 1 for i in arr):
-        return -1 #invalid input, the problem expects only positive numbers
+        return -1  # invalid input, the problem expects only positive numbers
 
     # if 's + totalSum' is odd, we can't find a subset with sum equal to '(s + totalSum) / 2'
     total_sum = sum(arr)
-    if total_sum < s or (s + total_sum) %2 ==1:
+    if total_sum < s or (s + total_sum) % 2 == 1:
         return 0
     current_idx = 0
-    return find_target_subsets_rec_brute_force(arr, current_idx, (s + total_sum)/2)
+    return find_target_subsets_rec_brute_force(arr, current_idx, (s + total_sum) / 2)
 
 
 def find_target_subsets_rec_brute_force(arr: list, current_idx: int, s: int) -> int:
@@ -43,9 +43,11 @@ def find_target_subsets_rec_brute_force(arr: list, current_idx: int, s: int) -> 
 
     count = 0
     if arr[current_idx] <= s:
-        count += find_target_subsets_rec_brute_force(arr, current_idx+1, s-arr[current_idx])
+        count += find_target_subsets_rec_brute_force(
+            arr, current_idx + 1, s - arr[current_idx]
+        )
 
-    count += find_target_subsets_rec_brute_force(arr, current_idx+1, s)
+    count += find_target_subsets_rec_brute_force(arr, current_idx + 1, s)
 
     return count
 
@@ -61,13 +63,12 @@ def find_target_subsets_dp(arr, s):
         return -1
 
     total_sum = sum(arr)
-    if total_sum < s or (s + total_sum) % 2 ==1:
+    if total_sum < s or (s + total_sum) % 2 == 1:
         return 0
-    desired_sum = (s+total_sum)/2
+    desired_sum = (s + total_sum) / 2
     current_idx = 0
-    dp = [[0 for i in range(desired_sum+1)] for j in range(len(arr))]
+    dp = [[0 for i in range(desired_sum + 1)] for j in range(len(arr))]
     return find_target_subsets_dp_top_bottom(arr, current_idx, desired_sum, dp)
-
 
 
 def find_target_subsets_dp_top_bottom(arr: list, current_idx: int, s: int, dp: list):
@@ -80,9 +81,11 @@ def find_target_subsets_dp_top_bottom(arr: list, current_idx: int, s: int, dp: l
     if dp[current_idx][s] == -1:
         count = 0
         if arr[current_idx] <= s:
-            count += find_target_subsets_dp_top_bottom(arr, current_idx+1, s-arr[current_idx], dp)
+            count += find_target_subsets_dp_top_bottom(
+                arr, current_idx + 1, s - arr[current_idx], dp
+            )
 
-        count += find_target_subsets_dp_top_bottom(arr, current_idx+1, s, dp)
+        count += find_target_subsets_dp_top_bottom(arr, current_idx + 1, s, dp)
 
         dp[current_idx][s] = count
 
@@ -95,5 +98,4 @@ print(find_target_subsets([1, 2, 7, 1], 9))
 print(find_target_subsets([1, 2, 7, 1], 11))
 
 
-
-# exact same solution will work for tabular approach as it worked in count subset sum 
+# exact same solution will work for tabular approach as it worked in count subset sum

@@ -89,8 +89,18 @@ def num_of_islands_rec_with_visited(row, column, m, n, grid, visited):
         num_of_islands_rec_with_visited(row, column + 1, m, n, grid, visited)
 
 
-grid_1 = [["1", "1", "1", "1", "0"], ["1", "1", "0", "1", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "0", "0", "0"]]
-grid_2 = [["1", "1", "0", "0", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "1", "0", "0"], ["0", "0", "0", "1", "1"]]
+grid_1 = [
+    ["1", "1", "1", "1", "0"],
+    ["1", "1", "0", "1", "0"],
+    ["1", "1", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+]
+grid_2 = [
+    ["1", "1", "0", "0", "0"],
+    ["1", "1", "0", "0", "0"],
+    ["0", "0", "1", "0", "0"],
+    ["0", "0", "0", "1", "1"],
+]
 print(numIslands_with_visited(grid_1))
 print(numIslands_with_visited(grid_2))
 print("======= num of islands when modifying input matrix ========")

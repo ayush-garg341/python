@@ -53,6 +53,8 @@ def is_valid_bst_recrusive(root):
         if not (min_val < root.val < max_val):
             return False
 
-        return validate(root.left, min_val, root.val) and validate(root.right, root.val, max_val)
+        return validate(root.left, min_val, root.val) and validate(
+            root.right, root.val, max_val
+        )
 
     validate(root, -math.inf, math.inf)

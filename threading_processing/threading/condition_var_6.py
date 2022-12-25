@@ -70,5 +70,3 @@ Comment release() statement in above code has below effect :-
     - CPU can randomly select any thread out of 3 threads, to start first and acquire the lock on it.
     - There might be wait queue (invoked on wait()) and other is lock status which determines whether the lock has been released or not if there is no thread in wait queue.
 """
-
-

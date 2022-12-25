@@ -4,21 +4,22 @@
         
 """
 
-from  collections import Counter
-print (Counter('superfluous'))
+from collections import Counter
 
-counter = Counter('superfluous')
-print (counter['u'])
+print(Counter("superfluous"))
 
-print (list(counter.elements()))
-print( counter.most_common(2))
+counter = Counter("superfluous")
+print(counter["u"])
 
-counter_one = Counter('superfluous')
-print (counter_one)
-#Counter({'u': 3, 's': 2, 'l': 1, 'r': 1, 'e': 1, 'o': 1, 'p': 1, 'f': 1})
+print(list(counter.elements()))
+print(counter.most_common(2))
 
-counter_two = Counter('super')
+counter_one = Counter("superfluous")
+print(counter_one)
+# Counter({'u': 3, 's': 2, 'l': 1, 'r': 1, 'e': 1, 'o': 1, 'p': 1, 'f': 1})
+
+counter_two = Counter("super")
 print(counter_one.subtract(counter_two))
-#None
+# None
 
-print (counter_one)
+print(counter_one)

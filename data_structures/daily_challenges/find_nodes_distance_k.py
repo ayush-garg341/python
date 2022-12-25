@@ -3,6 +3,7 @@ Given a binary tree, a target value of a node that's contained in the tree and a
 that are exactly distance k from the node with target value.
 """
 
+
 class Tree:
     def __init__(self, value, left=None, right=None):
         self.value = value
@@ -31,7 +32,6 @@ tree2.right.right.right = Tree(7)
 tree2.right.right.right.right = Tree(8)
 
 
-
 def level_order_traversal_wrong(root, target, k):
     queue = []
     queue.append({"node": root, "dir": "up"})
@@ -58,7 +58,6 @@ def level_order_traversal_wrong(root, target, k):
             if root.right is not None:
                 queue.append({"node": root.right, "dir": direc})
 
-
         level_order_elts.append(temp_res)
 
     print(level_order_elts)
@@ -76,6 +75,7 @@ def level_order_traversal_wrong(root, target, k):
                         result.append(elts["value"])
 
     return result
+
 
 # print(level_order_traversal_wrong(tree, 3, 2))
 # print(level_order_traversal_wrong(tree2, 8, 6))

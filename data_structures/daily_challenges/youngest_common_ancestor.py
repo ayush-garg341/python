@@ -56,9 +56,13 @@ def getYoungestCommonAncestorEfficient(topAncestor, descendantOne, descendantTwo
     depth_two = get_depth_descendantEfficient(descendantTwo)
 
     if depth_one > depth_two:
-        yca = get_youngest_common_ancestorEfficient(depth_one - depth_two, descendantOne, descendantTwo)
+        yca = get_youngest_common_ancestorEfficient(
+            depth_one - depth_two, descendantOne, descendantTwo
+        )
     else:
-        yca = get_youngest_common_ancestorEfficient(depth_two - depth_one, descendantTwo, descendantOne)
+        yca = get_youngest_common_ancestorEfficient(
+            depth_two - depth_one, descendantTwo, descendantOne
+        )
 
     return yca
 

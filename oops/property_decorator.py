@@ -6,6 +6,7 @@ But this method have one side, at all the places in client code, we need to chan
 At this point of time property decorator becomes handy.
 """
 
+
 class Employee:
 
     num_of_emps = 0
@@ -18,28 +19,29 @@ class Employee:
 
         Employee.num_of_emps += 1
 
-    @property # getter no need to call as a function
+    @property  # getter no need to call as a function
     def email(self):
-        return '{}.{}@company.com'.format(self.first, self.last)
+        return "{}.{}@company.com".format(self.first, self.last)
 
-    @property # getter 
+    @property  # getter
     def fullName(self):
-        return '{} {}'.format(self.first, self.last)
+        return "{} {}".format(self.first, self.last)
 
-    @fullName.setter # setter
+    @fullName.setter  # setter
     def fullName(self, name):
         first, last = name.split(" ")
         self.first = first
-        self.last  = last
+        self.last = last
 
-    @fullName.deleter # deleter
+    @fullName.deleter  # deleter
     def fullName(self):
         print("Delete Name!")
         self.first = None
         self.last = None
 
     def apply_raise(self):
-        self.pay = int(self.pay * self.raise_amount) 
+        self.pay = int(self.pay * self.raise_amount)
+
 
 emp_1 = Employee("Ayush", "Garg", 50000)
 

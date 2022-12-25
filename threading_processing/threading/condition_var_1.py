@@ -16,10 +16,12 @@ cond_var.wait()
 
 """
 from threading import Condition
+
 cond_var = Condition()
 found_prime = False
 prime_holder = None
 exit_prog = False
+
 
 def printer_thread_func():
     global prime_holder
@@ -42,8 +44,6 @@ def printer_thread_func():
             # remember to wake up the other thread
             cond_var.notify()
             cond_var.release()
-
-
 
 
 """

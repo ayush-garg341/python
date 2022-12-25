@@ -46,6 +46,7 @@ print(find_subarrays([2, 5, 3, 10], 30))
 print(find_subarrays([8, 2, 6, 5], 50))
 print(find_subarrays([5, 10, 2], 10))
 
+
 def find_subarrays_simpler(arr, target):
     result = []
     # TODO: Write your code here
@@ -64,6 +65,8 @@ def find_subarrays_simpler(arr, target):
             window_start -= 1
 
     return result
+
+
 print("======= Using simpler approach ======== ")
 print(find_subarrays_simpler([2, 5, 3, 10], 30))
 print(find_subarrays_simpler([8, 2, 6, 5], 50))
@@ -84,8 +87,9 @@ def num_subarrays_less_than_target(arr, target):
         while product >= target and window_start < window_end:
             product //= arr[window_start]
             window_start += 1
-        count += (window_end - window_start)
+        count += window_end - window_start
     return count
+
 
 print(" ===== Only count ====== ")
 print(num_subarrays_less_than_target([10, 5, 2, 6], 100))

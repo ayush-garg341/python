@@ -39,8 +39,14 @@ def sort_character_by_frequency(string):
 
 def main():
 
-    print("String after sorting characters by frequency: " + sort_character_by_frequency("Programming"))
-    print("String after sorting characters by frequency: " + sort_character_by_frequency("abcbab"))
+    print(
+        "String after sorting characters by frequency: "
+        + sort_character_by_frequency("Programming")
+    )
+    print(
+        "String after sorting characters by frequency: "
+        + sort_character_by_frequency("abcbab")
+    )
 
 
 main()

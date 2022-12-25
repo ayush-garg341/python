@@ -7,6 +7,7 @@ import time
 rand_int = 0
 lock = Lock()
 
+
 def updater():
     global rand_int
     global lock
@@ -20,13 +21,12 @@ def printer():
     global lock
     while True:
         with lock:
-            if rand_int%5 == 0:
-                if rand_int%5!=0:
+            if rand_int % 5 == 0:
+                if rand_int % 5 != 0:
                     print(rand_int)
 
 
-
-if __name__=="__main__":
+if __name__ == "__main__":
     Thread(target=updater, daemon=True).start()
     Thread(target=printer, daemon=True).start()
 

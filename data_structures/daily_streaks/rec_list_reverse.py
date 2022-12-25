@@ -2,6 +2,7 @@
 Given a singly linked list, reverse it in place and return the new head.
 """
 
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -14,9 +15,11 @@ class Node:
             temp = temp.next
         print()
 
+
 def recursive_list_reversal(head):
     head = rec_list_reversal(head, None)
     return head
+
 
 def rec_list_reversal(head, prev):
     if head is not None:
@@ -35,9 +38,11 @@ def main():
     head.next.next.next = Node(8)
     head.next.next.next.next = Node(10)
 
-    print("Nodes of original LinkedList are: ", end='')
+    print("Nodes of original LinkedList are: ", end="")
     head.print_list()
     result = recursive_list_reversal(head)
-    print("Nodes of reversed LinkedList are: ", end='')
+    print("Nodes of reversed LinkedList are: ", end="")
     result.print_list()
+
+
 main()

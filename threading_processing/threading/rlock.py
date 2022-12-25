@@ -7,6 +7,7 @@ As explained, each reentrant lock is owned by some thread when in the locked sta
 
 from threading import RLock, Thread
 
+
 def child_task():
     rlock.acquire()
     print("child task executing")
@@ -27,4 +28,3 @@ rlock.release()
 thread = Thread(target=child_task)
 thread.start()
 thread.join()
-

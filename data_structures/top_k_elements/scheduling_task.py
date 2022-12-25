@@ -51,8 +51,14 @@ def schedule_tasks(tasks, k):
 
 
 def main():
-    print("Minimum intervals needed to execute all tasks: " + str(schedule_tasks(["a", "a", "a", "b", "c", "c"], 2)))
-    print("Minimum intervals needed to execute all tasks: " + str(schedule_tasks(["a", "b", "a"], 3)))
+    print(
+        "Minimum intervals needed to execute all tasks: "
+        + str(schedule_tasks(["a", "a", "a", "b", "c", "c"], 2))
+    )
+    print(
+        "Minimum intervals needed to execute all tasks: "
+        + str(schedule_tasks(["a", "b", "a"], 3))
+    )
 
 
 main()

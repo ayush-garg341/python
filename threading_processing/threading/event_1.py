@@ -1,6 +1,7 @@
 from threading import Thread, Event
 import time
 
+
 def printer_thread():
     global primeHolder
 
@@ -43,7 +44,7 @@ def finder_thread():
             i += 1
             # Add a timer to slow down the thread
             # so that we can see the output
-            time.sleep(.01)
+            time.sleep(0.01)
 
         primeHolder = i
 
@@ -60,7 +61,7 @@ def finder_thread():
         i += 1
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     prime_available = Event()
     prime_printed = Event()
     primeHolder = None
@@ -81,4 +82,3 @@ if __name__=="__main__":
 
     printerThread.join()
     finderThread.join()
-

@@ -1,5 +1,4 @@
 class Symbol:
-
     def __init__(self, value):
         self.value = value
 
@@ -32,7 +31,9 @@ if __name__ == "__main__":
     symbols.add(x)
     symbols.add(y)
 
-    print(x is y)  # False, compares in-memory address, are they pointing to the same memory location ?
+    print(
+        x is y
+    )  # False, compares in-memory address, are they pointing to the same memory location ?
     print(x == y)
     print(len(symbols))
 

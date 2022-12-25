@@ -47,6 +47,3 @@ if __name__ == "__main__":
     # iterate using the iterable
     for element in lstOfInts:
         print(element)
-
-
-

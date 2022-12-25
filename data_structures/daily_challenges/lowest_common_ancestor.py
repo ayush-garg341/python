@@ -51,6 +51,7 @@ def lowest_common_ancestor_using_path_approach(root, n1, n2):
     else:
         print("No Common ancestor")
 
+
 def path_from_root_to_node(root, n, path):
     if root is None:
         return False
@@ -60,10 +61,13 @@ def path_from_root_to_node(root, n, path):
 
     path.append(root.value)
 
-    if path_from_root_to_node(root.left, n, path) or path_from_root_to_node(root.right, n, path):
+    if path_from_root_to_node(root.left, n, path) or path_from_root_to_node(
+        root.right, n, path
+    ):
         return True
     else:
         path.pop()
+
 
 # path = []
 # path_from_root_to_node(tree, 5, path)
@@ -86,6 +90,7 @@ def lowest_common_ancestor(tree, n1, n2):
     """
     return lowest_common_ancestor_rec(tree, n1, n2)
 
+
 def lowest_common_ancestor_rec(root, n1, n2):
     if root is None:
         return None
@@ -103,6 +108,7 @@ def lowest_common_ancestor_rec(root, n1, n2):
     if right:
         return right
     return None
+
 
 print(lowest_common_ancestor(tree, 4, 7))
 print(lowest_common_ancestor(tree2, 5, 8))

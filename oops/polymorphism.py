@@ -1,6 +1,9 @@
-print("--------------------------- Polymorphism without inheritance ------------------------------")
+print(
+    "--------------------------- Polymorphism without inheritance ------------------------------"
+)
 
-class Rectangle():
+
+class Rectangle:
 
     # initializer
     def __init__(self, width=0, height=0):
@@ -10,10 +13,10 @@ class Rectangle():
 
     # method to calculate Area
     def getArea(self):
-        return (self.width * self.height)
+        return self.width * self.height
 
 
-class Circle():
+class Circle:
     # initializer
     def __init__(self, radius=0):
         self.radius = radius
@@ -21,7 +24,7 @@ class Circle():
 
     # method to calculate Area
     def getArea(self):
-        return (self.radius * self.radius * 3.142)
+        return self.radius * self.radius * 3.142
 
 
 shapes = [Rectangle(6, 10), Circle(7)]
@@ -32,7 +35,10 @@ print("Radius of a circle is", str(shapes[1].radius))
 print("Area of circle is:", str(shapes[1].getArea()))
 
 
-print("--------------------------- Polymorphism with inheritance, method overriding ------------------------------")
+print(
+    "--------------------------- Polymorphism with inheritance, method overriding ------------------------------"
+)
+
 
 class Shape:
     def __init__(self):  # initializing sides of all shapes to 0
@@ -51,7 +57,7 @@ class Rectangle(Shape):  # derived from Shape class
 
     # method to calculate Area
     def getArea(self):
-        return (self.width * self.height)
+        return self.width * self.height
 
 
 class Circle(Shape):  # derived from Shape class
@@ -61,10 +67,9 @@ class Circle(Shape):  # derived from Shape class
 
     # method to calculate Area
     def getArea(self):
-        return (self.radius * self.radius * 3.142)
+        return self.radius * self.radius * 3.142
 
 
 shapes = [Rectangle(6, 10), Circle(7)]
 print("Area of rectangle is:", str(shapes[0].getArea()))
 print("Area of circle is:", str(shapes[1].getArea()))
-

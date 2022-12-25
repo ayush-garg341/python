@@ -12,10 +12,10 @@ class Employee:
         Employee.num_of_emps += 1
 
     def fullName(self):
-        return '{} {}'.format(self.first, self.last)
+        return "{} {}".format(self.first, self.last)
 
     def apply_raise(self):
-        self.pay = int(self.pay * self.raise_amount) 
+        self.pay = int(self.pay * self.raise_amount)
 
 
 class Developer(Employee):
@@ -23,7 +23,7 @@ class Developer(Employee):
 
     def __init__(self, first, last, pay, prog_lang):
         super().__init__(first, last, pay)
-        # Employee.__init__(self, first, last, pay) --> also valid 
+        # Employee.__init__(self, first, last, pay) --> also valid
         self.prog_lang = prog_lang
 
 
@@ -34,7 +34,7 @@ class Manager(Employee):
     def __init__(self, first, last, pay, employees=None):
         super().__init__(first, last, pay)
 
-        if(employees == None):
+        if employees == None:
             self.employees = []
         else:
             self.employees = employees
@@ -42,19 +42,18 @@ class Manager(Employee):
     def add_employee(self, employee):
         if employee not in self.employees:
             self.employees.append(employee)
-    
+
     def remove_employee(self, employee):
         if employee in self.employees:
             self.employees.remove(employee)
-    
-     
+
     def print_emps(self):
         for emp in self.employees:
             print("----> ", emp.fullName())
 
 
-dev_1 = Developer("Ayush", "Garg", 50000, 'python')
-dev_2 = Developer("Arnim", "Garg", 60000, 'c++')
+dev_1 = Developer("Ayush", "Garg", 50000, "python")
+dev_2 = Developer("Arnim", "Garg", 60000, "c++")
 
 print(dev_1.email)
 print(dev_1.prog_lang)
@@ -62,7 +61,7 @@ print(dev_1.prog_lang)
 # print(help(Developer))
 
 print(dev_1.pay)
-dev_1.apply_raise() # raise amount will get changed to 1.10
+dev_1.apply_raise()  # raise amount will get changed to 1.10
 print(dev_1.pay)
 
 

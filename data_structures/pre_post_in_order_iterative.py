@@ -1,4 +1,3 @@
-
 class Node:
     def __init__(self, data) -> None:
         self.data = data
@@ -20,11 +19,11 @@ def preOrder(root):
     stack = []
     if root == None:
         return pre_order_traversal
-    
+
     stack.append(root)
     pre_order_traversal.append(root.data)
     root = root.left
-    while stack or root!=None:
+    while stack or root != None:
         if root != None:
             pre_order_traversal.append(root.data)
             stack.append(root)
@@ -36,7 +35,8 @@ def preOrder(root):
 
     return pre_order_traversal
 
-pre_order_traversal =  preOrder(root)
+
+pre_order_traversal = preOrder(root)
 print("pre order iterative traversal => ", pre_order_traversal)
 
 
@@ -45,7 +45,7 @@ def inOrder(root):
     stack = []
     if root == None:
         return in_order_traversal
-    
+
     stack.append(root)
     root = root.left
     while stack or root != None:
@@ -57,8 +57,9 @@ def inOrder(root):
             stack.pop()
             in_order_traversal.append(top.data)
             root = top.right
-    
+
     return in_order_traversal
+
 
 in_order_traversal = inOrder(root)
 print("in order iterative traversal => ", in_order_traversal)

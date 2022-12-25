@@ -39,7 +39,9 @@ def find_k_largest_pairs(nums1, nums2, k):
                 new_sum = nums1[i_num] + nums2[j_num]
                 if new_sum > top_sum:
                     heapq.heappop(min_heap)
-                    heapq.heappush(min_heap, (nums1[i_num] + nums2[j_num], i_num, j_num))
+                    heapq.heappush(
+                        min_heap, (nums1[i_num] + nums2[j_num], i_num, j_num)
+                    )
                 else:
                     break
 
@@ -62,7 +64,9 @@ def find_Kth_smallest_pairs(nums1, nums2, k):
                 new_sum = nums1[i_num] + nums2[j_num]
                 if -new_sum > top_sum:
                     heapq.heappop(min_heap)
-                    heapq.heappush(min_heap, (-(nums1[i_num] + nums2[j_num]), i_num, j_num))
+                    heapq.heappush(
+                        min_heap, (-(nums1[i_num] + nums2[j_num]), i_num, j_num)
+                    )
                 else:
                     break
 
@@ -74,11 +78,23 @@ def find_Kth_smallest_pairs(nums1, nums2, k):
 
 
 def main():
-    print("Pairs with largest sum are: " + str(find_k_largest_pairs([9, 8, 2], [6, 3, 1], 3)))
-    print("Pairs with largest sum are: " + str(find_k_largest_pairs([5, 2, 1], [2, -1], 3)))
+    print(
+        "Pairs with largest sum are: "
+        + str(find_k_largest_pairs([9, 8, 2], [6, 3, 1], 3))
+    )
+    print(
+        "Pairs with largest sum are: "
+        + str(find_k_largest_pairs([5, 2, 1], [2, -1], 3))
+    )
     print(" ------------------------------------- ")
-    print("Paris with smallest sum are: " + str(find_Kth_smallest_pairs([1, 7, 11], [2, 4, 6], 3)))
-    print("Paris with smallest sum are: " + str(find_Kth_smallest_pairs([1, 1, 2], [1, 2, 3], 2)))
+    print(
+        "Paris with smallest sum are: "
+        + str(find_Kth_smallest_pairs([1, 7, 11], [2, 4, 6], 3))
+    )
+    print(
+        "Paris with smallest sum are: "
+        + str(find_Kth_smallest_pairs([1, 1, 2], [1, 2, 3], 2))
+    )
 
 
 main()

@@ -7,9 +7,8 @@ class QueueEmptyException(Exception):
 
 
 class LinkedListEmptyException(Exception):
-    
     def __init__(self, msg) -> None:
         self.msg = msg
 
     def __str__(self) -> str:
-        return f'{self.msg}'
+        return f"{self.msg}"
