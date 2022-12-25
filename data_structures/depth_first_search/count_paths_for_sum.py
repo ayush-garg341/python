@@ -58,6 +58,9 @@ def count_paths_with_give_sum(root, given_sum, total_sum):
 
 
 def count_paths_no_extra_traversal(root, S):
+    """
+    TC -> avg - O(NlogN), worst case - O(N^2)
+    """
     path_count = 0
     path_count = count_paths_no_extra_traversal_rec(root, S, [])
     return path_count
@@ -78,10 +81,34 @@ def count_paths_no_extra_traversal_rec(root, given_sum, current_path):
             path_count += 1
 
     path_count += count_paths_no_extra_traversal_rec(root.left, given_sum, current_path)
-    path_count += count_paths_no_extra_traversal_rec(root.right, given_sum, current_path)
+    path_count += count_paths_no_extra_traversal_rec(
+        root.right, given_sum, current_path
+    )
 
     current_path.pop()
 
+    return path_count
+
+
+def count_paths_efficient(root, target_sum):
+    map = {}
+    path_count = count_paths_efficient_rec(root, target_sum, map, 0)
+    return path_count
+
+
+def count_paths_efficient_rec(root, target, map, current_path_sum):
+    if root is None:
+        return 0
+    path_count = 0
+    current_path_sum += root.val
+    if current_path_sum == target:
+        path_count += 1
+    path_count += map.get(current_path_sum - target, 0)
+    map[current_path_sum] = map.get(current_path_sum, 0) + 1
+    path_count += count_paths_efficient_rec(root.left, target, map, current_path_sum)
+    path_count += count_paths_efficient_rec(root.right, target, map, current_path_sum)
+
+    map[current_path_sum] = map.get(current_path_sum) - 1
     return path_count
 
 
@@ -101,6 +128,7 @@ def main():
     root.left.left.left = TreeNode(-1)
     # print("Tree has paths: " + str(count_paths(root, -2)))
     print("Tree has paths: " + str(count_paths_no_extra_traversal(root, -2)))
+    print("Tree has paths: " + str(count_paths_efficient(root, -2)))
 
 
 main()
