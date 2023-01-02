@@ -42,16 +42,60 @@ class SlidingWindowMedian:
             self.max_heap = []
         return result
 
+    def find_sliding_window_median_optimized(self, nums, k):
+        result = []
+        for i in range(len(nums)):
+            num = nums[i]
+            if len(self.max_heap) == 0 or num <= -self.max_heap[0]:
+                heapq.heappush(self.max_heap, -num)
+            else:
+                heapq.heappush(self.min_heap, num)
+
+            self.rebalance()
+
+            if i - k + 1 >= 0:
+                if len(self.max_heap) > len(self.min_heap):
+                    result.append(-self.max_heap[0])
+                else:
+                    result.append((self.min_heap[0] - self.max_heap[0]) / 2)
+
+                element_to_be_removed = nums[i - k + 1]
+                if element_to_be_removed <= -self.max_heap[0]:
+                    self.remove(self.max_heap, -element_to_be_removed)
+                else:
+                    self.remove(self.min_heap, element_to_be_removed)
+
+                self.rebalance()
+        return result
+
+    def remove(self, heap, num):
+        idx = heap.index(num)
+        heap[idx] = heap[-1]
+        del heap[-1]
+        if idx < len(heap):
+            heapq._siftup(heap, idx)
+            heapq._siftdown(heap, 0, idx)
+
+    def rebalance(self):
+        if len(self.max_heap) > len(self.min_heap) + 1:
+            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))
+        elif len(self.min_heap) > len(self.max_heap):
+            heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
+
 
 def main():
 
     slidingWindowMedian = SlidingWindowMedian()
-    result = slidingWindowMedian.find_sliding_window_median([1, 2, -1, 3, 5], 2)
+    result = slidingWindowMedian.find_sliding_window_median_optimized(
+        [1, 2, -1, 3, 5], 2
+    )
     print("Sliding window medians are: " + str(result))
 
-    slidingWindowMedian = SlidingWindowMedian()
-    result = slidingWindowMedian.find_sliding_window_median([1, 2, -1, 3, 5], 3)
-    print("Sliding window medians are: " + str(result))
+    # slidingWindowMedian = SlidingWindowMedian()
+    # result = slidingWindowMedian.find_sliding_window_median_optimized(
+    # [1, 2, -1, 3, 5], 3
+    # )
+    # print("Sliding window medians are: " + str(result))
 
 
 main()
