@@ -73,8 +73,9 @@ class SlidingWindowMedian:
         heap[idx] = heap[-1]
         del heap[-1]
         if idx < len(heap):
-            heapq._siftup(heap, idx)
-            heapq._siftdown(heap, 0, idx)
+            # heapq._siftup(heap, idx)
+            # heapq._siftdown(heap, 0, idx)
+            heapq.heapify(heap)
 
     def rebalance(self):
         if len(self.max_heap) > len(self.min_heap) + 1:
@@ -94,6 +95,12 @@ def main():
     # slidingWindowMedian = SlidingWindowMedian()
     # result = slidingWindowMedian.find_sliding_window_median_optimized(
     # [1, 2, -1, 3, 5], 3
+    # )
+    # print("Sliding window medians are: " + str(result))
+
+    # slidingWindowMedian = SlidingWindowMedian()
+    # result = slidingWindowMedian.find_sliding_window_median_optimized(
+    # [1, 2, 3, 4, 2, 3, 1, 4, 2], 3
     # )
     # print("Sliding window medians are: " + str(result))
 
