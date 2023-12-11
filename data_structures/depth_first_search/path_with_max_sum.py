@@ -38,6 +38,22 @@ def find_maximum_path_sum_rec(current_node):
     return max(left_tree_sum, right_tree_sum) + current_node.val
 
 
+def max_path_sum_rec(root):
+    if root is None:
+        return 0
+
+    left_subtree_sum = max_path_sum_rec(root.left)
+    right_subtree_sum = max_path_sum_rec(root.right)
+    including_left = root.data + left_subtree_sum
+    including_right = root.data + right_subtree_sum
+    global max_sum
+    max_sum = max(
+        max_sum, max(left_subtree_sum + right_subtree_sum + root.data, root.data)
+    )
+    max_at_node = max(max(including_left, including_right), root.data)
+    return max_at_node
+
+
 def main():
     root = TreeNode(1)
     root.left = TreeNode(2)
