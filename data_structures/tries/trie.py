@@ -58,6 +58,18 @@ class Trie:
             return self.search_rec(idx + 1, string, root.children[char])
         return False
 
+    def search_shortest_prefix(self, word):
+        node = self.root
+        prefix = ""
+        for char in word:
+            if char in node.children:
+                prefix += char
+                if node.children[char].is_word is True:
+                    return prefix
+                node = node.children[char]
+            else:
+                return None
+
 
 trie = Trie()
 trie.insert("apple")
