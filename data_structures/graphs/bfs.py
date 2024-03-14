@@ -7,21 +7,19 @@ from collections import deque
 
 class Graph:
     def __init__(self, edges: list, n: int):
-
         # Adjacency list representation of graph
-        self.adj_list = [[] for _ in range(n)]
+        self.adj_list = [[] for _ in range(n + 1)]
 
         # store the level number as well
-        self.level_num = [1 for _ in range(n)]
+        self.level_num = [1 for _ in range(n + 1)]
 
         # Undirected graph
-        for (src, dest) in edges:
+        for src, dest in edges:
             self.adj_list[src].append(dest)
             self.adj_list[dest].append(src)
 
 
 def BFS_iterative(G: Graph, i: int, discovered: list):
-
     # create a queue for enqueuing
     q = deque()
 
@@ -45,7 +43,6 @@ def BFS_iterative(G: Graph, i: int, discovered: list):
 
 
 if __name__ == "__main__":
-
     # List of graph edges as per the above diagram
     edges = [
         (1, 2),
@@ -70,11 +67,11 @@ if __name__ == "__main__":
     graph = Graph(edges, n)
 
     # to keep track of whether a vertex is discovered or not
-    discovered = [False] * n
+    discovered = [False] * (n + 1)
 
     # Perform BFS traversal from all undiscovered nodes to
     # cover all connected components of a graph
-    for i in range(n):
+    for i in range(1, n + 1):
         if not discovered[i]:
             # we can check here connected components
             # start BFS traversal from vertex i
