@@ -11,3 +11,7 @@ __pycache__/
 test.db
 
 tags
+
+*.bin
+*.html
+.DS_Store
