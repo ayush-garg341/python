@@ -15,3 +15,4 @@ tags
 *.bin
 *.html
 .DS_Store
+*.lprof

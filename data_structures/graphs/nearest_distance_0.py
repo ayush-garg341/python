@@ -3,6 +3,7 @@ Given an m x n binary matrix mat, return the distance of the
 nearest 0 for each cell.
 
 kernprof -lv data_structures/graphs/nearest_distance_0.py
+pip install line_profiler
 """
 
 # from queue import Queue
